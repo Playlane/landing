@@ -21,6 +21,7 @@
   --sans: 'DM Sans', system-ui, sans-serif;
   --silk: 'Silkscreen', monospace;
 }
+html, body { margin: 0; padding: 0; width: 100%; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--cream);
@@ -30,6 +31,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  margin: 0;
 }
 
 /* FADE UP */
@@ -39,12 +41,15 @@ body {
 /* ── HERO ── */
 #hero {
   position: relative;
+  width: 100%;
   height: 100vh;
   min-height: 600px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0;
+  padding: 0;
 }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
@@ -172,7 +177,9 @@ body {
 }
 
 /* SHARED */
-section { padding: 120px 40px; }
+section { padding: 120px 40px; margin: 0; }
+#hero { padding: 0; margin: 0; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; }
+body { background: #0d0b08; }
 .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 10px; }
 .section-title { font-family: var(--serif); font-size: clamp(36px, 4.5vw, 62px); font-weight: 500; line-height: 1.1; letter-spacing: -0.5px; color: var(--ink); }
 
