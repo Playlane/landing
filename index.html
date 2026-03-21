@@ -235,7 +235,7 @@ body { background: #0d0b08; }
   padding: 0;
 }
 .stack-section-header {
-  padding: 72px 40px 48px;
+  padding: 32px 40px 12px;
   text-align: center;
 }
 .stack-section-label {
@@ -249,7 +249,7 @@ body { background: #0d0b08; }
 }
 .stack-container {
   position: relative;
-  height: 500vh;
+  height: 320vh;
 }
 .stack-sticky {
   position: sticky; top: 0; height: 100vh;
@@ -337,7 +337,7 @@ body { background: #0d0b08; }
 @media (max-width: 900px) {
   .mobile-only { display: block; }
   .desktop-only { display: none; }
-  .stack-section-header { padding: 48px 20px 32px; }
+  .stack-section-header { padding: 24px 20px 10px; }
   .stack-card { width: 90vw; border-radius: 16px; }
   .stack-caption { padding: 48px 20px 22px; }
   .stack-scroll-hint { display: none; }
@@ -581,7 +581,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   .marquee-half { display: none; }
 
   /* ── SCROLL STACK ── */
-  #process .stack-section-header { padding: 40px 20px 28px; }
+  #process .stack-section-header { padding: 20px 20px 8px; }
   .stack-card { width: 90vw; }
 
   /* ── SECTIONS ── */
@@ -938,56 +938,57 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
       progress.appendChild(dot);
     }
 
-    /* Set all cards to initial stacked position */
+    /* Initial state: all cards stacked, card 0 on top */
     function init() {
       cards.forEach(function(card, i) {
         card.style.transition = 'none';
-        card.style.zIndex  = total - i;
-        card.style.opacity = 1;
-        card.style.transform = 'translateY(' + (i * 8) + 'px) scale(' + (1 - i * 0.03) + ')';
+        card.style.zIndex     = String(total - i);
+        card.style.opacity    = '1';
+        card.style.transform  = 'translateY(0px) scale(1)';
       });
     }
     init();
 
+    var lastActive = -1;
+
     function onScroll() {
       if (window.innerWidth > 900) return;
 
-      var rect     = container.getBoundingClientRect();
+      var rect    = container.getBoundingClientRect();
       var scrolled = Math.max(0, -rect.top);
-      var total_h  = container.offsetHeight - window.innerHeight;
-      if (total_h <= 0) return;
+      var totalH   = Math.max(1, container.offsetHeight - window.innerHeight);
+      var segH     = totalH / total;
 
-      /* Each card occupies 1/total of the scroll distance */
-      var segH = total_h / total;
+      /* Which segment are we in */
+      var activeIdx = Math.min(Math.floor(scrolled / segH), total - 1);
+      /* Progress within current segment 0→1 */
+      var segP = Math.max(0, Math.min(1, (scrolled - activeIdx * segH) / segH));
 
       cards.forEach(function(card, i) {
-        var segStart = i * segH;
-        var segEnd   = segStart + segH;
-        var p        = Math.max(0, Math.min(1, (scrolled - segStart) / segH));
-
-        if (scrolled < segStart) {
-          /* Not yet reached — sit in stack */
-          var stackOffset = (i - Math.floor(scrolled / segH)) * 8;
-          card.style.transform = 'translateY(' + Math.max(0, stackOffset) + 'px) scale(' + (1 - Math.max(0, i - Math.floor(scrolled / segH)) * 0.03) + ')';
-          card.style.opacity = 1;
-          card.style.zIndex  = total - i;
-        } else if (scrolled >= segStart && scrolled < segEnd) {
-          /* Currently transitioning — slide up to top */
-          var fromY = 100;
-          var currY = fromY * (1 - p);
-          card.style.transform = 'translateY(' + currY + 'px) scale(1)';
-          card.style.opacity   = 1;
-          card.style.zIndex    = total + 1;
-        } else {
-          /* Already passed — sits at top of stack */
+        if (i < activeIdx) {
+          /* Already revealed — sit flat on top in order */
           card.style.transform = 'translateY(0px) scale(1)';
-          card.style.opacity   = 1;
-          card.style.zIndex    = total + 1 + i;
+          card.style.opacity   = '1';
+          card.style.zIndex    = String(total + i);
+        } else if (i === activeIdx) {
+          /* Currently sliding up */
+          var fromY = 80;
+          var currY = fromY * (1 - segP);
+          card.style.transform = 'translateY(' + currY.toFixed(1) + 'px) scale(1)';
+          card.style.opacity   = '1';
+          card.style.zIndex    = String(total + i);
+        } else {
+          /* Not yet reached — sit in background stack */
+          var depth  = i - activeIdx;
+          var stackY = depth * 6;
+          var stackS = 1 - depth * 0.03;
+          card.style.transform = 'translateY(' + stackY + 'px) scale(' + stackS.toFixed(3) + ')';
+          card.style.opacity   = depth > 3 ? '0' : '1';
+          card.style.zIndex    = String(total - depth);
         }
       });
 
-      /* Active dot */
-      var activeIdx = Math.min(Math.floor(scrolled / segH), total - 1);
+      /* Update dots */
       progress.querySelectorAll('.stack-dot').forEach(function(dot, i) {
         dot.classList.toggle('active', i === activeIdx);
       });
