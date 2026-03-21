@@ -238,14 +238,14 @@ body { background: #0d0b08; }
   padding: 12px 40px 8px;
   text-align: center;
 }
-.stack-section-label {
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(244,240,232,0.35); margin-bottom: 12px;
-}
 .stack-section-title {
   font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
   font-weight: 400; color: var(--white); line-height: 1.1;
   letter-spacing: -0.5px;
+}
+.stack-section-label {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(244,240,232,0.35); margin-bottom: 12px;
 }
 .stack-container {
   position: relative;
@@ -716,12 +716,14 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 <!-- SCROLL STACK + DESKTOP CAROUSEL -->
 <section id="process">
 
+  <!-- SECTION HEADER — shown on both desktop and mobile -->
+  <div class="stack-section-header">
+    <p class="stack-section-label">How it works</p>
+    <h2 class="stack-section-title">Your night,<br><em>five steps</em></h2>
+  </div>
+
   <!-- MOBILE: scroll stack -->
   <div class="mobile-only">
-    <div class="stack-section-header">
-      <p class="stack-section-label">How it works</p>
-      <h2 class="stack-section-title">Your night,<br><em>five steps</em></h2>
-    </div>
     <div class="stack-container" id="stackContainer">
       <div class="stack-sticky" id="stackSticky">
         <div class="stack-card" id="scard0"><div class="stack-card-inner"><img src="1.jpg" alt="Find Your Night" /><div class="stack-caption"><div class="stack-num">01 / 05</div><div class="stack-title">Find Your Night</div><p class="stack-desc">Browse upcoming community screenings near you.</p></div></div></div>
