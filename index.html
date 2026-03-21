@@ -258,12 +258,13 @@ body { background: #0d0b08; }
 }
 .stack-card {
   position: absolute;
-  width: min(560px, 88vw);
+  width: min(480px, 90vw);
   border-radius: 20px; overflow: hidden;
   will-change: transform, opacity;
   box-shadow: 0 24px 80px rgba(0,0,0,0.5);
 }
-.stack-card img { width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover; }
+.stack-card img { width: 100%; height: 100%; display: block; object-fit: cover; position: absolute; top: 0; left: 0; }
+.stack-card-inner { position: relative; width: 100%; padding-top: 130%; }
 .stack-caption {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 60px 32px 32px;
@@ -723,11 +724,11 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
     </div>
     <div class="stack-container" id="stackContainer">
       <div class="stack-sticky" id="stackSticky">
-        <div class="stack-card" id="scard0"><img src="1.jpg" alt="Find Your Night" /><div class="stack-caption"><div class="stack-num">01 / 05</div><div class="stack-title">Find Your Night</div><p class="stack-desc">Browse upcoming community screenings near you.</p></div></div>
-        <div class="stack-card" id="scard1"><img src="2.jpg" alt="Meet Your Neighbours" /><div class="stack-caption"><div class="stack-num">02 / 05</div><div class="stack-title">Meet Your Neighbours</div><p class="stack-desc">Connect with curious strangers who share your taste.</p></div></div>
-        <div class="stack-card" id="scard2"><img src="3.jpg" alt="Pick Your Film" /><div class="stack-caption"><div class="stack-num">03 / 05</div><div class="stack-title">Pick Your Film</div><p class="stack-desc">Vote together on what plays. Everyone has a say.</p></div></div>
-        <div class="stack-card" id="scard3"><img src="4.jpg" alt="Watch Together" /><div class="stack-caption"><div class="stack-num">04 / 05</div><div class="stack-title">Watch Together</div><p class="stack-desc">Share the moment. Laugh, gasp, and feel it together.</p></div></div>
-        <div class="stack-card" id="scard4"><img src="5.jpg" alt="Build Your Tribe" /><div class="stack-caption"><div class="stack-num">05 / 05</div><div class="stack-title">Build Your Tribe</div><p class="stack-desc">Keep the conversation going. Your lane starts here.</p></div></div>
+        <div class="stack-card" id="scard0"><div class="stack-card-inner"><img src="1.jpg" alt="Find Your Night" /><div class="stack-caption"><div class="stack-num">01 / 05</div><div class="stack-title">Find Your Night</div><p class="stack-desc">Browse upcoming community screenings near you.</p></div></div></div>
+        <div class="stack-card" id="scard1"><div class="stack-card-inner"><img src="2.jpg" alt="Meet Your Neighbours" /><div class="stack-caption"><div class="stack-num">02 / 05</div><div class="stack-title">Meet Your Neighbours</div><p class="stack-desc">Connect with curious strangers who share your taste.</p></div></div></div>
+        <div class="stack-card" id="scard2"><div class="stack-card-inner"><img src="3.jpg" alt="Pick Your Film" /><div class="stack-caption"><div class="stack-num">03 / 05</div><div class="stack-title">Pick Your Film</div><p class="stack-desc">Vote together on what plays. Everyone has a say.</p></div></div></div>
+        <div class="stack-card" id="scard3"><div class="stack-card-inner"><img src="4.jpg" alt="Watch Together" /><div class="stack-caption"><div class="stack-num">04 / 05</div><div class="stack-title">Watch Together</div><p class="stack-desc">Share the moment. Laugh, gasp, and feel it together.</p></div></div></div>
+        <div class="stack-card" id="scard4"><div class="stack-card-inner"><img src="5.jpg" alt="Build Your Tribe" /><div class="stack-caption"><div class="stack-num">05 / 05</div><div class="stack-title">Build Your Tribe</div><p class="stack-desc">Keep the conversation going. Your lane starts here.</p></div></div></div>
         <div class="stack-progress" id="stackProgress"></div>
         <p class="stack-scroll-hint">scroll ↓</p>
       </div>
@@ -925,37 +926,73 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
     var container = document.getElementById('stackContainer');
     var progress  = document.getElementById('stackProgress');
     if (!container) return;
+
     var total = 5;
     var cards = [];
     for (var i = 0; i < total; i++) cards.push(document.getElementById('scard' + i));
+
+    /* Build dots */
     for (var d = 0; d < total; d++) {
       var dot = document.createElement('div');
       dot.className = 'stack-dot' + (d === 0 ? ' active' : '');
       progress.appendChild(dot);
     }
+
+    /* Set all cards to initial stacked position */
+    function init() {
+      cards.forEach(function(card, i) {
+        card.style.transition = 'none';
+        card.style.zIndex  = total - i;
+        card.style.opacity = 1;
+        card.style.transform = 'translateY(' + (i * 8) + 'px) scale(' + (1 - i * 0.03) + ')';
+      });
+    }
+    init();
+
     function onScroll() {
       if (window.innerWidth > 900) return;
-      var rect        = container.getBoundingClientRect();
-      var total_h     = container.offsetHeight - window.innerHeight;
-      var scrolled    = -rect.top;
-      var progress_pct = Math.max(0, Math.min(1, scrolled / total_h));
-      var step = 1 / total;
+
+      var rect     = container.getBoundingClientRect();
+      var scrolled = Math.max(0, -rect.top);
+      var total_h  = container.offsetHeight - window.innerHeight;
+      if (total_h <= 0) return;
+
+      /* Each card occupies 1/total of the scroll distance */
+      var segH = total_h / total;
+
       cards.forEach(function(card, i) {
-        var p = Math.max(0, Math.min(1, (progress_pct - i * step) / step));
-        if (i === 0) {
-          card.style.transform = 'translateY(' + (-p * 40) + 'px) scale(' + (1 - p * 0.06) + ')';
-          card.style.opacity   = p > 0.9 ? 1 - (p - 0.9) * 5 : 1;
-          card.style.zIndex    = total - i;
+        var segStart = i * segH;
+        var segEnd   = segStart + segH;
+        var p        = Math.max(0, Math.min(1, (scrolled - segStart) / segH));
+
+        if (scrolled < segStart) {
+          /* Not yet reached — sit in stack */
+          var stackOffset = (i - Math.floor(scrolled / segH)) * 8;
+          card.style.transform = 'translateY(' + Math.max(0, stackOffset) + 'px) scale(' + (1 - Math.max(0, i - Math.floor(scrolled / segH)) * 0.03) + ')';
+          card.style.opacity = 1;
+          card.style.zIndex  = total - i;
+        } else if (scrolled >= segStart && scrolled < segEnd) {
+          /* Currently transitioning — slide up to top */
+          var fromY = 100;
+          var currY = fromY * (1 - p);
+          card.style.transform = 'translateY(' + currY + 'px) scale(1)';
+          card.style.opacity   = 1;
+          card.style.zIndex    = total + 1;
         } else {
-          var currY = (100 + i * 10) * (1 - p);
-          card.style.transform = 'translateY(' + currY + 'px) scale(' + (0.88 + p * 0.12) + ')';
-          card.style.opacity   = p > 0.05 ? Math.min(1, p * 3) : 0;
-          card.style.zIndex    = total - i + (p > 0.1 ? total : 0);
+          /* Already passed — sits at top of stack */
+          card.style.transform = 'translateY(0px) scale(1)';
+          card.style.opacity   = 1;
+          card.style.zIndex    = total + 1 + i;
         }
       });
-      var activeIdx = Math.min(Math.floor(progress_pct * total), total - 1);
-      progress.querySelectorAll('.stack-dot').forEach(function(dot, i) { dot.classList.toggle('active', i === activeIdx); });
+
+      /* Active dot */
+      var activeIdx = Math.min(Math.floor(scrolled / segH), total - 1);
+      progress.querySelectorAll('.stack-dot').forEach(function(dot, i) {
+        dot.classList.toggle('active', i === activeIdx);
+      });
     }
+
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   })();
