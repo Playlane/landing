@@ -1004,8 +1004,13 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, email: email })
     }).then(function (r) {
-      if (!r.ok) throw new Error('Server error ' + r.status);
-      return r.json();
+      return r.json().then(function (data) {
+        if (!r.ok) {
+          var err = new Error(data.error || 'Server error');
+          throw err;
+        }
+        return data;
+      });
     });
   }
 
@@ -1032,8 +1037,11 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
         showSuccess(firstName, email);
       })
       .catch(function (err) {
-        console.error('Lambda error:', err);
-        showErr(apiErr, 'Something went wrong. Please try again.');
+        if (err.message === 'duplicate') {
+          showErr(apiErr, "You're already on the list! We'll be in touch soon.");
+        } else {
+          showErr(apiErr, 'Something went wrong. Please try again.');
+        }
       })
       .finally(function () {
         submitBtn.disabled = false;
