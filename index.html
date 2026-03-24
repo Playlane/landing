@@ -802,12 +802,8 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 
 <script>
 (function () {
-  /* ─────────────────────────────────────────
-     AWS LAMBDA CONFIG
-     Replace with your API Gateway URL after deploying:
-     See SETUP.md for full instructions
-  ───────────────────────────────────────── */
-  var LAMBDA_ENDPOINT = 'https://cxdzwpg753.execute-api.us-east-1.amazonaws.com/waitlist';
+  /* ─── var WAITLIST_API = '/api/waitlist'; ──── */
+  
 
   /* ── BURGER MENU ── */
   var burgerBtn = document.getElementById('burgerBtn');
@@ -1060,9 +1056,9 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   nameInput.addEventListener('input', function () { if (nameInput.value.trim()) clearErr(nameErr); });
   emailInput.addEventListener('input', function () { if (isValidEmail(emailInput.value)) clearErr(emailErr); });
 
-  /* ── LAMBDA API CALL ── */
-  function submitToLambda(name, email) {
-    return fetch(LAMBDA_ENDPOINT, {
+  /* ── WAITLIST API CALL ── */
+  function submitToWaitlist(name, email) {
+    return fetch(WAITLIST_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, email: email })
@@ -1090,7 +1086,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 
     var firstName = name.split(' ')[0];
 
-    submitToLambda(name, email)
+    submitToWaitlist(name, email)
       .then(function () {
         showSuccess(firstName, email);
       })
