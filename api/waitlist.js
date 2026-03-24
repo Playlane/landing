@@ -63,7 +63,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Playlane <onboarding@resend.dev>",
+        from: "Playlane <helloneighbour@playlane.co>",
         to: [email],
         subject: "You're in. The front row is yours.",
         html: getEmailHTML(firstName),
