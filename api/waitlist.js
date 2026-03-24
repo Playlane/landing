@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     // 1. Save to Airtable
     const airtableRes = await fetch(
-      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent("Playlane Waitlist")}`,
+      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent("Waitlist")}`,
       {
         method: "POST",
         headers: {
@@ -81,7 +81,7 @@ export default async function handler(req, res) {
 
     if (recordId) {
       await fetch(
-        `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent("Playlane Waitlist")}/${recordId}`,
+        `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent("Waitlist")}/${recordId}`,
         {
           method: "PATCH",
           headers: {
