@@ -1038,7 +1038,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
       })
       .catch(function (err) {
         if (err.message === 'duplicate') {
-          showErr(apiErr, "You're already on the list! We'll be in touch soon.");
+          showErr(apiErr, "Oops, this email is already on the list! Try another email.");
         } else {
           showErr(apiErr, 'Something went wrong. Please try again.');
         }
