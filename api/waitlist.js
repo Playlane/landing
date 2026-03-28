@@ -129,6 +129,10 @@ function getEmailHTML(firstName) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to Playlane</title>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+  </style>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f4f0e8; font-family: Georgia, 'Times New Roman', serif; -webkit-font-smoothing: antialiased;">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f0e8;">
@@ -137,7 +141,7 @@ function getEmailHTML(firstName) {
         <table role="presentation" width="580" cellspacing="0" cellpadding="0" style="max-width: 580px; width: 100%;">
           <tr>
             <td align="center" style="padding: 0 0 32px 0;">
-              <span style="font-family: 'Courier New', monospace; font-size: 22px; font-weight: bold; color: #161412; letter-spacing: 4px; text-transform: uppercase;">PLAYLANE</span>
+              <span style="font-family: 'Silkscreen', 'Courier New', monospace; font-size: 22px; font-weight: bold; color: #161412; letter-spacing: 4px; text-transform: uppercase;">PLAYLANE</span>
             </td>
           </tr>
           <tr>
@@ -187,10 +191,10 @@ function getEmailHTML(firstName) {
                       Thanks for joining the Playlane waitlist. You'll be among the very first to know when we launch in your neighbourhood.
                     </p>
                     <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      We're building something different &mdash; a place where films aren't watched alone on couches, but shared in living rooms, rooftops, and gardens with people who live nearby. Cinema that only plays when people gather.
+                      We're building something different, a place where films aren't watched alone, but shared in living rooms, rooftops, and gardens with people who live nearby. Cinema that only plays when people gather.
                     </p>
                     <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      When your city goes live, you'll get a personal invite. Until then &mdash; keep your eyes on your inbox.
+                      When your city goes live, you'll get a personal invite. Until then, keep your eyes on your inbox.
                     </p>
                   </td>
                 </tr>
@@ -236,7 +240,7 @@ function getEmailHTML(firstName) {
                       Cinema that won't play alone.
                     </p>
                     <p style="margin: 10px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; color: #c5c1b8; line-height: 1.5;">
-                      Alexander Phi Ltd &middot; London, UK<br />
+                      PLAYLANE &middot; London, United Kingdom<br />
                       You're receiving this because you signed up at playlane.co
                     </p>
                   </td>
