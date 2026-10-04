@@ -538,6 +538,22 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   transition: opacity 0.2s;
 }
 .success-close:hover { opacity: 0.78; }
+.success-whatsapp {
+  display: none; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 24px; width: 100%;
+  background: #25D366; color: #0b2e17;
+  border-radius: 10px; padding: 15px 24px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; text-decoration: none; font-family: var(--sans);
+  transition: opacity 0.2s;
+}
+.success-whatsapp.show { display: flex; }
+.success-whatsapp:hover { opacity: 0.85; }
+.success-redirect-note { margin-top: 10px; font-size: 12px; color: var(--ink-muted); }
+.success-redirect-note:empty { display: none; }
+.success-whatsapp + .success-redirect-note + .success-close {
+  background: transparent; color: var(--ink-muted); padding: 10px 20px; margin-top: 12px;
+}
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -620,15 +636,15 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 <body>
 
 <!-- ═══════════ WAITLIST MODAL ═══════════ -->
-<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Join the Waitlist">
+<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Join Playlane Host">
   <div class="modal-card">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
 
     <!-- Form state -->
     <div class="modal-body" id="modalFormState">
-      <p class="modal-eyebrow">Early Access</p>
-      <h2 class="modal-title">Grab your<br><em>front-row seat</em></h2>
-      <p class="modal-sub">Be first to know when Playlane launches in your city. We'll send you a personal invite the moment your neighbourhood goes live.</p>
+      <p class="modal-eyebrow">Become a Host</p>
+      <h2 class="modal-title">Host your<br><em>own screening</em></h2>
+      <p class="modal-sub">Open your living room, rooftop or garden to films and the people who live nearby. Sign up and you'll join our WhatsApp group with other Playlane hosts.</p>
 
       <form class="wl-form" id="waitlistForm" novalidate>
         <div class="wl-field">
@@ -643,16 +659,28 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
           <span class="wl-error" id="wl-email-err">Please enter a valid email.</span>
         </div>
 
+        <div class="wl-field">
+          <label class="wl-label" for="wl-phone">WhatsApp Number</label>
+          <input class="wl-input" type="tel" id="wl-phone" name="phone" placeholder="+44 7700 900123" autocomplete="tel" inputmode="tel" maxlength="20" required />
+          <span class="wl-error" id="wl-phone-err">Please enter a valid phone number.</span>
+        </div>
+
+        <div class="wl-field">
+          <label class="wl-label" for="wl-location">City / Neighbourhood</label>
+          <input class="wl-input" type="text" id="wl-location" name="location" placeholder="Hackney, London" autocomplete="address-level2" maxlength="100" required />
+          <span class="wl-error" id="wl-location-err">Please tell us where you'd host.</span>
+        </div>
+
         <button type="submit" class="wl-submit" id="wlSubmitBtn">
-          <span class="wl-btn-text">Join the Waitlist</span>
+          <span class="wl-btn-text">Join Playlane Host</span>
           <span class="wl-spinner"></span>
         </button>
 
         <span class="wl-error" id="wl-api-err" style="text-align:center;margin-top:2px;"></span>
 
         <p class="wl-privacy">
-          No spam, ever. We'll only email you about Playlane.<br>
-          <a href="#">Privacy Policy</a>
+          No spam, ever. We'll only use your details for Playlane hosting.<br>
+          <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
         </p>
       </form>
     </div>
@@ -660,11 +688,13 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
     <!-- Success state (hidden until submission) -->
     <div class="modal-success" id="modalSuccess">
       <div class="success-icon">&#10003;</div>
-      <h2 class="success-title" id="successTitle">You're on the list, <em>Alex!</em></h2>
+      <h2 class="success-title" id="successTitle">Welcome, host <em>Alex!</em></h2>
       <p class="success-msg" id="successMsg">We've saved your spot. You'll receive a personal invite the moment Playlane opens in your area. Keep your eyes on your inbox.</p>
       <div class="success-email-note" id="successEmailNote">
         A confirmation is on its way to <strong id="successEmail">—</strong>. Check your spam folder if you don't see it.
       </div>
+      <a class="success-whatsapp" id="successWhatsApp" href="#" target="_blank" rel="noopener">Join the hosts' WhatsApp group</a>
+      <p class="success-redirect-note" id="successRedirectNote"></p>
       <button class="success-close" id="successCloseBtn">Got it &mdash; I'm excited!</button>
     </div>
   </div>
@@ -705,7 +735,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   </div>
   <div class="marquee-cta-wrap">
     <button class="marquee-cta open-waitlist">
-      Join the Waitlist
+      Join Playlane Host
       <span class="marquee-cta-icon">&#8599;</span>
     </button>
   </div>
@@ -733,7 +763,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
     </a>
   </div>
 
-  <p class="footer-copy">&#169; 2025 Playlane. All rights reserved.</p>
+  <p class="footer-copy">&#169; 2026 Playlane. All rights reserved. &middot; <a href="/privacy.html" style="color:inherit;">Privacy Policy</a></p>
 </footer>
 
 
@@ -949,8 +979,15 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   var submitBtn     = document.getElementById('wlSubmitBtn');
   var nameInput     = document.getElementById('wl-name');
   var emailInput    = document.getElementById('wl-email');
+  var phoneInput    = document.getElementById('wl-phone');
+  var locationInput = document.getElementById('wl-location');
   var nameErr       = document.getElementById('wl-name-err');
   var emailErr      = document.getElementById('wl-email-err');
+  var phoneErr      = document.getElementById('wl-phone-err');
+  var locationErr   = document.getElementById('wl-location-err');
+  var successWA     = document.getElementById('successWhatsApp');
+  var redirectNote  = document.getElementById('successRedirectNote');
+  var redirectTimer = null;
   var apiErr        = document.getElementById('wl-api-err');
   var successTitle  = document.getElementById('successTitle');
   var successMsg    = document.getElementById('successMsg');
@@ -982,18 +1019,26 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 
   /* ── VALIDATION ── */
   function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
+  function isValidPhone(v) {
+    var t = v.trim();
+    if (!/^\+?[\d\s().-]+$/.test(t)) return false;
+    var digits = t.replace(/\D/g, '').length;
+    return digits >= 7 && digits <= 15;
+  }
   function showErr(el, msg) { el.textContent = msg; el.classList.add('show'); }
   function clearErr(el) { el.classList.remove('show'); }
 
   nameInput.addEventListener('input', function () { if (nameInput.value.trim()) clearErr(nameErr); });
   emailInput.addEventListener('input', function () { if (isValidEmail(emailInput.value)) clearErr(emailErr); });
+  phoneInput.addEventListener('input', function () { if (isValidPhone(phoneInput.value)) clearErr(phoneErr); });
+  locationInput.addEventListener('input', function () { if (locationInput.value.trim()) clearErr(locationErr); });
 
   /* ── WAITLIST API CALL ── */
-  function submitToWaitlist(name, email) {
+  function submitToWaitlist(name, email, phone, location) {
     return fetch(WAITLIST_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email })
+      body: JSON.stringify({ name: name, email: email, phone: phone, location: location })
     }).then(function (r) {
       return r.json().then(function (data) {
         if (!r.ok) {
@@ -1010,12 +1055,16 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
     e.preventDefault();
     var name  = nameInput.value.trim();
     var email = emailInput.value.trim();
+    var phone = phoneInput.value.trim();
+    var location = locationInput.value.trim();
     var valid = true;
 
-    clearErr(nameErr); clearErr(emailErr); clearErr(apiErr);
+    clearErr(nameErr); clearErr(emailErr); clearErr(phoneErr); clearErr(locationErr); clearErr(apiErr);
 
     if (!name)  { showErr(nameErr,  'Please enter your name.'); valid = false; }
     if (!isValidEmail(email)) { showErr(emailErr, 'Please enter a valid email address.'); valid = false; }
+    if (!isValidPhone(phone)) { showErr(phoneErr, 'Please enter a valid WhatsApp number.'); valid = false; }
+    if (!location) { showErr(locationErr, 'Please tell us where you\'d host.'); valid = false; }
     if (!valid) return;
 
     submitBtn.disabled = true;
@@ -1023,13 +1072,13 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 
     var firstName = name.split(' ')[0];
 
-    submitToWaitlist(name, email)
-      .then(function () {
-        showSuccess(firstName, email);
+    submitToWaitlist(name, email, phone, location)
+      .then(function (data) {
+        showSuccess(firstName, email, data && data.whatsappUrl);
       })
       .catch(function (err) {
         if (err.message === 'duplicate') {
-          showErr(apiErr, "Oops, this email is already on the list! Try another email.");
+          showErr(apiErr, "This email is already signed up as a host. Try another email.");
         } else {
           showErr(apiErr, 'Something went wrong. Please try again.');
         }
@@ -1040,13 +1089,21 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
       });
   });
 
-  function showSuccess(firstName, email) {
+  function showSuccess(firstName, email, whatsappUrl) {
     formState.style.display = 'none';
     successState.classList.add('show');
 
     /* Personalise the success message */
-    successTitle.innerHTML = 'You\'re on the list, <em>' + firstName + '!</em>';
-    successMsg.textContent  = 'We\'ve saved your spot. You\'ll receive a personal invite the moment Playlane opens in your area. Exciting things are coming your way.';
+    successTitle.innerHTML = 'Welcome, host <em>' + firstName + '!</em>';
+    successMsg.textContent  = 'You\'re signed up as a Playlane host. Join the hosts\' WhatsApp group to meet the community and hear about your first screening.';
+
+    /* Send them to the hosts' WhatsApp group */
+    if (whatsappUrl) {
+      successWA.href = whatsappUrl;
+      successWA.classList.add('show');
+      redirectNote.textContent = 'Opening WhatsApp in a moment\u2026';
+      redirectTimer = setTimeout(function () { window.location.href = whatsappUrl; }, 2500);
+    }
     successEmail.textContent = email;
 
     /* Reset form for next open */
@@ -1057,7 +1114,10 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   function resetModal() {
     successState.classList.remove('show');
     formState.style.display = '';
-    clearErr(nameErr); clearErr(emailErr); clearErr(apiErr);
+    clearTimeout(redirectTimer);
+    successWA.classList.remove('show');
+    redirectNote.textContent = '';
+    clearErr(nameErr); clearErr(emailErr); clearErr(phoneErr); clearErr(locationErr); clearErr(apiErr);
   }
   modalClose.addEventListener('click', resetModal);
   successClose.addEventListener('click', resetModal);
