@@ -1,7 +1,7 @@
 // api/waitlist.js
 // Vercel serverless function — saves to Airtable + sends confirmation email via Resend
 
-// Airtable table that stores hosts (fields: Name, Email, Phone, Location)
+// Airtable table that stores hosts (fields: Name, Email, Phone, City, Country)
 const HOSTS_TABLE = "Hosts";
 
 // Shown to the visitor whenever saving fails for a reason that isn't their fault
@@ -14,7 +14,7 @@ const SAVE_FAILED_MESSAGE =
 //   DB_AUTH       Airtable token missing or invalid. Check AIRTABLE_PERSONAL_ACCESS_TOKEN in Vercel.
 //   DB_TABLE      Table not found, or the token can't access it. Check the table is named "Hosts"
 //                 and the token has access to this base (scopes: data.records:read + write).
-//   DB_FIELD      A field name doesn't match. Fields must be exactly: Name, Email, Phone, Location.
+//   DB_FIELD      A field name doesn't match. Fields must be exactly: Name, Email, Phone, City, Country.
 //   DB_FIELD_TYPE A field has the wrong type (e.g. a single-select). Use "Single line text".
 //   DB_BUSY       Airtable rate limit. Usually fixes itself within a minute.
 //   DB_ERROR      Any other Airtable problem. See the log for Airtable's message.
@@ -28,7 +28,7 @@ function describeAirtableError(status, body) {
     return { code: "DB_TABLE", hint: `Table "${HOSTS_TABLE}" not found, or the token has no access to it.` };
   }
   if (type === "UNKNOWN_FIELD_NAME") {
-    return { code: "DB_FIELD", hint: "A field name doesn't match Airtable. Expected: Name, Email, Phone, Location." };
+    return { code: "DB_FIELD", hint: "A field name doesn't match Airtable. Expected: Name, Email, Phone, City, Country." };
   }
   if (type === "INVALID_MULTIPLE_CHOICE_OPTIONS" || type === "INVALID_VALUE_FOR_COLUMN" || type === "INVALID_REQUEST_UNKNOWN") {
     return { code: "DB_FIELD_TYPE", hint: "A field has the wrong type in Airtable. Use Single line text." };
@@ -59,7 +59,8 @@ export default async function handler(req, res) {
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const phone = typeof body.phone === "string" ? body.phone.trim().slice(0, 20) : "";
-    const location = typeof body.location === "string" ? body.location.trim().slice(0, 100) : "";
+    const city = typeof body.city === "string" ? body.city.trim().slice(0, 80) : "";
+    const country = typeof body.country === "string" ? body.country.trim().slice(0, 80) : "";
 
     // Validation: tell the visitor exactly which field to fix
     const invalid = (field, message) => res.status(400).json({ error: "invalid", field, message });
@@ -69,7 +70,7 @@ export default async function handler(req, res) {
     if (!/^\+?[\d\s().-]+$/.test(phone) || phoneDigits < 7 || phoneDigits > 15) {
       return invalid("phone", "Please enter a valid phone number with your country code, like +44 7700 900123.");
     }
-    if (!location) return invalid("location", "Please tell us your city or neighbourhood.");
+    if (!city) return invalid("city", "Please choose your city.");
 
     // Invite link for the hosts' WhatsApp group (set in Vercel env vars)
     const whatsappUrl = process.env.WHATSAPP_HOST_GROUP_URL || "";
@@ -127,7 +128,8 @@ export default async function handler(req, res) {
                 Name: name,
                 Email: email,
                 Phone: phone,
-                Location: location,
+                City: city,
+                ...(country ? { Country: country } : {}),
               },
             },
           ],
