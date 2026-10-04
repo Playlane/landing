@@ -448,6 +448,20 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   outline: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
 .wl-input::placeholder { color: var(--ink-light); }
+select.wl-input {
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+  padding-right: 44px; width: 100%; text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23161412' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 18px center;
+}
+select.wl-input:invalid, select.wl-input.placeholder { color: var(--ink-light); }
+select.wl-input option { color: var(--ink); }
+select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
+.wl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.wl-row .wl-field { min-width: 0; }
+.wl-other { margin-top: 8px; }
+.wl-other[hidden] { display: none; }
+@media (max-width: 480px) { .wl-row { grid-template-columns: 1fr; gap: 14px; } }
 .wl-input:focus {
   border-color: var(--ink);
   box-shadow: 0 0 0 3px rgba(22,20,18,0.06);
@@ -665,10 +679,23 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
           <span class="wl-error" id="wl-phone-err">Please enter a valid phone number.</span>
         </div>
 
-        <div class="wl-field">
-          <label class="wl-label" for="wl-location">City / Neighbourhood</label>
-          <input class="wl-input" type="text" id="wl-location" name="location" placeholder="Hackney, London" autocomplete="address-level2" maxlength="100" required />
-          <span class="wl-error" id="wl-location-err">Please tell us where you'd host.</span>
+        <div class="wl-row">
+          <div class="wl-field">
+            <label class="wl-label" for="wl-country">Country</label>
+            <select class="wl-input placeholder" id="wl-country" name="country" autocomplete="country" required>
+              <option value="">Loading countries&hellip;</option>
+            </select>
+          </div>
+          <div class="wl-field">
+            <label class="wl-label" for="wl-city">City</label>
+            <select class="wl-input placeholder" id="wl-city" name="city" required disabled>
+              <option value="">Choose a country first</option>
+            </select>
+          </div>
+        </div>
+        <div class="wl-field" style="margin-top:-6px;">
+          <input class="wl-input wl-other" type="text" id="wl-city-other" name="city_other" placeholder="Type your city or town" autocomplete="address-level2" maxlength="80" hidden />
+          <span class="wl-error" id="wl-location-err">Please choose your country and city.</span>
         </div>
 
         <button type="submit" class="wl-submit" id="wlSubmitBtn">
@@ -980,7 +1007,9 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   var nameInput     = document.getElementById('wl-name');
   var emailInput    = document.getElementById('wl-email');
   var phoneInput    = document.getElementById('wl-phone');
-  var locationInput = document.getElementById('wl-location');
+  var countrySel     = document.getElementById('wl-country');
+  var citySel        = document.getElementById('wl-city');
+  var cityOther      = document.getElementById('wl-city-other');
   var nameErr       = document.getElementById('wl-name-err');
   var emailErr      = document.getElementById('wl-email-err');
   var phoneErr      = document.getElementById('wl-phone-err');
@@ -997,6 +1026,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   function openModal() {
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    loadLocations();
     setTimeout(function () { nameInput.focus(); }, 350);
   }
   function closeModal() {
@@ -1031,7 +1061,106 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   nameInput.addEventListener('input', function () { if (nameInput.value.trim()) clearErr(nameErr); });
   emailInput.addEventListener('input', function () { if (isValidEmail(emailInput.value)) clearErr(emailErr); });
   phoneInput.addEventListener('input', function () { if (isValidPhone(phoneInput.value)) clearErr(phoneErr); });
-  locationInput.addEventListener('input', function () { if (locationInput.value.trim()) clearErr(locationErr); });
+
+  /* ── COUNTRY & CITY PICKER ──
+     Countries and their main cities come from /locations.json, loaded when the form first opens.
+     "My city isn't listed" reveals a text box, so nobody is blocked. */
+  var OTHER = '__other';
+  var locations = null, locationsLoading = null;
+
+  function guessCountry() {
+    var langs = navigator.languages || [navigator.language || ''];
+    for (var i = 0; i < langs.length; i++) {
+      var m = /-([A-Za-z]{2})$/.exec(langs[i] || '');
+      if (m && locations && locations[m[1].toUpperCase()]) return m[1].toUpperCase();
+    }
+    return locations && locations.GB ? 'GB' : '';
+  }
+
+  function setPlaceholderStyle(sel) { sel.classList.toggle('placeholder', !sel.value); }
+
+  function fillCountries() {
+    var html = '<option value="">Select your country</option>';
+    Object.keys(locations).forEach(function (code) {
+      html += '<option value="' + code + '">' + escapeHtml(locations[code].name) + '</option>';
+    });
+    countrySel.innerHTML = html;
+    countrySel.value = guessCountry();
+    fillCities();
+  }
+
+  function fillCities() {
+    var code = countrySel.value;
+    cityOther.hidden = true; cityOther.value = '';
+    if (!code || !locations[code]) {
+      citySel.innerHTML = '<option value="">Choose a country first</option>';
+      citySel.disabled = true;
+    } else {
+      var html = '<option value="">Select your city</option>';
+      locations[code].cities.forEach(function (c) {
+        html += '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + '</option>';
+      });
+      html += '<option value="' + OTHER + '">My city isn\u2019t listed</option>';
+      citySel.innerHTML = html;
+      citySel.disabled = false;
+    }
+    setPlaceholderStyle(countrySel); setPlaceholderStyle(citySel);
+  }
+
+  function escapeHtml(t) {
+    return String(t).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
+  /* If the list can't load, fall back to a single free-text box */
+  function useFreeTextLocation() {
+    countrySel.closest('.wl-row').style.display = 'none';
+    countrySel.required = false; citySel.required = false;
+    cityOther.hidden = false;
+    cityOther.placeholder = 'Your city and country, e.g. Birmingham, United Kingdom';
+  }
+
+  function loadLocations() {
+    if (locations || locationsLoading) return locationsLoading;
+    locationsLoading = fetch('/locations.json')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (data) { locations = data; fillCountries(); })
+      .catch(function () { useFreeTextLocation(); });
+    return locationsLoading;
+  }
+
+  countrySel.addEventListener('change', function () { fillCities(); clearErr(locationErr); });
+  citySel.addEventListener('change', function () {
+    setPlaceholderStyle(citySel);
+    var other = citySel.value === OTHER;
+    cityOther.hidden = !other;
+    if (other) cityOther.focus();
+    if (citySel.value && !other) clearErr(locationErr);
+  });
+  cityOther.addEventListener('input', function () { if (cityOther.value.trim()) clearErr(locationErr); });
+
+  /* Returns "City, Country", or '' if incomplete */
+  function getLocation() {
+    if (!locations) return cityOther.value.trim();
+    var code = countrySel.value;
+    if (!code) return '';
+    var city = citySel.value === OTHER ? cityOther.value.trim() : citySel.value;
+    if (!city) return '';
+    return city + ', ' + locations[code].name;
+  }
+  function locationProblem() {
+    if (!locations) return 'Please tell us your city and country.';
+    if (!countrySel.value) return 'Please choose your country.';
+    if (!citySel.value) return 'Please choose your city.';
+    if (citySel.value === OTHER && !cityOther.value.trim()) return 'Please type your city or town.';
+    return '';
+  }
+
+  /* After a successful sign-up the form is reset; put the picker back to its starting state */
+  form.addEventListener('reset', function () {
+    setTimeout(function () { if (locations) fillCountries(); }, 0);
+  });
 
   /* ── WAITLIST API CALL ── */
   function submitToWaitlist(name, email, phone, location) {
@@ -1039,13 +1168,25 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, email: email, phone: phone, location: location })
+    }).catch(function () {
+      /* The request never reached us (offline, blocked, timed out) */
+      var netErr = new Error('network');
+      netErr.kind = 'network';
+      throw netErr;
     }).then(function (r) {
-      return r.json().then(function (data) {
+      return r.text().then(function (text) {
+        var data = null;
+        try { data = JSON.parse(text); } catch (e) { data = null; }
         if (!r.ok) {
-          var err = new Error(data.error || 'Server error');
+          var err = new Error((data && data.message) || ('HTTP ' + r.status));
+          err.kind    = (data && data.error) || 'unknown';
+          err.field   = data && data.field;
+          err.code    = (data && data.code) || ('HTTP_' + r.status);
+          err.status  = r.status;
+          err.userMsg = data && data.message;
           throw err;
         }
-        return data;
+        return data || {};
       });
     });
   }
@@ -1056,7 +1197,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
     var name  = nameInput.value.trim();
     var email = emailInput.value.trim();
     var phone = phoneInput.value.trim();
-    var location = locationInput.value.trim();
+    var location = getLocation();
     var valid = true;
 
     clearErr(nameErr); clearErr(emailErr); clearErr(phoneErr); clearErr(locationErr); clearErr(apiErr);
@@ -1064,7 +1205,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
     if (!name)  { showErr(nameErr,  'Please enter your name.'); valid = false; }
     if (!isValidEmail(email)) { showErr(emailErr, 'Please enter a valid email address.'); valid = false; }
     if (!isValidPhone(phone)) { showErr(phoneErr, 'Please enter a valid WhatsApp number.'); valid = false; }
-    if (!location) { showErr(locationErr, 'Please tell us where you\'d host.'); valid = false; }
+    if (!location) { showErr(locationErr, locationProblem() || 'Please tell us your city and country.'); valid = false; }
     if (!valid) return;
 
     submitBtn.disabled = true;
@@ -1077,10 +1218,18 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
         showSuccess(firstName, email, data && data.whatsappUrl);
       })
       .catch(function (err) {
-        if (err.message === 'duplicate') {
-          showErr(apiErr, "This email is already signed up as a host. Try another email.");
+        var fieldErrs = { name: nameErr, email: emailErr, phone: phoneErr, location: locationErr };
+        if (err.kind === 'network') {
+          showErr(apiErr, "We couldn't reach Playlane. Check your internet connection and try again.");
+        } else if (err.kind === 'duplicate') {
+          showErr(apiErr, err.userMsg || 'This email is already signed up as a host. Try a different email.');
+        } else if (err.kind === 'invalid' && err.field && fieldErrs[err.field]) {
+          /* Point at the exact field that needs fixing */
+          showErr(fieldErrs[err.field], err.userMsg);
+        } else if (err.userMsg) {
+          showErr(apiErr, err.userMsg + ' (Error code: ' + err.code + ')');
         } else {
-          showErr(apiErr, 'Something went wrong. Please try again.');
+          showErr(apiErr, "Our sign-up service didn't respond properly. Please try again in a few minutes, or email helloneighbour@playlane.co and we'll add you. (Error code: " + err.code + ')');
         }
       })
       .finally(function () {
