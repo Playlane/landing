@@ -213,12 +213,12 @@ body { background: #0d0b08; }
 .marquee-cta {
   display: inline-flex; align-items: center; gap: 10px;
   border: 1px solid rgba(22,20,18,0.22); border-radius: 100px;
-  padding: 22px 44px; font-size: 22px; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 20px 44px; font-size: 30px; font-weight: 600;
+  letter-spacing: 0;
   color: var(--ink); text-decoration: none; background: var(--white);
   transition: background 0.2s, color 0.2s; white-space: nowrap;
   box-shadow: 0 0 0 10px var(--white); cursor: pointer;
-  font-family: var(--sans); outline: none;
+  font-family: var(--serif); outline: none;
 }
 .marquee-cta:hover { background: var(--ink); color: var(--white); }
 .marquee-cta:hover .marquee-cta-icon { background: var(--white); color: var(--ink); }
@@ -594,7 +594,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 
   /* ── MARQUEE BAND ── */
   .marquee-band { height: 100px; }
-  .marquee-cta { font-size: 14px; padding: 14px 24px; }
+  .marquee-cta { font-size: 20px; padding: 12px 24px; }
   .marquee-cta-icon { width: 36px; height: 36px; font-size: 16px; }
   .marquee-half { display: none; }
 
@@ -625,7 +625,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   .hero-title { font-size: clamp(32px, 11vw, 48px); }
   .hero-bottom { padding: 0 16px 28px; }
   .hero-nav { padding: 16px 16px 0; }
-  .marquee-cta { font-size: 13px; padding: 12px 20px; }
+  .marquee-cta { font-size: 19px; padding: 10px 20px; }
   .carousel-slide { flex: 0 0 calc(92vw); }
   footer { padding: 40px 16px 28px; }
   section { padding: 48px 16px; }
@@ -636,7 +636,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
 <body>
 
 <!-- ═══════════ WAITLIST MODAL ═══════════ -->
-<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Join Playlane Host">
+<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Become a Playlane Host">
   <div class="modal-card">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
 
@@ -672,7 +672,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
         </div>
 
         <button type="submit" class="wl-submit" id="wlSubmitBtn">
-          <span class="wl-btn-text">Join Playlane Host</span>
+          <span class="wl-btn-text">Become a Playlane Host</span>
           <span class="wl-spinner"></span>
         </button>
 
@@ -735,7 +735,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   </div>
   <div class="marquee-cta-wrap">
     <button class="marquee-cta open-waitlist">
-      Join Playlane Host
+      Become a Playlane Host
       <span class="marquee-cta-icon">&#8599;</span>
     </button>
   </div>
