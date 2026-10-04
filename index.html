@@ -1140,14 +1140,18 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
   });
   cityOther.addEventListener('input', function () { if (cityOther.value.trim()) clearErr(locationErr); });
 
-  /* Returns "City, Country", or '' if incomplete */
+  /* Returns { city, country }, or null if incomplete.
+     If the list failed to load, the typed text goes in city and country is left blank. */
   function getLocation() {
-    if (!locations) return cityOther.value.trim();
+    if (!locations) {
+      var typed = cityOther.value.trim();
+      return typed ? { city: typed, country: '' } : null;
+    }
     var code = countrySel.value;
-    if (!code) return '';
+    if (!code) return null;
     var city = citySel.value === OTHER ? cityOther.value.trim() : citySel.value;
-    if (!city) return '';
-    return city + ', ' + locations[code].name;
+    if (!city) return null;
+    return { city: city, country: locations[code].name };
   }
   function locationProblem() {
     if (!locations) return 'Please tell us your city and country.';
@@ -1163,11 +1167,11 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
   });
 
   /* ── WAITLIST API CALL ── */
-  function submitToWaitlist(name, email, phone, location) {
+  function submitToWaitlist(name, email, phone, place) {
     return fetch(WAITLIST_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email, phone: phone, location: location })
+      body: JSON.stringify({ name: name, email: email, phone: phone, city: place.city, country: place.country })
     }).catch(function () {
       /* The request never reached us (offline, blocked, timed out) */
       var netErr = new Error('network');
@@ -1197,7 +1201,7 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
     var name  = nameInput.value.trim();
     var email = emailInput.value.trim();
     var phone = phoneInput.value.trim();
-    var location = getLocation();
+    var place = getLocation();
     var valid = true;
 
     clearErr(nameErr); clearErr(emailErr); clearErr(phoneErr); clearErr(locationErr); clearErr(apiErr);
@@ -1205,7 +1209,7 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
     if (!name)  { showErr(nameErr,  'Please enter your name.'); valid = false; }
     if (!isValidEmail(email)) { showErr(emailErr, 'Please enter a valid email address.'); valid = false; }
     if (!isValidPhone(phone)) { showErr(phoneErr, 'Please enter a valid WhatsApp number.'); valid = false; }
-    if (!location) { showErr(locationErr, locationProblem() || 'Please tell us your city and country.'); valid = false; }
+    if (!place) { showErr(locationErr, locationProblem() || 'Please tell us your city and country.'); valid = false; }
     if (!valid) return;
 
     submitBtn.disabled = true;
@@ -1213,12 +1217,12 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
 
     var firstName = name.split(' ')[0];
 
-    submitToWaitlist(name, email, phone, location)
+    submitToWaitlist(name, email, phone, place)
       .then(function (data) {
         showSuccess(firstName, email, data && data.whatsappUrl);
       })
       .catch(function (err) {
-        var fieldErrs = { name: nameErr, email: emailErr, phone: phoneErr, location: locationErr };
+        var fieldErrs = { name: nameErr, email: emailErr, phone: phoneErr, city: locationErr, country: locationErr };
         if (err.kind === 'network') {
           showErr(apiErr, "We couldn't reach Playlane. Check your internet connection and try again.");
         } else if (err.kind === 'duplicate') {
