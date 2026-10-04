@@ -30,7 +30,7 @@ function describeAirtableError(status, body) {
   if (status === 403 || status === 404 || type === "INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND" || type === "NOT_FOUND" || type === "TABLE_NOT_FOUND") {
     return { code: "DB_TABLE", hint: `Hosts table (${AIRTABLE_BASE_ID}/${HOSTS_TABLE}) not found, or the Airtable token has no access to this base.` };
   }
-  if (type === "UNKNOWN_FIELD_NAME") {
+  if (type === "UNKNOWN_FIELD_NAME" || type === "INVALID_FILTER_BY_FORMULA") {
     return { code: "DB_FIELD", hint: "A field name doesn't match Airtable. Expected: Name, Email, Phone, City, Country." };
   }
   if (type === "INVALID_MULTIPLE_CHOICE_OPTIONS" || type === "INVALID_VALUE_FOR_COLUMN" || type === "INVALID_REQUEST_UNKNOWN") {
@@ -41,6 +41,30 @@ function describeAirtableError(status, body) {
   }
   return { code: "DB_ERROR", hint: `Unexpected Airtable response (HTTP ${status}${type ? ", " + type : ""}).` };
 }
+
+// Text inside an Airtable formula string: escape backslashes and quotes
+function formulaString(text) {
+  return '"' + String(text).replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"';
+}
+
+// Phone numbers get typed many ways (+44 7700 900123, 07700900123, 447700900123).
+// Compare digits only, and treat numbers as the same if their last 9 digits match,
+// which covers the same number written with or without the country code.
+const PHONE_MATCH_DIGITS = 9;
+function phoneDigitsOf(text) { return String(text || "").replace(/\D/g, ""); }
+function samePhone(a, b) {
+  const da = phoneDigitsOf(a), db = phoneDigitsOf(b);
+  if (!da || !db) return false;
+  if (da === db) return true;
+  return da.length >= PHONE_MATCH_DIGITS && db.length >= PHONE_MATCH_DIGITS &&
+    da.slice(-PHONE_MATCH_DIGITS) === db.slice(-PHONE_MATCH_DIGITS);
+}
+
+const DUPLICATE_MESSAGES = {
+  email: "This email is already registered as a Playlane host. Try a different email, or email helloneighbour@playlane.co to update your details.",
+  phone: "This WhatsApp number is already registered as a Playlane host. Try a different number, or email helloneighbour@playlane.co to update your details.",
+  both: "You're already registered as a Playlane host with this email and WhatsApp number. To update your details or get the WhatsApp group link again, email helloneighbour@playlane.co.",
+};
 
 async function readJson(response) {
   try { return await response.json(); } catch { return null; }
@@ -87,9 +111,21 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "save_failed", code: "DB_AUTH", message: SAVE_FAILED_MESSAGE });
     }
 
-    // ── Check for duplicate email ──────────────────────────────────
+    // ── Check whether this email or WhatsApp number is already a host ─────
+    // Email: case-insensitive. Phone: digits only, last 9 digits (see samePhone).
+    const digits = phoneDigitsOf(phone);
+    const phoneInAirtable = `REGEX_REPLACE({Phone} & "", "[^0-9]", "")`;
+    const duplicateFormula =
+      `OR(` +
+        `LOWER(TRIM({Email} & "")) = ${formulaString(email.toLowerCase())}, ` +
+        `${phoneInAirtable} = ${formulaString(digits)}, ` +
+        `AND(LEN(${phoneInAirtable}) >= ${PHONE_MATCH_DIGITS}, RIGHT(${phoneInAirtable}, ${PHONE_MATCH_DIGITS}) = ${formulaString(digits.slice(-PHONE_MATCH_DIGITS))})` +
+      `)`;
+    const checkUrl =
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(HOSTS_TABLE)}` +
+      `?maxRecords=10&fields%5B%5D=Email&fields%5B%5D=Phone&filterByFormula=${encodeURIComponent(duplicateFormula)}`;
     const checkRes = await fetch(
-      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(HOSTS_TABLE)}?filterByFormula=${encodeURIComponent(`{Email}="${email}"`)}`,
+      checkUrl,
       {
         method: "GET",
         headers: {
@@ -100,8 +136,13 @@ export default async function handler(req, res) {
 
     if (checkRes.ok) {
       const checkData = await readJson(checkRes);
-      if (checkData && checkData.records && checkData.records.length > 0) {
-        return res.status(409).json({ error: "duplicate", message: "This email is already signed up as a host. Try a different email, or email helloneighbour@playlane.co if you need to update your details." });
+      const matches = (checkData && checkData.records) || [];
+      if (matches.length > 0) {
+        const emailTaken = matches.some(r => String((r.fields && r.fields.Email) || "").trim().toLowerCase() === email.toLowerCase());
+        const phoneTaken = matches.some(r => samePhone(r.fields && r.fields.Phone, phone));
+        const field = emailTaken && phoneTaken ? "both" : emailTaken ? "email" : phoneTaken ? "phone" : "both";
+        console.log(`[signup] Duplicate host blocked (${field}).`);
+        return res.status(409).json({ error: "duplicate", field, message: DUPLICATE_MESSAGES[field] });
       }
     } else {
       // The save below will almost certainly fail for the same reason, so report it now
