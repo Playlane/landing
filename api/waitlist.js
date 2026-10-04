@@ -1,8 +1,11 @@
 // api/waitlist.js
 // Vercel serverless function — saves to Airtable + sends confirmation email via Resend
 
-// Airtable table that stores hosts (fields: Name, Email, Phone, City, Country)
-const HOSTS_TABLE = "Hosts";
+// Airtable base and table that store hosts (fields: Name, Email, Phone, City, Country).
+// IDs come from the table's address: airtable.com/<BASE_ID>/<TABLE_ID>/...
+// Using the table ID (not its name) means renaming the tab in Airtable won't break sign-ups.
+const AIRTABLE_BASE_ID = "app3DdTXYXOPuzs0V";
+const HOSTS_TABLE = "tblqrXUZZcZaStDZO"; // the "Hosts" table
 
 // Shown to the visitor whenever saving fails for a reason that isn't their fault
 const SAVE_FAILED_MESSAGE =
@@ -12,8 +15,8 @@ const SAVE_FAILED_MESSAGE =
 // Error codes shown to the visitor as "Error code: …" and what each one means for you.
 // The full details always appear in Vercel → your project → Logs.
 //   DB_AUTH       Airtable token missing or invalid. Check AIRTABLE_PERSONAL_ACCESS_TOKEN in Vercel.
-//   DB_TABLE      Table not found, or the token can't access it. Check the table is named "Hosts"
-//                 and the token has access to this base (scopes: data.records:read + write).
+//   DB_TABLE      Table not found, or the token can't access it. Check the token's Access list
+//                 includes this base (AIRTABLE_BASE_ID) and scopes data.records:read + write.
 //   DB_FIELD      A field name doesn't match. Fields must be exactly: Name, Email, Phone, City, Country.
 //   DB_FIELD_TYPE A field has the wrong type (e.g. a single-select). Use "Single line text".
 //   DB_BUSY       Airtable rate limit. Usually fixes itself within a minute.
@@ -25,7 +28,7 @@ function describeAirtableError(status, body) {
     return { code: "DB_AUTH", hint: "Airtable token missing or invalid (AIRTABLE_PERSONAL_ACCESS_TOKEN)." };
   }
   if (status === 403 || status === 404 || type === "INVALID_PERMISSIONS_OR_MODEL_NOT_FOUND" || type === "NOT_FOUND" || type === "TABLE_NOT_FOUND") {
-    return { code: "DB_TABLE", hint: `Table "${HOSTS_TABLE}" not found, or the token has no access to it.` };
+    return { code: "DB_TABLE", hint: `Hosts table (${AIRTABLE_BASE_ID}/${HOSTS_TABLE}) not found, or the Airtable token has no access to this base.` };
   }
   if (type === "UNKNOWN_FIELD_NAME") {
     return { code: "DB_FIELD", hint: "A field name doesn't match Airtable. Expected: Name, Email, Phone, City, Country." };
@@ -86,7 +89,7 @@ export default async function handler(req, res) {
 
     // ── Check for duplicate email ──────────────────────────────────
     const checkRes = await fetch(
-      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent(HOSTS_TABLE)}?filterByFormula=${encodeURIComponent(`{Email}="${email}"`)}`,
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(HOSTS_TABLE)}?filterByFormula=${encodeURIComponent(`{Email}="${email}"`)}`,
       {
         method: "GET",
         headers: {
@@ -114,7 +117,7 @@ export default async function handler(req, res) {
 
     // ── 1. Save to Airtable ────────────────────────────────────────
     const airtableRes = await fetch(
-      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent(HOSTS_TABLE)}`,
+      `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(HOSTS_TABLE)}`,
       {
         method: "POST",
         headers: {
