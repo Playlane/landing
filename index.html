@@ -1226,7 +1226,11 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
         if (err.kind === 'network') {
           showErr(apiErr, "We couldn't reach Playlane. Check your internet connection and try again.");
         } else if (err.kind === 'duplicate') {
-          showErr(apiErr, err.userMsg || 'This email is already signed up as a host. Try a different email.');
+          /* Already a host: flag the email field, the WhatsApp field, or both */
+          var dupMsg = err.userMsg || 'You\'re already registered as a Playlane host.';
+          if (err.field === 'email') showErr(emailErr, dupMsg);
+          else if (err.field === 'phone') showErr(phoneErr, dupMsg);
+          else showErr(apiErr, dupMsg);
         } else if (err.kind === 'invalid' && err.field && fieldErrs[err.field]) {
           /* Point at the exact field that needs fixing */
           showErr(fieldErrs[err.field], err.userMsg);
