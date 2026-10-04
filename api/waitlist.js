@@ -1,6 +1,9 @@
 // api/waitlist.js
 // Vercel serverless function — saves to Airtable + sends confirmation email via Resend
 
+// Airtable table that stores hosts (fields: Name, Email, Phone, Location)
+const HOSTS_TABLE = "Hosts";
+
 export default async function handler(req, res) {
   // Only allow POST
   if (req.method !== "POST") {
@@ -14,11 +17,21 @@ export default async function handler(req, res) {
 
   try {
     const { name, email } = req.body;
+    const phone = typeof req.body.phone === "string" ? req.body.phone.trim().slice(0, 20) : "";
+    const location = typeof req.body.location === "string" ? req.body.location.trim().slice(0, 100) : "";
 
     // Basic validation
-    if (!name || !email) {
-      return res.status(400).json({ error: "Name and email are required." });
+    if (!name || !email || !phone || !location) {
+      return res.status(400).json({ error: "Name, email, phone number and location are required." });
     }
+
+    const phoneDigits = phone.replace(/\D/g, "").length;
+    if (!/^\+?[\d\s().-]+$/.test(phone) || phoneDigits < 7 || phoneDigits > 15) {
+      return res.status(400).json({ error: "Please enter a valid phone number." });
+    }
+
+    // Invite link for the hosts' WhatsApp group (set in Vercel env vars)
+    const whatsappUrl = process.env.WHATSAPP_HOST_GROUP_URL || "";
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return res.status(400).json({ error: "Please enter a valid email address." });
@@ -26,7 +39,7 @@ export default async function handler(req, res) {
 
     // ── Check for duplicate email ──────────────────────────────────
     const checkRes = await fetch(
-      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent("Waitlist")}?filterByFormula=${encodeURIComponent(`{Email}="${email}"`)}`,
+      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent(HOSTS_TABLE)}?filterByFormula=${encodeURIComponent(`{Email}="${email}"`)}`,
       {
         method: "GET",
         headers: {
@@ -38,13 +51,13 @@ export default async function handler(req, res) {
     if (checkRes.ok) {
       const checkData = await checkRes.json();
       if (checkData.records && checkData.records.length > 0) {
-        return res.status(409).json({ error: "duplicate", message: "This email is already on the waitlist." });
+        return res.status(409).json({ error: "duplicate", message: "This email is already signed up as a host." });
       }
     }
 
     // ── 1. Save to Airtable ────────────────────────────────────────
     const airtableRes = await fetch(
-      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent("Waitlist")}`,
+      `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent(HOSTS_TABLE)}`,
       {
         method: "POST",
         headers: {
@@ -57,7 +70,8 @@ export default async function handler(req, res) {
               fields: {
                 Name: name,
                 Email: email,
-                Status: "New",
+                Phone: phone,
+                Location: location,
               },
             },
           ],
@@ -83,8 +97,8 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         from: "Playlane <helloneighbour@playlane.co>",
         to: [email],
-        subject: "You're in. The front row is yours.",
-        html: getEmailHTML(firstName),
+        subject: "Welcome, host. Your screen is ready.",
+        html: getEmailHTML(firstName, whatsappUrl),
       }),
     });
 
@@ -92,43 +106,23 @@ export default async function handler(req, res) {
       console.error("Resend error:", await emailRes.json());
     }
 
-    // ── 3. Update Airtable status to "Emailed" ────────────────────
-    const airtableData = await airtableRes.json();
-    const recordId = airtableData.records?.[0]?.id;
-
-    if (recordId) {
-      await fetch(
-        `https://api.airtable.com/v0/app52y6eaXlU3Bpkj/${encodeURIComponent("Waitlist")}/${recordId}`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: `Bearer ${process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fields: { Status: "Emailed" },
-          }),
-        }
-      );
-    }
-
-    return res.status(200).json({ success: true });
+    return res.status(200).json({ success: true, whatsappUrl });
   } catch (error) {
-    console.error("Waitlist error:", error);
+    console.error("Host signup error:", error);
     return res.status(500).json({ error: "Something went wrong." });
   }
 }
 
 // ─── Branded email template ───────────────────────────────────────────
 
-function getEmailHTML(firstName) {
+function getEmailHTML(firstName, whatsappUrl) {
   return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Playlane</title>
+  <title>Welcome to Playlane Host</title>
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
@@ -165,14 +159,14 @@ function getEmailHTML(firstName) {
                 <tr>
                   <td align="center" style="padding: 16px 40px 12px 40px;">
                     <h1 style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 32px; font-weight: 400; color: #ffffff; line-height: 1.2; letter-spacing: -0.5px;">
-                      You're on the list!
+                      You're a Playlane host!
                     </h1>
                   </td>
                 </tr>
                 <tr>
                   <td align="center" style="padding: 0 40px 48px 40px;">
                     <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase;">
-                      Front row reserved for ${firstName}
+                      Welcome aboard, ${firstName}
                     </p>
                   </td>
                 </tr>
@@ -188,14 +182,17 @@ function getEmailHTML(firstName) {
                       Hey ${firstName},
                     </p>
                     <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      Thanks for joining the Playlane waitlist. You'll be among the very first to know when we launch in your neighbourhood.
+                      Thanks for signing up to host on Playlane. You're joining a group of people opening their living rooms, rooftops and gardens to films and neighbours.
                     </p>
                     <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
                       We're building something different, a place where films aren't watched alone, but shared in living rooms, rooftops, and gardens with people who live nearby. Cinema that only plays when people gather.
                     </p>
                     <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      When your city goes live, you'll get a personal invite. Until then, keep your eyes on your inbox.
+                      Next step: join the hosts' WhatsApp group. It's where we share hosting tips, plan first screenings and connect you with other hosts near you.
                     </p>
+                    ${whatsappUrl ? `<table role="presentation" cellspacing="0" cellpadding="0" style="margin: 26px 0 0 0;"><tr><td style="background-color: #25D366; border-radius: 10px;">
+                      <a href="${whatsappUrl}" target="_blank" style="display: inline-block; padding: 14px 28px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; color: #0b2e17; text-decoration: none; letter-spacing: 0.5px;">Join the hosts' WhatsApp group</a>
+                    </td></tr></table>` : ""}
                   </td>
                 </tr>
                 <tr>
