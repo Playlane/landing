@@ -375,8 +375,10 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   background: rgba(10, 8, 5, 0.72);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: flex-start; justify-content: center;
   padding: 24px;
+  /* Let the form scroll when it's taller than the screen (phones, small laptops) */
+  overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
   opacity: 0; pointer-events: none;
   transition: opacity 0.3s ease;
 }
@@ -386,6 +388,8 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   background: var(--white);
   border-radius: 24px;
   max-width: 520px; width: 100%;
+  margin: auto; /* centred when it fits, starts at the top (and scrolls) when it doesn't */
+  flex-shrink: 0;
   position: relative;
   overflow: hidden;
   transform: translateY(24px) scale(0.97);
@@ -626,8 +630,8 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
   footer { padding: 48px 20px 32px; }
 
   /* ── MODAL ── */
-  .modal-overlay { padding: 16px; align-items: flex-end; }
-  .modal-card { border-radius: 20px 20px 16px 16px; }
+  .modal-overlay { padding: 16px; }
+  .modal-card { border-radius: 20px 20px 16px 16px; margin: auto auto 0; } /* sits at the bottom when it fits, scrolls when it doesn't */
   .modal-body { padding: 28px 24px 32px; }
   .modal-success { padding: 28px 24px 36px; }
   .modal-title { font-size: 28px; }
@@ -714,7 +718,7 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
 
     <!-- Success state (hidden until submission) -->
     <div class="modal-success" id="modalSuccess">
-      <div class="success-icon">&#10003;</div>
+      <div class="success-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h2 class="success-title" id="successTitle">Welcome, host <em>Alex!</em></h2>
       <p class="success-msg" id="successMsg">We've saved your spot. You'll receive a personal invite the moment Playlane opens in your area. Keep your eyes on your inbox.</p>
       <div class="success-email-note" id="successEmailNote">
@@ -763,7 +767,7 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
   <div class="marquee-cta-wrap">
     <button class="marquee-cta open-waitlist">
       Become a Playlane Host
-      <span class="marquee-cta-icon">&#8599;</span>
+      <span class="marquee-cta-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
     </button>
   </div>
 </div>
@@ -1026,8 +1030,9 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
   function openModal() {
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    overlay.scrollTop = 0; /* always open at the top of the form */
     loadLocations();
-    setTimeout(function () { nameInput.focus(); }, 350);
+    setTimeout(function () { nameInput.focus({ preventScroll: true }); }, 350);
   }
   function closeModal() {
     overlay.classList.remove('open');
@@ -1249,6 +1254,7 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
   function showSuccess(firstName, email, whatsappUrl) {
     formState.style.display = 'none';
     successState.classList.add('show');
+    overlay.scrollTop = 0; /* bring the welcome message into view */
 
     /* Personalise the success message */
     successTitle.innerHTML = 'Welcome, host <em>' + firstName + '!</em>';

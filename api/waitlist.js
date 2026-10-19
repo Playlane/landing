@@ -193,7 +193,7 @@ export default async function handler(req, res) {
     }
 
     // ── 2. Send confirmation email via Resend ──────────────────────
-    const firstName = name.split(" ")[0];
+    const firstName = escapeHtml(name.split(/\s+/)[0].slice(0, 40));
 
     const emailRes = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -202,10 +202,11 @@ export default async function handler(req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Playlane <helloneighbour@playlane.co>",
+        from: "PlayLane <helloneighbour@playlane.co>",
         to: [email],
-        subject: "Welcome, host. Your screen is ready.",
+        subject: EMAIL_SUBJECT,
         html: getEmailHTML(firstName, whatsappUrl),
+        text: getEmailText(name.split(/\s+/)[0].slice(0, 40), whatsappUrl),
       }),
     });
 
@@ -223,20 +224,84 @@ export default async function handler(req, res) {
 
 // ─── Branded email template ───────────────────────────────────────────
 
+const EMAIL_SUBJECT = "Welcome to PlayLane. You’re a Host. 🎬";
+
+// Names are typed by visitors, so escape them before putting them in the email
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+}
+
+// Plain-text version (shown by email apps that don't display HTML; also helps avoid spam folders)
+function getEmailText(firstName, whatsappUrl) {
+  return [
+    "WELCOME, HOST.",
+    "",
+    `Hi ${firstName},`,
+    "",
+    "Welcome to PlayLane.",
+    "",
+    "You’re joining a group of people who believe film can give us more reasons to come together.",
+    "",
+    "We’re starting with African cinema, creating more places for films to meet audiences and more opportunities for people to experience them together, closer to their neighbourhoods.",
+    "",
+    "As a PlayLane Host, you’re the person who brings people together.",
+    "",
+    "You don’t need to own a cinema. You don’t even need to have a venue.",
+    "",
+    "A PlayLane screening could happen in a residential communal space, community centre, community theatre or another suitable local space. And if you don’t have one in mind yet, that’s okay.",
+    "",
+    "Being a Host starts with people, not a venue.",
+    "",
+    "And this is about more than putting a film on a screen.",
+    "",
+    "The atmosphere. The welcome. The people. The film. The reactions. The conversations afterwards.",
+    "",
+    "We want every screening to feel like an occasion.",
+    "",
+    "And when you host, you can earn too.",
+    "",
+    "PlayLane Hosts can earn commission from the screenings they successfully host. So as you bring people together and help films reach new audiences, there’s an opportunity for you to share in the value you help create.",
+    "",
+    "WHAT HAPPENS NEXT?",
+    "",
+    whatsappUrl
+      ? `Join the PlayLane Hosts WhatsApp group to meet other Hosts, hear about our first screenings and start getting ready to host:\n${whatsappUrl}`
+      : "We’ll send you the link to the PlayLane Hosts WhatsApp group, where you’ll meet other Hosts, hear about our first screenings and start getting ready to host.",
+    "",
+    "We’re glad you’re here.",
+    "",
+    "Let’s host cinema.",
+    "PlayLane",
+    "",
+    "—",
+    "You’re receiving this because you signed up as a Host at playlane.co",
+  ].join("\n");
+}
+
 function getEmailHTML(firstName, whatsappUrl) {
+  const sans = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
+  const serif = "Georgia, 'Times New Roman', serif";
+  const p = (text, extra = "") =>
+    `<p style="margin: 18px 0 0 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #5c5a53;${extra}">${text}</p>`;
+  const nextStep = whatsappUrl
+    ? `Join the PlayLane Hosts WhatsApp group to meet other Hosts, hear about our first screenings and start getting ready to host.`
+    : `We&rsquo;ll send you the link to the PlayLane Hosts WhatsApp group, where you&rsquo;ll meet other Hosts, hear about our first screenings and start getting ready to host.`;
+
   return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to Playlane Host</title>
+  <title>Welcome to PlayLane. You&rsquo;re a Host.</title>
   <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
   </style>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f4f0e8; font-family: Georgia, 'Times New Roman', serif; -webkit-font-smoothing: antialiased;">
+<body style="margin: 0; padding: 0; background-color: #f4f0e8; font-family: ${serif}; -webkit-font-smoothing: antialiased;">
+  <!-- Inbox preview text -->
+  <div style="display: none; max-height: 0; overflow: hidden; opacity: 0;">Being a Host starts with people, not a venue. Here&rsquo;s what happens next.</div>
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f0e8;">
     <tr>
       <td align="center" style="padding: 40px 20px;">
@@ -246,11 +311,13 @@ function getEmailHTML(firstName, whatsappUrl) {
               <span style="font-family: 'Silkscreen', 'Courier New', monospace; font-size: 22px; font-weight: bold; color: #161412; letter-spacing: 4px; text-transform: uppercase;">PLAYLANE</span>
             </td>
           </tr>
+
+          <!-- Header card -->
           <tr>
             <td>
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #161412; border-radius: 20px; overflow: hidden;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #161412; border-radius: 20px 20px 0 0; overflow: hidden;">
                 <tr>
-                  <td align="center" style="padding: 60px 40px 20px 40px;">
+                  <td align="center" style="padding: 56px 40px 20px 40px;">
                     <table role="presentation" cellspacing="0" cellpadding="0">
                       <tr>
                         <td style="width: 10px; height: 10px; border-radius: 50%; background-color: #FFF69A;"></td>
@@ -265,44 +332,70 @@ function getEmailHTML(firstName, whatsappUrl) {
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" style="padding: 16px 40px 12px 40px;">
-                    <h1 style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 32px; font-weight: 400; color: #ffffff; line-height: 1.2; letter-spacing: -0.5px;">
-                      You're a Playlane host!
+                  <td align="center" style="padding: 16px 40px 52px 40px;">
+                    <h1 style="margin: 0; font-family: ${serif}; font-size: 34px; font-weight: 400; color: #ffffff; line-height: 1.2; letter-spacing: 3px; text-transform: uppercase;">
+                      Welcome, Host.
                     </h1>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding: 0 40px 48px 40px;">
-                    <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase;">
-                      Welcome aboard, ${firstName}
-                    </p>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
+
+          <!-- Body -->
           <tr>
             <td>
               <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #fffef9; border-radius: 0 0 20px 20px; border: 1px solid rgba(22,20,18,0.06); border-top: none;">
                 <tr>
-                  <td style="padding: 36px 40px 0 40px;">
-                    <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      Hey ${firstName},
-                    </p>
-                    <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      Thanks for signing up to host on Playlane. You're joining a group of people opening their living rooms, rooftops and gardens to films and neighbours.
-                    </p>
-                    <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      We're building something different, a place where films aren't watched alone, but shared in living rooms, rooftops, and gardens with people who live nearby. Cinema that only plays when people gather.
-                    </p>
-                    <p style="margin: 18px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; line-height: 1.75; color: #5c5a53;">
-                      Next step: join the hosts' WhatsApp group. It's where we share hosting tips, plan first screenings and connect you with other hosts near you.
-                    </p>
-                    ${whatsappUrl ? `<table role="presentation" cellspacing="0" cellpadding="0" style="margin: 26px 0 0 0;"><tr><td style="background-color: #25D366; border-radius: 10px;">
-                      <a href="${whatsappUrl}" target="_blank" style="display: inline-block; padding: 14px 28px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; font-weight: 600; color: #0b2e17; text-decoration: none; letter-spacing: 0.5px;">Join the hosts' WhatsApp group</a>
+                  <td style="padding: 22px 40px 0 40px;">
+                    ${p(`Hi ${firstName},`)}
+                    ${p(`Welcome to PlayLane.`)}
+                    ${p(`You&rsquo;re joining a group of people who believe film can give us more reasons to come together.`)}
+                    ${p(`We&rsquo;re starting with African cinema, creating more places for films to meet audiences and more opportunities for people to experience them together, closer to their neighbourhoods.`)}
+                    ${p(`As a PlayLane Host, you&rsquo;re the person who brings people together.`)}
+                    ${p(`You don&rsquo;t need to own a cinema. You don&rsquo;t even need to have a venue.`)}
+                    ${p(`A PlayLane screening could happen in a residential communal space, community centre, community theatre or another suitable local space. And if you don&rsquo;t have one in mind yet, that&rsquo;s okay.`)}
+                    ${p(`Being a Host starts with people, not a venue.`, ` font-family: ${serif}; font-size: 19px; color: #161412; font-style: italic;`)}
+                    ${p(`And this is about more than putting a film on a screen.`)}
+                    ${p(`The atmosphere. The welcome. The people. The film. The reactions. The conversations afterwards.`, ` color: #161412;`)}
+                    ${p(`We want every screening to feel like an occasion.`)}
+                  </td>
+                </tr>
+
+                <!-- Earn callout -->
+                <tr>
+                  <td style="padding: 28px 40px 0 40px;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f0e8; border-radius: 14px;">
+                      <tr>
+                        <td style="padding: 22px 24px 24px 24px;">
+                          <p style="margin: 0; font-family: ${serif}; font-size: 20px; line-height: 1.4; color: #161412;">And when you host, you can earn too.</p>
+                          <p style="margin: 12px 0 0 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #5c5a53;">PlayLane Hosts can earn commission from the screenings they successfully host. So as you bring people together and help films reach new audiences, there&rsquo;s an opportunity for you to share in the value you help create.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- What happens next -->
+                <tr>
+                  <td style="padding: 32px 40px 0 40px;">
+                    <p style="margin: 0; font-family: ${sans}; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #161412;">What happens next?</p>
+                    ${p(nextStep, " margin-top: 12px;")}
+                    ${whatsappUrl ? `<table role="presentation" cellspacing="0" cellpadding="0" style="margin: 24px 0 0 0;"><tr><td style="background-color: #25D366; border-radius: 10px;">
+                      <a href="${whatsappUrl}" target="_blank" style="display: inline-block; padding: 15px 28px; font-family: ${sans}; font-size: 13px; font-weight: 700; color: #0b2e17; text-decoration: none; letter-spacing: 1px; text-transform: uppercase;">Join the Hosts&rsquo; WhatsApp group</a>
                     </td></tr></table>` : ""}
                   </td>
                 </tr>
+
+                <!-- Sign-off -->
+                <tr>
+                  <td style="padding: 32px 40px 0 40px;">
+                    <p style="margin: 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #5c5a53;">We&rsquo;re glad you&rsquo;re here.</p>
+                    <p style="margin: 18px 0 0 0; font-family: ${serif}; font-size: 20px; line-height: 1.4; color: #161412; font-style: italic;">Let&rsquo;s host cinema.</p>
+                    <p style="margin: 6px 0 0 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #161412; font-weight: 600;">PlayLane</p>
+                  </td>
+                </tr>
+
                 <tr>
                   <td style="padding: 32px 40px 0 40px;">
                     <hr style="border: none; border-top: 1px solid #e8e5dd; margin: 0;" />
@@ -310,43 +403,27 @@ function getEmailHTML(firstName, whatsappUrl) {
                 </tr>
                 <tr>
                   <td align="center" style="padding: 24px 40px 8px 40px;">
-                    <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; color: #a8a49a; letter-spacing: 0.5px;">
-                      Follow the journey
-                    </p>
+                    <p style="margin: 0; font-family: ${sans}; font-size: 13px; color: #a8a49a; letter-spacing: 0.5px;">Follow the journey</p>
                   </td>
                 </tr>
                 <tr>
                   <td align="center" style="padding: 12px 40px 0 40px;">
                     <table role="presentation" cellspacing="0" cellpadding="0">
                       <tr>
-                        <td style="padding: 0 12px;">
-                          <a href="https://instagram.com/joinplaylane" target="_blank" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">Instagram</a>
-                        </td>
+                        <td style="padding: 0 12px;"><a href="https://instagram.com/joinplaylane" target="_blank" style="font-family: ${sans}; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">Instagram</a></td>
                         <td style="color: #d0cdc5;">&middot;</td>
-                        <td style="padding: 0 12px;">
-                          <a href="https://tiktok.com/@joinplaylane" target="_blank" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">TikTok</a>
-                        </td>
+                        <td style="padding: 0 12px;"><a href="https://tiktok.com/@joinplaylane" target="_blank" style="font-family: ${sans}; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">TikTok</a></td>
                         <td style="color: #d0cdc5;">&middot;</td>
-                        <td style="padding: 0 12px;">
-                          <a href="https://x.com/joinplaylane" target="_blank" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">X</a>
-                        </td>
+                        <td style="padding: 0 12px;"><a href="https://x.com/joinplaylane" target="_blank" style="font-family: ${sans}; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">X</a></td>
                       </tr>
                     </table>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 28px 40px 0 40px;">
-                    <hr style="border: none; border-top: 1px solid #e8e5dd; margin: 0;" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding: 24px 40px 36px 40px;">
-                    <p style="margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 14px; color: #a8a49a; line-height: 1.6; font-style: italic;">
-                      Cinema that won't play alone.
-                    </p>
-                    <p style="margin: 10px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 11px; color: #c5c1b8; line-height: 1.5;">
+                  <td align="center" style="padding: 28px 40px 36px 40px;">
+                    <p style="margin: 0; font-family: ${sans}; font-size: 11px; color: #b5b1a8; line-height: 1.6;">
                       PLAYLANE &middot; London, United Kingdom<br />
-                      You're receiving this because you signed up at playlane.co
+                      You&rsquo;re receiving this because you signed up as a Host at playlane.co
                     </p>
                   </td>
                 </tr>
