@@ -224,7 +224,7 @@ export default async function handler(req, res) {
 
 // ─── Branded email template ───────────────────────────────────────────
 
-const EMAIL_SUBJECT = "Welcome to PlayLane. You’re a Host. 🎬";
+const EMAIL_SUBJECT = "You’re in. Welcome to the Lane.";
 
 // Names are typed by visitors, so escape them before putting them in the email
 function escapeHtml(text) {
@@ -234,206 +234,45 @@ function escapeHtml(text) {
 // Plain-text version (shown by email apps that don't display HTML; also helps avoid spam folders)
 function getEmailText(firstName, whatsappUrl) {
   return [
-    "WELCOME, HOST.",
+    "WELCOME TO THE LANE",
     "",
-    `Hi ${firstName},`,
+    "You’re in.",
     "",
-    "Welcome to PlayLane.",
+    "Good films. Great company. Your neighbourhood.",
     "",
-    "You’re joining a group of people who believe film can give us more reasons to come together.",
+    "01 / THE GOOD PART",
     "",
-    "We’re starting with African cinema, creating more places for films to meet audiences and more opportunities for people to experience them together, closer to their neighbourhoods.",
+    "The night starts before the film.",
     "",
-    "As a PlayLane Host, you’re the person who brings people together.",
+    "Welcome to PlayLane’s first circle of Lane Chiefs.",
     "",
-    "You don’t need to own a cinema. You don’t even need to have a venue.",
+    "You bring your taste, your local knowledge and your instinct for getting people together. We help turn that into a film night worth leaving home for.",
     "",
-    "A PlayLane screening could happen in a residential communal space, community centre, community theatre or another suitable local space. And if you don’t have one in mind yet, that’s okay.",
+    "YOU BRING: The people. The taste. The ideas.",
+    "WE HANDLE: Film rights. Venue approval. Ticketing.",
     "",
-    "Being a Host starts with people, not a venue.",
+    "Approved screenings can earn you an agreed share of ticket revenue. We’ll explain the details before your first event.",
     "",
-    "And this is about more than putting a film on a screen.",
+    "02 / FIRST THINGS FIRST",
     "",
-    "The atmosphere. The welcome. The people. The film. The reactions. The conversations afterwards.",
-    "",
-    "We want every screening to feel like an occasion.",
-    "",
-    "And when you host, you can earn too.",
-    "",
-    "PlayLane Hosts can earn commission from the screenings they successfully host. So as you bring people together and help films reach new audiences, there’s an opportunity for you to share in the value you help create.",
-    "",
-    "WHAT HAPPENS NEXT?",
+    "Come meet your people.",
     "",
     whatsappUrl
-      ? `Join the PlayLane Hosts WhatsApp group to meet other Hosts, hear about our first screenings and start getting ready to host:\n${whatsappUrl}`
-      : "We’ll send you the link to the PlayLane Hosts WhatsApp group, where you’ll meet other Hosts, hear about our first screenings and start getting ready to host.",
+      ? `Join the Hosts’ WhatsApp group to meet other Lane Chiefs, hear what’s coming and get ready for your first screening:\n${whatsappUrl}`
+      : "We’ll send you the link to the Hosts’ WhatsApp group, where you’ll meet other Lane Chiefs, hear what’s coming and get ready for your first screening.",
     "",
-    "We’re glad you’re here.",
+    "See you in the Lane.",
     "",
-    "Let’s host cinema.",
-    "PlayLane",
-    "",
-    "—",
-    "You’re receiving this because you signed up as a Host at playlane.co",
+    "WHERE YOU WATCH, WHERE YOU PLAY.",
+    "PLAYLANE · LONDON, UNITED KINGDOM",
   ].join("\n");
 }
 
+// The design's ↗ and ✳ are followed by &#xFE0E; so phones show them as plain text symbols, not coloured emoji
 function getEmailHTML(firstName, whatsappUrl) {
-  const sans = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
-  const serif = "Georgia, 'Times New Roman', serif";
-  const p = (text, extra = "") =>
-    `<p style="margin: 18px 0 0 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #5c5a53;${extra}">${text}</p>`;
-  const nextStep = whatsappUrl
-    ? `Join the PlayLane Hosts WhatsApp group to meet other Hosts, hear about our first screenings and start getting ready to host.`
-    : `We&rsquo;ll send you the link to the PlayLane Hosts WhatsApp group, where you&rsquo;ll meet other Hosts, hear about our first screenings and start getting ready to host.`;
+  const whatsappBlock = whatsappUrl
+    ? `<p style="font-size:16px;line-height:1.6;color:#333;margin:0 0 25px">Join the Hosts' WhatsApp group to meet other Lane Chiefs, hear what's coming and get ready for your first screening.</p><table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr><td style="background:#f7ec83;padding:20px 21px"><a href="${whatsappUrl}" target="_blank" style="display:block;text-decoration:none;color:#111;font-family:'Courier New',monospace;font-size:15px;font-weight:bold;letter-spacing:.5px">JOIN THE HOSTS' GROUP &nbsp; &#8599;&#xFE0E;</a></td></tr></table>`
+    : `<p style="font-size:16px;line-height:1.6;color:#333;margin:0">We'll send you the link to the Hosts' WhatsApp group, where you'll meet other Lane Chiefs, hear what's coming and get ready for your first screening.</p>`;
 
-  return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Welcome to PlayLane. You&rsquo;re a Host.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
-  </style>
-</head>
-<body style="margin: 0; padding: 0; background-color: #f4f0e8; font-family: ${serif}; -webkit-font-smoothing: antialiased;">
-  <!-- Inbox preview text -->
-  <div style="display: none; max-height: 0; overflow: hidden; opacity: 0;">Being a Host starts with people, not a venue. Here&rsquo;s what happens next.</div>
-  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f0e8;">
-    <tr>
-      <td align="center" style="padding: 40px 20px;">
-        <table role="presentation" width="580" cellspacing="0" cellpadding="0" style="max-width: 580px; width: 100%;">
-          <tr>
-            <td align="center" style="padding: 0 0 32px 0;">
-              <span style="font-family: 'Silkscreen', 'Courier New', monospace; font-size: 22px; font-weight: bold; color: #161412; letter-spacing: 4px; text-transform: uppercase;">PLAYLANE</span>
-            </td>
-          </tr>
-
-          <!-- Header card -->
-          <tr>
-            <td>
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #161412; border-radius: 20px 20px 0 0; overflow: hidden;">
-                <tr>
-                  <td align="center" style="padding: 56px 40px 20px 40px;">
-                    <table role="presentation" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td style="width: 10px; height: 10px; border-radius: 50%; background-color: #FFF69A;"></td>
-                        <td style="width: 8px;"></td>
-                        <td style="width: 8px; height: 8px; border-radius: 50%; background-color: #a8e8c0;"></td>
-                        <td style="width: 8px;"></td>
-                        <td style="width: 6px; height: 6px; border-radius: 50%; background-color: #c5a0e8;"></td>
-                        <td style="width: 8px;"></td>
-                        <td style="width: 10px; height: 10px; border-radius: 50%; background-color: #FFF69A;"></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding: 16px 40px 52px 40px;">
-                    <h1 style="margin: 0; font-family: ${serif}; font-size: 34px; font-weight: 400; color: #ffffff; line-height: 1.2; letter-spacing: 3px; text-transform: uppercase;">
-                      Welcome, Host.
-                    </h1>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Body -->
-          <tr>
-            <td>
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #fffef9; border-radius: 0 0 20px 20px; border: 1px solid rgba(22,20,18,0.06); border-top: none;">
-                <tr>
-                  <td style="padding: 22px 40px 0 40px;">
-                    ${p(`Hi ${firstName},`)}
-                    ${p(`Welcome to PlayLane.`)}
-                    ${p(`You&rsquo;re joining a group of people who believe film can give us more reasons to come together.`)}
-                    ${p(`We&rsquo;re starting with African cinema, creating more places for films to meet audiences and more opportunities for people to experience them together, closer to their neighbourhoods.`)}
-                    ${p(`As a PlayLane Host, you&rsquo;re the person who brings people together.`)}
-                    ${p(`You don&rsquo;t need to own a cinema. You don&rsquo;t even need to have a venue.`)}
-                    ${p(`A PlayLane screening could happen in a residential communal space, community centre, community theatre or another suitable local space. And if you don&rsquo;t have one in mind yet, that&rsquo;s okay.`)}
-                    ${p(`Being a Host starts with people, not a venue.`, ` font-family: ${serif}; font-size: 19px; color: #161412; font-style: italic;`)}
-                    ${p(`And this is about more than putting a film on a screen.`)}
-                    ${p(`The atmosphere. The welcome. The people. The film. The reactions. The conversations afterwards.`, ` color: #161412;`)}
-                    ${p(`We want every screening to feel like an occasion.`)}
-                  </td>
-                </tr>
-
-                <!-- Earn callout -->
-                <tr>
-                  <td style="padding: 28px 40px 0 40px;">
-                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f4f0e8; border-radius: 14px;">
-                      <tr>
-                        <td style="padding: 22px 24px 24px 24px;">
-                          <p style="margin: 0; font-family: ${serif}; font-size: 20px; line-height: 1.4; color: #161412;">And when you host, you can earn too.</p>
-                          <p style="margin: 12px 0 0 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #5c5a53;">PlayLane Hosts can earn commission from the screenings they successfully host. So as you bring people together and help films reach new audiences, there&rsquo;s an opportunity for you to share in the value you help create.</p>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
-                <!-- What happens next -->
-                <tr>
-                  <td style="padding: 32px 40px 0 40px;">
-                    <p style="margin: 0; font-family: ${sans}; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #161412;">What happens next?</p>
-                    ${p(nextStep, " margin-top: 12px;")}
-                    ${whatsappUrl ? `<table role="presentation" cellspacing="0" cellpadding="0" style="margin: 24px 0 0 0;"><tr><td style="background-color: #25D366; border-radius: 10px;">
-                      <a href="${whatsappUrl}" target="_blank" style="display: inline-block; padding: 15px 28px; font-family: ${sans}; font-size: 13px; font-weight: 700; color: #0b2e17; text-decoration: none; letter-spacing: 1px; text-transform: uppercase;">Join the Hosts&rsquo; WhatsApp group</a>
-                    </td></tr></table>` : ""}
-                  </td>
-                </tr>
-
-                <!-- Sign-off -->
-                <tr>
-                  <td style="padding: 32px 40px 0 40px;">
-                    <p style="margin: 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #5c5a53;">We&rsquo;re glad you&rsquo;re here.</p>
-                    <p style="margin: 18px 0 0 0; font-family: ${serif}; font-size: 20px; line-height: 1.4; color: #161412; font-style: italic;">Let&rsquo;s host cinema.</p>
-                    <p style="margin: 6px 0 0 0; font-family: ${sans}; font-size: 15px; line-height: 1.75; color: #161412; font-weight: 600;">PlayLane</p>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td style="padding: 32px 40px 0 40px;">
-                    <hr style="border: none; border-top: 1px solid #e8e5dd; margin: 0;" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding: 24px 40px 8px 40px;">
-                    <p style="margin: 0; font-family: ${sans}; font-size: 13px; color: #a8a49a; letter-spacing: 0.5px;">Follow the journey</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding: 12px 40px 0 40px;">
-                    <table role="presentation" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td style="padding: 0 12px;"><a href="https://instagram.com/joinplaylane" target="_blank" style="font-family: ${sans}; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">Instagram</a></td>
-                        <td style="color: #d0cdc5;">&middot;</td>
-                        <td style="padding: 0 12px;"><a href="https://tiktok.com/@joinplaylane" target="_blank" style="font-family: ${sans}; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">TikTok</a></td>
-                        <td style="color: #d0cdc5;">&middot;</td>
-                        <td style="padding: 0 12px;"><a href="https://x.com/joinplaylane" target="_blank" style="font-family: ${sans}; font-size: 13px; color: #161412; text-decoration: none; font-weight: 500;">X</a></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="padding: 28px 40px 36px 40px;">
-                    <p style="margin: 0; font-family: ${sans}; font-size: 11px; color: #b5b1a8; line-height: 1.6;">
-                      PLAYLANE &middot; London, United Kingdom<br />
-                      You&rsquo;re receiving this because you signed up as a Host at playlane.co
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PlayLane | You're in</title><style>@media(max-width:600px){.shell{width:100%!important}.pad{padding-left:25px!important;padding-right:25px!important}.hero{font-size:64px!important;line-height:.95!important}.intro{font-size:22px!important}.smalltitle{font-size:26px!important}} </style></head><body style="margin:0;background:#e8e5dd;font-family:Arial,Helvetica,sans-serif;color:#171717"><div style="display:none;max-height:0;overflow:hidden;opacity:0">You're in. Welcome to the Lane. Your next film night starts here.</div><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#e8e5dd"><tr><td align="center" style="padding:30px 12px"><table role="presentation" class="shell" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#f8f5ed"><tr><td class="pad" style="padding:35px 42px 27px"><table role="presentation" width="100%"><tr><td style="font-family:'Courier New',monospace;font-weight:900;letter-spacing:3px;font-size:26px;color:#111">PLAYLANE</td><td align="right" style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:1px">LANE CHIEFS / 001</td></tr></table></td></tr><tr><td style="background:#171717;padding:54px 42px 60px" class="pad"><div style="font-family:'Courier New',monospace;font-size:12px;letter-spacing:2px;font-weight:bold;color:#f7ec83;margin-bottom:30px">WELCOME TO THE LANE &nbsp; &#10035;&#xFE0E;</div><div class="hero" style="font-family:Georgia,'Times New Roman',serif;font-size:86px;line-height:.94;letter-spacing:-4px;color:#fff">You're<br><em style="font-weight:normal">in.</em></div><div style="width:86px;height:7px;background:#f7ec83;margin-top:34px"></div><p class="intro" style="font-size:25px;line-height:1.27;color:#fff;margin:29px 0 0">Good films. Great company.<br>Your neighbourhood.</p></td></tr><tr><td class="pad" style="padding:49px 42px 12px"><div style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:2px;font-weight:bold;margin-bottom:20px">01 / THE GOOD PART</div><p style="font-family:Georgia,'Times New Roman',serif;font-size:31px;line-height:1.18;margin:0 0 22px">The night starts<br><em>before the film.</em></p><p style="font-size:17px;line-height:1.65;color:#333;margin:0 0 18px">Welcome to PlayLane's first circle of Lane Chiefs.</p><p style="font-size:17px;line-height:1.65;color:#333;margin:0">You bring your taste, your local knowledge and your instinct for getting people together. We help turn that into a film night worth leaving home for.</p></td></tr><tr><td class="pad" style="padding:36px 42px 24px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #171717;border-bottom:1px solid #171717"><tr><td style="padding:22px 0;font-family:'Courier New',monospace;font-size:13px;line-height:1.7"><strong>YOU BRING</strong><br>THE PEOPLE. THE TASTE. THE IDEAS.</td></tr><tr><td style="padding:0 0 22px;font-family:'Courier New',monospace;font-size:13px;line-height:1.7"><strong>WE HANDLE</strong><br>FILM RIGHTS. VENUE APPROVAL. TICKETING.</td></tr></table><p style="font-size:14px;line-height:1.6;color:#68665f;margin:18px 0 0">Approved screenings can earn you an agreed share of ticket revenue. We'll explain the details before your first event.</p></td></tr><tr><td class="pad" style="padding:28px 42px 54px"><div style="font-family:'Courier New',monospace;font-size:11px;letter-spacing:2px;font-weight:bold;margin-bottom:18px">02 / FIRST THINGS FIRST</div><p class="smalltitle" style="font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.2;margin:0 0 15px">Come meet<br>your people.</p>${whatsappBlock}</td></tr><tr><td style="background:#171717;padding:31px 42px 35px" class="pad"><p style="font-family:Georgia,'Times New Roman',serif;font-size:23px;font-style:italic;color:#fff;margin:0 0 25px">See you in the Lane.</p><div style="font-family:'Courier New',monospace;font-weight:bold;letter-spacing:2px;color:#f7ec83;font-size:12px">WHERE YOU WATCH, WHERE YOU PLAY.</div><div style="margin-top:21px;font-size:11px;color:#b5b2ac">PLAYLANE &middot; LONDON, UNITED KINGDOM</div></td></tr></table></td></tr></table></body></html>`;
 }
