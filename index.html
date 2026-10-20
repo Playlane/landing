@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Playlane</title>
+<title>Playlane — Cinema for the Curious Neighbour</title>
+<meta name="description" content="Good films. Great company. Your neighbourhood. Discover Playlane and become a Founding Host." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -649,6 +650,107 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
   section { padding: 48px 16px; }
 }
 
+
+/* ═══════════════════════════════════════
+   STORY PAGE (approved design, Oct 2026)
+═══════════════════════════════════════ */
+body{background:#f7f5ef}
+.st-page a{color:inherit;text-decoration:none}
+.st-page a:hover{opacity:.85}
+.st-page a:focus-visible{outline:2px solid #11110f;outline-offset:3px}
+.st-page{background:#f7f5ef;color:#11110f;font-family:'DM Sans',Arial,sans-serif;width:100%;overflow-x:hidden}
+.st-pixel{font-family:'Silkscreen',monospace;letter-spacing:.025em}
+.st-serif{font-family:Georgia,'Times New Roman',serif;font-weight:400}
+.st-page p{line-height:1.5}
+.st-nav{display:flex;justify-content:space-between;align-items:center;padding:18px clamp(22px,5vw,76px);background:#f7f5ef}
+.st-logo{font-size:clamp(19px,2.4vw,29px)}
+.st-links{display:flex;gap:24px;font-size:12px;letter-spacing:.06em;align-items:center}
+.st-links a{display:inline-flex;align-items:center;gap:6px;min-height:44px}
+.st-hero{background:#191919;display:block}
+.st-hero-shot{background:#f7f5ef}
+.st-live{position:relative;height:820px;overflow:hidden;background:#1a1a12}
+.st-live-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.st-live-shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.25) 0%,rgba(0,0,0,.05) 40%,rgba(0,0,0,.65) 100%)}
+.st-live-comments{position:absolute;z-index:2;top:0;bottom:0;right:0;width:420px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 8%,#000 92%,transparent 100%)}
+.st-live-track{display:flex;flex-direction:column;gap:12px;padding:20px 0;animation:st-scroll 80s linear infinite}
+.st-dup{display:flex;flex-direction:column;gap:12px}
+@keyframes st-scroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.st-bubble{background:rgba(255,255,255,.11);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:12px 15px;display:flex;align-items:flex-start;gap:10px;width:360px;box-shadow:0 6px 24px rgba(0,0,0,.24)}
+.st-avatar{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#11110f}
+.st-bubble-body{display:flex;flex-direction:column;gap:2px}
+.st-handle{font-size:11px;font-weight:500;color:rgba(255,255,255,.48);letter-spacing:.04em;filter:blur(4px);user-select:none}
+.st-ctext{font-size:13px;line-height:1.45;color:rgba(255,255,255,.88)}
+.st-likes{font-size:11px;color:rgba(255,255,255,.4)}
+.st-live-title{margin:0;position:absolute;z-index:3;left:40px;bottom:52px;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:clamp(48px,7vw,90px);line-height:1;letter-spacing:-2px;color:#fff}
+.st-live-tagline{background:#fdfaf4;padding:80px 40px;text-align:center;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(28px,4vw,52px);line-height:1.25;letter-spacing:-.3px;color:#11110f}
+.st-live-tagline{padding-left:max(40px,calc((100% - 640px) / 2));padding-right:max(40px,calc((100% - 640px) / 2))}
+@media (prefers-reduced-motion: reduce){.st-live-track{animation:none}}
+.st-hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(56px,7vw,110px) clamp(22px,6vw,95px);color:#fff}
+.st-hero-copy h1{max-width:900px;margin-left:auto;margin-right:auto}
+.st-hero-copy{align-items:center;text-align:center}
+.st-hero-copy .st-buttons{justify-content:center}
+.st-eyebrow{color:#f9eb89;font-size:12px}
+.st-hero-copy h1{font-size:clamp(56px,6vw,108px);line-height:.95;letter-spacing:-.05em;margin:24px 0}
+.st-hero-copy p{max-width:460px;font-size:18px;margin:1em 0}
+.st-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.st-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:16px 20px;background:#f9eb89;color:#11110f;font:13px 'Silkscreen',monospace}
+.st-btn.st-outline{border:1px solid #e5ddaf;background:transparent;color:#fff}
+.st-intro{padding:110px 24px 95px;text-align:center;max-width:960px;margin:auto}
+.st-intro h2{font-size:clamp(42px,6vw,86px);line-height:1.03;letter-spacing:-.045em;margin:0 0 24px}
+.st-intro p{font-size:clamp(17px,2vw,23px);max-width:660px;margin:0 auto}
+.st-label{font-size:11px;letter-spacing:.08em}
+.st-story{padding:85px clamp(22px,6vw,95px)}
+.st-dark{background:#111;color:#f7f5ef}
+.st-light{background:#f7f5ef}
+.st-yellow{background:#f9eb89}
+.st-head{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;max-width:1350px;margin:0 auto 44px}
+.st-head h2{font-size:clamp(43px,6.2vw,95px);letter-spacing:-.045em;line-height:1.04;margin:12px 0 0;max-width:850px}
+.st-head p{font-size:17px;max-width:300px;margin:22px 0 0}
+.st-photos{max-width:1330px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:5vw;align-items:start}
+.st-print{background:#eae9e5;color:#111;padding:13px 13px 18px;box-shadow:0 10px 35px rgba(0,0,0,.13);max-width:100%;margin:0}
+.st-print img{width:100%;height:480px;object-fit:cover;display:block}
+.st-print figcaption{font:12px 'Silkscreen',monospace;padding:16px 6px 2px;line-height:1.45}
+.st-tl{transform:rotate(-3deg)}
+.st-tr{transform:rotate(3deg);margin-top:65px}
+.st-photos .st-print:nth-child(2) img{height:370px}
+.st-venues{max-width:1300px;margin:auto;display:grid;grid-template-columns:1fr 1.3fr;gap:4vw;align-items:center}
+.st-venues .st-print img{height:460px}
+.st-venues .st-print:nth-child(2) img{height:330px}
+.st-screening{display:grid;grid-template-columns:1fr 1.1fr;gap:5vw;max-width:1350px;margin:auto;align-items:center}
+.st-screening .st-print img{height:650px;object-position:center 45%}
+.st-screening h2{font-size:clamp(50px,6.5vw,100px);line-height:1;letter-spacing:-.045em;margin:.83em 0}
+.st-screening p{max-width:410px;font-size:19px}
+.st-bottom{padding:105px 24px;text-align:center}
+.st-bottom h2{font-size:clamp(48px,7vw,100px);line-height:1.02;letter-spacing:-.05em;max-width:1000px;margin:0 auto 25px}
+.st-bottom p{max-width:680px;margin:15px auto;font-size:19px}
+.st-bottom .st-btn{margin-top:22px;background:#111;color:#f9eb89}
+.st-footer{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:28px clamp(22px,5vw,76px);font-size:12px}
+button.st-btn{border:0;cursor:pointer}
+button.st-btn.st-outline{border:1px solid #e5ddaf}
+.st-navbtn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #11110f;outline-offset:3px}
+@media(max-width:800px){
+  .st-links{gap:12px;font-size:10px}.st-nav{padding:18px 20px}
+  .st-live{height:600px}.st-live-comments{width:52vw;top:60px}.st-bubble{width:48vw;padding:10px 12px}.st-live-title{left:20px;bottom:32px;font-size:clamp(38px,10vw,60px);letter-spacing:-1px}.st-live-tagline{padding:56px 20px}
+  .st-hero-copy{padding:38px 25px 55px}.st-hero-copy h1{font-size:clamp(45px,11vw,70px);margin:16px 0}.st-hero-copy p{font-size:16px}
+  .st-intro{padding:70px 23px}.st-story{padding:70px 24px}.st-head{display:block;margin-bottom:32px}.st-head p{max-width:540px}
+  .st-photos{gap:20px}.st-print{padding:8px 8px 13px}.st-print img,.st-photos .st-print:nth-child(2) img{height:250px}
+  .st-print figcaption{font-size:9px;padding:12px 3px 0}.st-tr{margin-top:55px}
+  .st-venues{grid-template-columns:1fr 1fr;gap:14px}.st-venues .st-print img,.st-venues .st-print:nth-child(2) img{height:235px}
+  .st-screening{display:block}.st-screening h2{font-size:57px}.st-screening .st-print{margin-top:38px}.st-screening .st-print img{height:520px}
+  .st-bottom{padding:75px 22px}.st-footer{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:440px){
+  .st-photos .st-print img,.st-photos .st-print:nth-child(2) img{height:205px}
+  .st-venues .st-print img,.st-venues .st-print:nth-child(2) img{height:190px}
+  .st-buttons{flex-direction:column}.st-hero-copy .st-btn{width:100%}
+  .st-head h2{font-size:47px}.st-print figcaption{font-size:8px}.st-screening .st-print img{height:420px}
+}
+/* The page resets every margin to 0 and gives every <section> padding; undo that for this design */
+section.st-hero{padding:0}
+.st-screening p{margin:1em 0}
+footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
+.st-hero-copy .st-btn,.st-bottom .st-btn,.st-navbtn{font-family:'Silkscreen',monospace}
 </style>
 </head>
 <body>
@@ -732,70 +834,134 @@ select.wl-input:disabled { cursor: not-allowed; opacity: 0.55; }
 </div>
 
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
+<!-- ═══════════ PAGE ═══════════ -->
+<div class="st-page">
 
-  <div class="hero-nav">
-    <a href="#" class="hero-logo">PLAYLANE</a>
-    <div style="position:relative;">
-        <span></span><span></span><span></span>
-      
-    </div>  
-  </div>
-
-  <div class="hero-comments" id="heroComments"></div>
-
-  <div class="hero-bottom">
-    <h1 class="hero-title">Cinema for<br>the Curious<br>Neighbour</h1>
-  </div>
-</section>
-
-<!-- TAGLINE -->
-<div style="background: var(--white); padding: 80px 40px; text-align: center;">
-  <h2 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(28px, 4vw, 52px); font-weight: 400; color: var(--ink); line-height: 1.25; max-width: 640px; margin: 0 auto; letter-spacing: -0.3px;">film by film, you build your lane and create your tribe</h2>
-</div>
-
-<!-- MARQUEE BAND -->
-<div class="marquee-band">
-  <div class="marquee-half m-left">
-    <div class="marquee-track go-right" id="trackLeft"></div>
-  </div>
-  <div class="marquee-half m-right">
-    <div class="marquee-track go-left" id="trackRight"></div>
-  </div>
-  <div class="marquee-cta-wrap">
-    <button class="marquee-cta open-waitlist">
-      Become a Playlane Host
-      <span class="marquee-cta-icon"><svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
-    </button>
-  </div>
-</div>
-
-</section>
-
-<!-- FOOTER -->
-      </a>
+  <nav class="st-nav" aria-label="Main">
+    <span class="st-logo st-pixel">PLAYLANE</span>
+    <div class="st-links">
+      <a href="#story">THE STORY</a>
+      <button type="button" class="st-navbtn open-waitlist">BECOME A HOST <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
     </div>
-  </div>
-  <div class="footer-bottom">
-  <div class="footer-social">
-    <a href="https://instagram.com/joinplaylane" target="_blank" aria-label="Instagram" style="display:flex;align-items:center;gap:6px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      joinplaylane
-    </a>
-    <a href="https://tiktok.com/@joinplaylane" target="_blank" aria-label="TikTok" style="display:flex;align-items:center;gap:6px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
-      joinplaylane
-    </a>
-    <a href="https://x.com/joinplaylane" target="_blank" aria-label="X" style="display:flex;align-items:center;gap:6px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      joinplaylane
-    </a>
-  </div>
+  </nav>
 
-  <p class="footer-copy">&#169; 2026 Playlane. All rights reserved. &middot; <a href="/privacy.html" style="color:inherit;">Privacy Policy</a></p>
-</footer>
+  <section class="st-hero">
+    <div class="st-hero-shot">
+      <div class="st-live">
+        <img class="st-live-bg" src="./images/hero-tv.jpg" alt="" aria-hidden="true">
+        <div class="st-live-shade" aria-hidden="true"></div>
+        <div class="st-live-comments" aria-label="What people are saying">
+          <div class="st-live-track"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div><div class="st-dup" aria-hidden="true"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div></div></div>
+        </div>
+        <h1 class="st-live-title">Cinema for<br>the Curious<br>Neighbour</h1>
+      </div>
+      <div class="st-live-tagline">film by film, you build your lane and create your tribe</div>
+    </div>
+    <div class="st-hero-copy">
+      <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
+      <div class="st-buttons">
+        <a class="st-btn" href="#story">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10"></path><path d="M17 8v9H8"></path></svg></a>
+        <button type="button" class="st-btn st-outline open-waitlist">BECOME A HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-intro" id="story">
+    <div class="st-label st-pixel">THE FUN OF WATCHING FILMS TOGETHER</div>
+    <h2 class="st-serif">Good films. Great company. Your neighbourhood.</h2>
+    <p>Your next favourite cinema might be a café, a gallery or that little restaurant around the corner.</p>
+  </section>
+
+  <section class="st-story st-dark">
+    <div class="st-head">
+      <div>
+        <span class="st-label st-pixel">01 / THE ANTICIPATION</span>
+        <h2 class="st-serif">The night starts<br>before the film.</h2>
+      </div>
+      <p>Hair appointments. Outfit decisions. The snack run. All part of the programme.</p>
+    </div>
+    <div class="st-photos">
+      <figure class="st-print st-tl">
+        <img loading="lazy" src="./images/story-getting-ready.jpg" alt="Woman getting her hair styled in a salon">
+        <figcaption>01 / GETTING READY FOR A FILM NIGHT.</figcaption>
+      </figure>
+      <figure class="st-print st-tr">
+        <img loading="lazy" src="./images/story-snack-run.jpg" alt="Woman shopping for snacks in a grocery aisle">
+        <figcaption>02 / SOMETHING FOR THE SCREENING.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="st-story st-light">
+    <div class="st-head">
+      <div>
+        <span class="st-label st-pixel">02 / THE POSSIBILITIES</span>
+        <h2 class="st-serif">Not every cinema<br>looks like a cinema.</h2>
+      </div>
+      <p>We bring films to neighbourhood spaces, with screenings shaped by local Hosts and the people who show up.</p>
+    </div>
+    <div class="st-venues">
+      <figure class="st-print st-tl">
+        <img loading="lazy" src="./images/story-lamp-lit-screening.jpg" alt="A dark screening room with velvet armchairs and small lamps glowing on each table">
+        <figcaption>03 / A FAMILIAR PLACE, A DIFFERENT NIGHT.</figcaption>
+      </figure>
+      <figure class="st-print st-tr">
+        <img loading="lazy" src="./images/story-restaurant-hall.jpg" alt="A large open restaurant hall with timber tables, leather booths and fairy lights">
+        <figcaption>04 / SAME ROOM, NEW STORY.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="st-story st-dark">
+    <div class="st-screening">
+      <div>
+        <span class="st-label st-pixel">03 / THE EXPERIENCE</span>
+        <h2 class="st-serif">More than<br>just watching.</h2>
+        <p>Films are everywhere. Shared experiences are becoming rarer.</p>
+        <p>We believe audiences deserve more than a seat. Independent filmmakers deserve more opportunities for their stories to be experienced together.</p>
+      </div>
+      <figure class="st-print st-tr">
+        <img loading="lazy" src="./images/story-better-together.jpg" alt="People laughing and watching a projected film together in an intimate venue">
+        <figcaption>05 / GOOD FILMS. BETTER TOGETHER.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="st-story st-light">
+    <div class="st-head">
+      <div>
+        <span class="st-label st-pixel">04 / THE LITTLE THINGS</span>
+        <h2 class="st-serif">Film meets culture.<br>People make it happen.</h2>
+      </div>
+      <p>The film is the starting point. The people make the night.</p>
+    </div>
+    <div class="st-photos">
+      <figure class="st-print st-tl">
+        <img loading="lazy" src="./images/story-details.jpg" alt="Drinks and a handmade menu prepared for a gathering">
+        <figcaption>06 / THE DETAILS MAKE THE NIGHT.</figcaption>
+      </figure>
+      <figure class="st-print st-tr">
+        <img loading="lazy" src="./images/story-lights-down.jpg" alt="Audience silhouettes watching a film projection">
+        <figcaption>07 / AND THEN THE LIGHTS GO DOWN.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="st-bottom" id="host">
+    <span class="st-label st-pixel">THE INVITATION</span>
+    <h2 class="st-serif">A neighbourhood is never just one story.</h2>
+    <p>Stories that travel through people bring our neighbourhoods to life.</p>
+    <p><strong>Film meets culture. People make it happen.</strong></p>
+    <button type="button" class="st-btn open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+  </section>
+
+  <footer class="st-footer">
+    <span class="st-pixel">PLAYLANE</span>
+    <span class="st-pixel">WHERE YOU WATCH, WHERE YOU PLAY.</span>
+  </footer>
+
+</div>
+
 
 
 <script>
