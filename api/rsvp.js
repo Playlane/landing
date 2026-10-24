@@ -21,8 +21,8 @@ const EVENT = {
   capacity: 30,
   film: "Rye Lane",
   when: "Saturday 31 October 2026, 6PM",
-  venue: "Cortland Suite",
-  address: "1 Ryland Street, Birmingham",
+  venue: "Cortland Broad Street",
+  address: "Broad Street, Birmingham",
 };
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
