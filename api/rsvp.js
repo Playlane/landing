@@ -138,7 +138,7 @@ async function sendEmail(payload, label) {
     const res = await fetch(`${RESEND_API}/emails`, {
       method: "POST",
       headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: "PlayLane <helloneighbour@playlane.co>", ...payload }),
+      body: JSON.stringify({ from: "PlayLane <helloneighbour@playlane.co>", ...payload }), // payload.from overrides the sender
     });
     if (!res.ok) console.error(`[rsvp] EMAIL_FAILED (${label}):`, JSON.stringify(await readJson(res)));
     return res.ok;
@@ -249,9 +249,10 @@ export default async function handler(req, res) {
     // ── Emails ────────────────────────────────────────────────────
     const firstName = name.split(/\s+/)[0].slice(0, 40);
     await sendEmail({
+      from: RSVP_EMAIL_FROM,
       to: [email],
       subject: RSVP_EMAIL_SUBJECT,
-      html: getRsvpEmailHTML(escapeHtml(firstName), hostStatus),
+      html: (SIMPLE_EMAIL ? getRsvpEmailHTMLSimple : getRsvpEmailHTML)(escapeHtml(firstName), hostStatus),
       text: getRsvpEmailText(firstName, hostStatus),
     }, "RSVP confirmation");
 
@@ -289,7 +290,11 @@ export default async function handler(req, res) {
 
 // ─── RSVP confirmation email ─────────────────────────────────────────────
 
-const RSVP_EMAIL_SUBJECT = "Well, look who’s joining us 👀 Rye Lane, Sat 31 Oct";
+const RSVP_EMAIL_FROM = "Koko at PlayLane <helloneighbour@playlane.co>";
+const RSVP_EMAIL_SUBJECT = "Look who’s joining Koko’s WatchLane";
+// true = the plain, letter-style email (more likely to land in Gmail's Primary tab)
+// false = the designed email with the poster
+const SIMPLE_EMAIL = false;
 
 function escapeHtml(text) {
   return String(text).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
@@ -307,7 +312,9 @@ function postscript(hostStatus) {
 
 function getRsvpEmailText(firstName, hostStatus) {
   return [
-    `Well, look who’s joining us, ${firstName}. 👀`,
+    `Hi ${firstName},`,
+    "",
+    "Look who’s joining Koko’s WatchLane. 👀",
     "",
     "Your RSVP is confirmed. We’ve saved you a spot on the Lane.",
     "",
@@ -333,10 +340,10 @@ function getRsvpEmailText(firstName, hostStatus) {
     "",
     "Come curious. Come ready to meet someone interesting. And don’t make too many plans for afterwards.",
     "",
-    "Where you watch, where you play.",
+    "Any questions? Just reply to this email.",
     "",
     "See you on the Lane,",
-    "PLAYLANE 💛",
+    "Koko",
     "",
     postscript(hostStatus),
     ...(hostStatus ? [] : ["Become a Host: https://playlane.co/#host"]),
@@ -361,7 +368,7 @@ function getRsvpEmailHTML(firstName, hostStatus) {
 <table role="presentation" class="shell" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:100%;background:${Y}">
 <tr><td class="pad" style="padding:30px 40px 0" align="center"><img src="https://playlane.co/images/email/wordmark.png" width="170" height="25" alt="PLAYLANE" style="display:block;border:0;width:170px;height:25px"></td></tr>
 <tr><td class="pad" style="padding:30px 40px 6px">
-  <div class="big" style="font-family:Arial,Helvetica,sans-serif;font-weight:900;font-size:54px;line-height:1;letter-spacing:-2px;color:${R}">Well, look who’s joining us. 👀</div>
+  <div class="big" style="font-family:Arial,Helvetica,sans-serif;font-weight:900;font-size:54px;line-height:1;letter-spacing:-2px;color:${R}">Look who’s joining Koko’s WatchLane. 👀</div>
   <p style="font-family:${serif};font-size:21px;line-height:1.4;margin:22px 0 0">${firstName}, your RSVP is confirmed. We’ve saved you a spot on the Lane.</p>
   <p style="font-family:${serif};font-size:17px;line-height:1.6;margin:14px 0 0;color:#3a372f">Good cinema, good food, music and an interesting mix of people. We’re making a night of it, and you’re part of the plan.</p>
 </td></tr>
@@ -383,7 +390,7 @@ function getRsvpEmailHTML(firstName, hostStatus) {
 <tr><td class="pad" style="padding:26px 40px 34px">
   <p style="font-family:${serif};font-size:17px;line-height:1.6;margin:0">That’s the housekeeping sorted.</p>
   <p style="font-family:${serif};font-size:17px;line-height:1.6;margin:12px 0 0">Come curious. Come ready to meet someone interesting. And don’t make too many plans for afterwards.</p>
-  <p style="font-family:${serif};font-size:21px;font-style:italic;line-height:1.4;margin:22px 0 0">See you on the Lane,<br>PLAYLANE 💛</p>
+  <p style="font-family:${serif};font-size:21px;font-style:italic;line-height:1.4;margin:22px 0 0">See you on the Lane,<br>Koko</p>
 </td></tr>
 <tr><td class="pad" style="background:${INK};padding:26px 40px 30px">
   <p style="font-family:${serif};font-size:16px;line-height:1.6;color:#fdfaf4;margin:0">${escapeHtml(postscript(hostStatus))}</p>
@@ -391,4 +398,32 @@ function getRsvpEmailHTML(firstName, hostStatus) {
   <div style="font-family:${mono};font-weight:bold;letter-spacing:2px;color:${Y};font-size:12px;margin-top:24px">WHERE YOU WATCH, WHERE YOU PLAY.</div>
 </td></tr>
 </table></td></tr></table></body></html>`;
+}
+
+// ─── Simple, letter-style version (no poster, no buttons) ────────────────
+function getRsvpEmailHTMLSimple(firstName, hostStatus) {
+  const p = (html, extra = "") => `<p style="margin:0 0 16px;${extra}">${html}</p>`;
+  const line = (label, value) => `<strong>${label}:</strong> ${value}<br>`;
+  const hostLine = hostStatus ? "" :
+    ` Find out more at <a href="https://playlane.co/#host" style="color:#151412">playlane.co</a>.`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your spot on the Lane</title></head>
+<body style="margin:0;padding:0;background:#ffffff">
+<div style="max-width:560px;padding:24px 20px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#151412">
+${p(`Hi ${firstName},`)}
+${p("Look who’s joining Koko’s WatchLane. 👀")}
+${p("Your RSVP is confirmed. We’ve saved you a spot on the Lane.")}
+${p("Good cinema, good food, music and an interesting mix of people. We’re making a night of it, and you’re part of the plan.")}
+${p("<strong>The film: Rye Lane 🎬</strong><br>A film by Raine Allen-Miller, starring David Jonsson and Vivian Oparah. A little romance. A little chaos. A lot of South London.")}
+${p(
+  line("📅 When", "Saturday 31 October 2026, 6PM") +
+  line("📍 Where", `${escapeHtml(EVENT.venue)}, ${escapeHtml(EVENT.address)} (<a href="${MAPS_URL}" style="color:#151412">map</a>)`) +
+  line("✨ Dress code", "Relaxed with spark. Pyjamas and heels? We see the vision. PlayLane is an occasion, after all.") +
+  line("Accessories", "Your throw blanket.") +
+  `<strong>👯 Plus ones:</strong> Bringing someone? Love that. Just make sure they RSVP separately. Spaces are limited, and every guest needs a confirmed spot.`
+)}
+${p("That’s the housekeeping sorted. Come curious. Come ready to meet someone interesting. And don’t make too many plans for afterwards.")}
+${p("Any questions? Just reply to this email.")}
+${p("See you on the Lane,<br>Koko")}
+${p(escapeHtml(postscript(hostStatus)) + hostLine, "color:#555")}
+</div></body></html>`;
 }
