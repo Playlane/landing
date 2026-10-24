@@ -106,7 +106,8 @@ async function listRsvps() {
   do {
     const url = `${tableUrl(RSVP_TABLE, RSVP_BASE_ID)}?pageSize=100&fields%5B%5D=Email${offset ? "&offset=" + encodeURIComponent(offset) : ""}`;
     const data = await airtable(url, "reading RSVPs");
-    records.push(...(data.records || []));
+    // Only rows with an email count as RSVPs, so blank rows never use up a spot
+    records.push(...(data.records || []).filter(r => String((r.fields && r.fields.Email) || "").trim()));
     offset = data.offset || "";
   } while (offset);
   return records;
