@@ -8,7 +8,8 @@
 //
 // Uses the same Vercel environment variables as the host sign-up:
 //   AIRTABLE_PERSONAL_ACCESS_TOKEN, RESEND_API_KEY, WHATSAPP_HOST_GROUP_URL
-// Optional: AIRTABLE_RSVP_TABLE (defaults to the table name "RSVP")
+// The RSVP table lives in its own base (applVTfcDBz1r5Cvr), so the Airtable token needs access to
+// BOTH bases: the Hosts base and the RSVP base.
 
 import {
   EMAIL_SUBJECT as HOST_EMAIL_SUBJECT,
@@ -34,7 +35,8 @@ const MAPS_URL =
 //   Needs (Long text), Wants to host (Checkbox), Host status (Single line text)
 const AIRTABLE_BASE_ID = "app3DdTXYXOPuzs0V";
 const HOSTS_TABLE = "tblqrXUZZcZaStDZO"; // the "Hosts" table (Name, Email, Phone, City, Country)
-const RSVP_TABLE = process.env.AIRTABLE_RSVP_TABLE || "RSVP";
+const RSVP_BASE_ID = "applVTfcDBz1r5Cvr";
+const RSVP_TABLE = "tblUFBHvuT3CgroD2"; // the "RSVP" table
 const AIRTABLE_API = process.env.AIRTABLE_API_URL || "https://api.airtable.com"; // overridable for testing
 const RESEND_API = process.env.RESEND_API_URL || "https://api.resend.com";
 
@@ -46,7 +48,7 @@ const FULL_MESSAGE =
 
 // Error codes shown to the guest as "Error code: …". Full details are in Vercel → Logs.
 //   RSVP_AUTH        Airtable token missing or invalid (AIRTABLE_PERSONAL_ACCESS_TOKEN).
-//   RSVP_TABLE       "RSVP" table not found, or the token can't access it.
+//   RSVP_TABLE       RSVP or Hosts table not found, or the token has no access to its base.
 //   RSVP_FIELD       A field name doesn't match. Expected: Name, Email, Phone, Needs, Wants to host, Host status.
 //   RSVP_FIELD_TYPE  A field has the wrong type ("Wants to host" must be a Checkbox).
 //   RSVP_BUSY        Airtable rate limit. Fixes itself within a minute.
@@ -56,7 +58,7 @@ function describeAirtableError(status, body) {
   const type = (body && body.error && body.error.type) || (body && typeof body.error === "string" && body.error) || "";
   if (status === 401 || type === "AUTHENTICATION_REQUIRED") return { code: "RSVP_AUTH", hint: "Airtable token missing or invalid." };
   if (status === 403 || status === 404 || /NOT_FOUND|PERMISSIONS/.test(type)) {
-    return { code: "RSVP_TABLE", hint: `Table "${RSVP_TABLE}" (or Hosts) not found in base ${AIRTABLE_BASE_ID}, or the token has no access.` };
+    return { code: "RSVP_TABLE", hint: `RSVP table (${RSVP_BASE_ID}/${RSVP_TABLE}) or Hosts table (${AIRTABLE_BASE_ID}/${HOSTS_TABLE}) not found, or the Airtable token has no access to that base.` };
   }
   if (type === "UNKNOWN_FIELD_NAME" || type === "INVALID_FILTER_BY_FORMULA") {
     return { code: "RSVP_FIELD", hint: "A field name doesn't match Airtable. Expected: Name, Email, Phone, Needs, Wants to host, Host status." };
@@ -80,8 +82,8 @@ async function readJson(response) {
   try { return await response.json(); } catch { return null; }
 }
 
-function tableUrl(table) {
-  return `${AIRTABLE_API}/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(table)}`;
+function tableUrl(table, base = AIRTABLE_BASE_ID) {
+  return `${AIRTABLE_API}/v0/${base}/${encodeURIComponent(table)}`;
 }
 
 async function airtable(url, where, options = {}) {
@@ -103,7 +105,7 @@ async function listRsvps() {
   const records = [];
   let offset = "";
   do {
-    const url = `${tableUrl(RSVP_TABLE)}?pageSize=100&fields%5B%5D=Email${offset ? "&offset=" + encodeURIComponent(offset) : ""}`;
+    const url = `${tableUrl(RSVP_TABLE, RSVP_BASE_ID)}?pageSize=100&fields%5B%5D=Email${offset ? "&offset=" + encodeURIComponent(offset) : ""}`;
     const data = await airtable(url, "reading RSVPs");
     records.push(...(data.records || []));
     offset = data.offset || "";
@@ -229,7 +231,7 @@ export default async function handler(req, res) {
     }
 
     // ── Save the RSVP ─────────────────────────────────────────────
-    await airtable(tableUrl(RSVP_TABLE), "saving RSVP", {
+    await airtable(tableUrl(RSVP_TABLE, RSVP_BASE_ID), "saving RSVP", {
       method: "POST",
       body: JSON.stringify({
         records: [{
