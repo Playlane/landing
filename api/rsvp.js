@@ -18,7 +18,7 @@ import {
 
 // ─── The event. Change these for the next screening. ─────────────────────
 const EVENT = {
-  capacity: 30,
+  capacity: 2,
   film: "Rye Lane",
   when: "Saturday 31 October 2026, 6PM",
   venue: "Cortland Broad Street",
@@ -43,7 +43,7 @@ const SAVE_FAILED_MESSAGE =
   "We couldn't save your RSVP because of a problem on our side, not with what you typed. " +
   "Please try again in a few minutes, or email helloneighbour@playlane.co and we'll save you a spot.";
 const FULL_MESSAGE =
-  "Sorry, all 30 spots for Rye Lane have gone. Keep an eye out for the next PlayLane screening.";
+  "Sorry, all the spots for Rye Lane have gone. Keep an eye out for the next PlayLane screening.";
 
 // Error codes shown to the guest as "Error code: …". Full details are in Vercel → Logs.
 //   RSVP_AUTH        Airtable token missing or invalid (AIRTABLE_PERSONAL_ACCESS_TOKEN).
