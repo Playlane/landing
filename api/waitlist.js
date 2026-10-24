@@ -224,7 +224,7 @@ export default async function handler(req, res) {
 
 // ─── Branded email template ───────────────────────────────────────────
 
-const EMAIL_SUBJECT = "You’re in. Welcome to the Lane.";
+export const EMAIL_SUBJECT = "You’re in. Welcome to the Lane.";
 
 // Names are typed by visitors, so escape them before putting them in the email
 function escapeHtml(text) {
@@ -232,7 +232,7 @@ function escapeHtml(text) {
 }
 
 // Plain-text version (shown by email apps that don't display HTML; also helps avoid spam folders)
-function getEmailText(firstName, whatsappUrl) {
+export function getEmailText(firstName, whatsappUrl) {
   return [
     "WELCOME TO THE LANE",
     "",
@@ -269,7 +269,7 @@ function getEmailText(firstName, whatsappUrl) {
 }
 
 // The design's ↗ and ✳ are followed by &#xFE0E; so phones show them as plain text symbols, not coloured emoji
-function getEmailHTML(firstName, whatsappUrl) {
+export function getEmailHTML(firstName, whatsappUrl) {
   const whatsappBlock = whatsappUrl
     ? `<p style="font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.6;color:#333;margin:0 0 25px">Join the Hosts' WhatsApp group to meet other Lane Chiefs, hear what's coming and get ready for your first screening.</p><table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr><td style="background:#f7ec83;padding:20px 21px"><a href="${whatsappUrl}" target="_blank" style="display:block;text-decoration:none;color:#111;font-family:'Courier New',monospace;font-size:15px;font-weight:bold;letter-spacing:.5px">JOIN THE HOSTS' GROUP &nbsp; &#8599;&#xFE0E;</a></td></tr></table>`
     : `<p style="font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.6;color:#333;margin:0">We'll send you the link to the Hosts' WhatsApp group, where you'll meet other Lane Chiefs, hear what's coming and get ready for your first screening.</p>`;

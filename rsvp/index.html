@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rye Lane — PlayLane Private Screening</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="A PlayLane private screening of Rye Lane. Saturday 31 October, 6PM, Birmingham. RSVP to save your spot." />
+<meta property="og:title" content="You’re invited: Rye Lane, a PlayLane private screening" />
+<meta property="og:description" content="Saturday 31 October, 6PM, Birmingham. Good cinema, good food, music and an interesting mix of people. 30 spots." />
+<meta property="og:image" content="https://playlane.co/images/rsvp/rye-lane-poster.jpg" />
+<meta property="og:url" content="https://playlane.co/rsvp" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#fcf583" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Archivo:wght@500;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --yellow: #fcf583;
+  --yellow-deep: #f3e95f;
+  --red: #f4553a;
+  --ink: #151412;
+  --ink-soft: #3a372f;
+  --paper: #fdfaf0;
+  --error: #b3261e;
+  --silk: 'Silkscreen', monospace;
+  --grot: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --serif: Georgia, 'Times New Roman', serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--yellow); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+
+/* ── Top bar ── */
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 40px; border-bottom: 2px solid var(--ink); }
+.wordmark { font-family: var(--silk); font-weight: 700; font-size: 26px; letter-spacing: 0.04em; text-decoration: none; }
+.bar-tag { font-family: var(--silk); font-size: 12px; letter-spacing: 0.06em; text-align: right; }
+
+/* ── Layout ── */
+.wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); max-width: 1240px; margin: 0 auto; }
+.poster-col { padding: 48px 40px; border-right: 2px solid var(--ink); }
+.poster { position: sticky; top: 32px; }
+.poster img { display: block; width: 100%; height: auto; border: 2px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+.info-col { padding: 48px 48px 72px; }
+
+.kicker { font-family: var(--silk); font-size: 13px; letter-spacing: 0.08em; display: inline-block; background: var(--ink); color: var(--yellow); padding: 6px 10px 5px; }
+h1 { font-family: var(--grot); font-weight: 900; font-size: clamp(54px, 7.4vw, 104px); line-height: 0.9; letter-spacing: -0.045em; color: var(--red); margin: 22px 0 22px; }
+.lede { font-family: var(--serif); font-size: clamp(20px, 2vw, 24px); line-height: 1.4; max-width: 30em; }
+.lede em { font-style: italic; }
+
+/* ── Details ── */
+.details { margin: 36px 0 0; border-top: 2px solid var(--ink); }
+.detail { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--ink); }
+.detail dt { font-family: var(--silk); font-size: 12px; letter-spacing: 0.06em; padding-top: 4px; }
+.detail dd { font-family: var(--serif); font-size: 18px; line-height: 1.45; }
+.detail dd strong { font-family: var(--grot); font-weight: 800; font-size: 19px; letter-spacing: -0.01em; }
+.detail dd .note { display: block; font-size: 15px; color: var(--ink-soft); font-style: italic; }
+
+/* ── Form card ── */
+.card { margin-top: 44px; background: var(--paper); border: 2px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); padding: 32px 30px 30px; }
+.card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.card-title { font-family: var(--grot); font-weight: 900; font-size: 34px; letter-spacing: -0.03em; line-height: 1; }
+.spots { font-family: var(--silk); font-size: 12px; letter-spacing: 0.05em; background: var(--red); color: var(--paper); padding: 6px 9px 5px; white-space: nowrap; }
+.spots[hidden] { display: none; }
+
+.field { margin-bottom: 18px; }
+.label { display: block; font-family: var(--silk); font-size: 12px; letter-spacing: 0.05em; margin-bottom: 8px; }
+.label .opt { font-family: var(--sans); font-size: 12px; letter-spacing: 0; color: var(--ink-soft); }
+.input { width: 100%; font-family: var(--sans); font-size: 16px; color: var(--ink); background: #fff; border: 2px solid var(--ink); border-radius: 0; padding: 13px 14px; outline: none; transition: box-shadow .15s; -webkit-appearance: none; appearance: none; }
+.input::placeholder { color: #9a968a; }
+.input:focus { box-shadow: 4px 4px 0 var(--red); }
+.input.bad { border-color: var(--error); }
+textarea.input { min-height: 84px; resize: vertical; line-height: 1.45; }
+.hint { font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+.err { display: none; font-size: 14px; color: var(--error); margin-top: 7px; line-height: 1.4; }
+.err.show { display: block; }
+
+.host { margin: 24px 0 6px; background: var(--yellow); border: 2px solid var(--ink); padding: 16px 16px 14px; }
+.check { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 12px; align-items: start; cursor: pointer; }
+.check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.box { width: 26px; height: 26px; border: 2px solid var(--ink); background: #fff; display: grid; place-items: center; }
+.box svg { opacity: 0; transition: opacity .12s; }
+.check input:checked + .box { background: var(--ink); }
+.check input:checked + .box svg { opacity: 1; }
+.check input:focus-visible + .box { box-shadow: 3px 3px 0 var(--red); }
+.check-text strong { display: block; font-family: var(--grot); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; line-height: 1.25; }
+.check-text span { display: block; font-size: 14px; line-height: 1.45; color: var(--ink-soft); margin-top: 4px; }
+.host-city { margin-top: 16px; }
+.host-city[hidden] { display: none; }
+
+.submit { width: 100%; margin-top: 22px; font-family: var(--silk); font-size: 17px; letter-spacing: 0.06em; color: var(--yellow); background: var(--ink); border: 2px solid var(--ink); padding: 18px 20px; cursor: pointer; transition: transform .1s, box-shadow .1s; box-shadow: 5px 5px 0 var(--red); }
+.submit:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--red); }
+.submit:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--red); }
+.submit:disabled { opacity: .7; cursor: wait; transform: none; }
+.state p.small, .small { font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-top: 14px; line-height: 1.5; }
+
+/* ── Success / full ── */
+.state[hidden] { display: none; }
+.state-title { font-family: var(--grot); font-weight: 900; font-size: clamp(36px, 4vw, 48px); line-height: 0.98; letter-spacing: -0.035em; color: var(--red); }
+.state p { font-family: var(--serif); font-size: 18px; line-height: 1.5; margin-top: 14px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; font-family: var(--silk); font-size: 14px; letter-spacing: 0.05em; text-decoration: none; color: var(--ink); background: var(--yellow); border: 2px solid var(--ink); padding: 14px 18px; cursor: pointer; box-shadow: 4px 4px 0 var(--ink); }
+.btn.dark { background: var(--ink); color: var(--yellow); box-shadow: 4px 4px 0 var(--red); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.divider { border: 0; border-top: 1px solid var(--ink); margin: 26px 0 4px; }
+
+/* ── Footer ── */
+.foot { border-top: 2px solid var(--ink); padding: 26px 40px 34px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--silk); font-size: 12px; letter-spacing: 0.05em; }
+.foot a { text-decoration: none; }
+
+/* ── Phones / tablets ── */
+@media (max-width: 900px) {
+  .bar { padding: 16px 16px; }
+  .wordmark { font-size: 21px; }
+  .bar-tag { font-size: 10px; }
+  .wrap { grid-template-columns: minmax(0, 1fr); }
+  .poster-col { border-right: 0; border-bottom: 2px solid var(--ink); padding: 28px 16px 34px; }
+  .poster { position: static; max-width: 420px; margin: 0 auto; }
+  .poster img { box-shadow: 7px 7px 0 var(--ink); }
+  .info-col { padding: 32px 16px 56px; }
+  .detail { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+  .detail dd { font-size: 17px; }
+  .card { padding: 26px 18px 22px; box-shadow: 6px 6px 0 var(--ink); margin-right: 6px; }
+  .card-title { font-size: 30px; }
+  .foot { padding: 22px 16px 30px; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="wordmark" href="https://playlane.co">PLAYLANE</a>
+  <div class="bar-tag">PRIVATE SCREENING · INVITE ONLY</div>
+</header>
+
+<main class="wrap">
+  <div class="poster-col">
+    <div class="poster">
+      <img src="/images/rsvp/rye-lane-poster.jpg" width="1024" height="1536" alt="Rye Lane poster: a film by Raine Allen-Miller, starring David Jonsson and Vivian Oparah" />
+    </div>
+  </div>
+
+  <div class="info-col">
+    <span class="kicker">PLAYLANE PRESENTS</span>
+    <h1>You’re invited.</h1>
+    <p class="lede">Good cinema, good food, music and an interesting mix of people. We’re making a night of it, and you’re part of the plan.</p>
+
+    <dl class="details">
+      <div class="detail"><dt>THE FILM 🎬</dt><dd><strong>Rye Lane</strong><br>A film by Raine Allen-Miller, starring David Jonsson and Vivian Oparah. <em>A little romance. A little chaos. A lot of South London.</em></dd></div>
+      <div class="detail"><dt>WHEN 📅</dt><dd><strong>Saturday 31 October, 6PM</strong></dd></div>
+      <div class="detail"><dt>WHERE 📍</dt><dd><strong>Birmingham</strong><span class="note">The full address comes in your confirmation email.</span></dd></div>
+      <div class="detail"><dt>DRESS ✨</dt><dd>Relaxed with spark. Pyjamas and heels? We see the vision.</dd></div>
+      <div class="detail"><dt>BRING 🛋️</dt><dd>Your throw blanket.</dd></div>
+      <div class="detail"><dt>PLUS ONES 👯</dt><dd>Love that. They just need to RSVP separately. Every guest needs a confirmed spot.</dd></div>
+    </dl>
+
+    <section class="card" id="card" aria-live="polite">
+      <!-- RSVP form -->
+      <div class="state" id="formState">
+        <div class="card-head">
+          <h2 class="card-title">Save your spot</h2>
+          <span class="spots" id="spots" hidden></span>
+        </div>
+        <form id="rsvpForm" novalidate>
+          <div class="field">
+            <label class="label" for="name">YOUR NAME</label>
+            <input class="input" id="name" name="name" type="text" autocomplete="name" placeholder="Alex Johnson" maxlength="100" required />
+            <div class="err" id="nameErr"></div>
+          </div>
+          <div class="field">
+            <label class="label" for="email">EMAIL</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="alex@example.com" maxlength="200" required />
+            <div class="err" id="emailErr"></div>
+          </div>
+          <div class="field">
+            <label class="label" for="phone">WHATSAPP NUMBER</label>
+            <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+44 7700 900123" maxlength="20" required />
+            <div class="err" id="phoneErr"></div>
+          </div>
+          <div class="field">
+            <label class="label" for="needs">DIETARY OR ACCESS NEEDS <span class="opt">(optional)</span></label>
+            <textarea class="input" id="needs" name="needs" maxlength="500" placeholder="Vegetarian, step-free access, anything we should know"></textarea>
+          </div>
+
+          <div class="host">
+            <label class="check">
+              <input type="checkbox" id="wantsToHost" />
+              <span class="box" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fcf583" stroke-width="3.2" stroke-linecap="square"><path d="M4.5 12.5l5 5L19.5 7"/></svg></span>
+              <span class="check-text">
+                <strong>Sign me up as a PlayLane Host too</strong>
+                <span>Bring nights like this to your own community, and earn from the screenings you host. No venue needed to start.</span>
+              </span>
+            </label>
+            <div class="host-city" id="hostCityWrap" hidden>
+              <label class="label" for="hostCity">CITY OR TOWN YOU’D HOST IN</label>
+              <input class="input" id="hostCity" type="text" autocomplete="address-level2" value="Birmingham" maxlength="80" />
+              <div class="err" id="hostCityErr"></div>
+            </div>
+          </div>
+
+          <button class="submit" id="submitBtn" type="submit">SAVE MY SPOT →</button>
+          <div class="err" id="apiErr"></div>
+          <p class="small">We’ll only use your details for this screening and PlayLane updates. <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a></p>
+        </form>
+      </div>
+
+      <!-- After RSVP -->
+      <div class="state" id="doneState" hidden>
+        <h2 class="state-title" id="doneTitle">You’re on the Lane.</h2>
+        <p>Your spot is saved. We’ve emailed <strong id="doneEmail"></strong> with the address and everything you need. Not there? Check your spam.</p>
+        <div id="doneHost"></div>
+        <hr class="divider" />
+        <p><strong>Bringing someone?</strong> Send them this page. They need to RSVP with their own details.</p>
+        <button class="btn" type="button" id="shareBtn">SHARE THE INVITE ↗</button>
+      </div>
+
+      <!-- Full -->
+      <div class="state" id="fullState" hidden>
+        <h2 class="state-title">This one’s full.</h2>
+        <p>All 30 spots for Rye Lane have gone. Keep an eye out for the next PlayLane screening.</p>
+        <p>Or better: host your own. Bring the people, we’ll help with the rest.</p>
+        <a class="btn dark" href="https://playlane.co/#host">BECOME A PLAYLANE HOST ↗</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <span>WHERE YOU WATCH, WHERE YOU PLAY.</span>
+  <a href="mailto:helloneighbour@playlane.co">HELLONEIGHBOUR@PLAYLANE.CO</a>
+</footer>
+
+<script>
+(function () {
+  var API = '/api/rsvp';
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $('rsvpForm'), btn = $('submitBtn');
+  var fields = { name: $('name'), email: $('email'), phone: $('phone'), hostCity: $('hostCity') };
+  var errs = { name: $('nameErr'), email: $('emailErr'), phone: $('phoneErr'), hostCity: $('hostCityErr') };
+  var hostBox = $('wantsToHost'), hostCityWrap = $('hostCityWrap');
+
+  function show(state) {
+    ['formState', 'doneState', 'fullState'].forEach(function (id) { $(id).hidden = id !== state; });
+  }
+  function setSpots(n) {
+    var el = $('spots');
+    if (typeof n !== 'number') return;
+    if (n <= 0) { show('fullState'); return; }
+    el.textContent = n === 1 ? 'LAST SPOT LEFT' : n + ' SPOTS LEFT';
+    el.hidden = false;
+  }
+  function showErr(key, msg) {
+    var el = key === 'api' ? $('apiErr') : errs[key];
+    el.textContent = msg; el.classList.add('show');
+    if (fields[key]) fields[key].classList.add('bad');
+  }
+  function clearErrs() {
+    Object.keys(errs).forEach(function (k) { errs[k].classList.remove('show'); fields[k].classList.remove('bad'); });
+    $('apiErr').classList.remove('show');
+  }
+  function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function isPhone(v) {
+    if (!/^\+?[\d\s().-]+$/.test(v)) return false;
+    var d = v.replace(/\D/g, '').length; return d >= 7 && d <= 15;
+  }
+
+  /* How many places are left (quietly skipped if it can't be checked) */
+  fetch(API, { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) { if (d) setSpots(d.spotsLeft); })
+    .catch(function () {});
+
+  hostBox.addEventListener('change', function () {
+    hostCityWrap.hidden = !hostBox.checked;
+  });
+  Object.keys(fields).forEach(function (k) {
+    fields[k].addEventListener('input', function () { errs[k].classList.remove('show'); fields[k].classList.remove('bad'); });
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearErrs();
+    var data = {
+      name: fields.name.value.trim(),
+      email: fields.email.value.trim(),
+      phone: fields.phone.value.trim(),
+      needs: $('needs').value.trim(),
+      wantsToHost: hostBox.checked,
+      hostCity: hostBox.checked ? fields.hostCity.value.trim() : ''
+    };
+    var first = null;
+    if (!data.name) { showErr('name', 'Please enter your name.'); first = first || 'name'; }
+    if (!isEmail(data.email)) { showErr('email', 'Please enter a valid email address.'); first = first || 'email'; }
+    if (!isPhone(data.phone)) { showErr('phone', 'Please enter a valid WhatsApp number, like +44 7700 900123.'); first = first || 'phone'; }
+    if (data.wantsToHost && !data.hostCity) { showErr('hostCity', 'Please tell us the city or town you’d host in.'); first = first || 'hostCity'; }
+    if (first) { fields[first].focus(); return; }
+
+    btn.disabled = true; btn.textContent = 'SAVING YOUR SPOT…';
+
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) {
+        return r.text().then(function (t) {
+          var d = null; try { d = JSON.parse(t); } catch (x) {}
+          return { ok: r.ok, status: r.status, d: d || {} };
+        });
+      }, function () { return { network: true }; })
+      .then(function (res) {
+        if (res.network) { showErr('api', 'We couldn’t reach PlayLane. Check your internet connection and try again.'); return; }
+        var d = res.d;
+        if (res.ok) { done(data, d); return; }
+        if (d.error === 'full') { show('fullState'); return; }
+        if (d.error === 'duplicate') { showErr('email', d.message); fields.email.focus(); return; }
+        if (d.error === 'invalid' && errs[d.field]) { showErr(d.field, d.message); fields[d.field].focus(); return; }
+        showErr('api', (d.message || 'Something went wrong on our side. Please try again in a few minutes.') + (d.code ? ' (Error code: ' + d.code + ')' : ''));
+      })
+      .finally(function () { btn.disabled = false; btn.textContent = 'SAVE MY SPOT →'; });
+  });
+
+  function done(data, d) {
+    var firstName = data.name.split(/\s+/)[0];
+    $('doneTitle').textContent = 'You’re on the Lane, ' + firstName + '.';
+    $('doneEmail').textContent = data.email;
+    var host = $('doneHost'), html = '';
+    if (d.hostStatus === 'New host') {
+      html = '<p>You’re also a PlayLane Host now. Welcome. We’ve sent a second email with everything you need.</p>' +
+        (d.whatsappUrl ? '<a class="btn dark" target="_blank" rel="noopener" id="waBtn">JOIN THE HOSTS’ WHATSAPP ↗</a>' : '');
+    } else if (d.hostStatus === 'Already a host') {
+      html = '<p>Good to have one of our Hosts in the room. Consider this one research.</p>';
+    } else if (d.hostStatus === 'Host sign-up failed') {
+      html = '<p>We couldn’t add you as a Host just now, but your spot is safe. We’ll be in touch about hosting.</p>';
+    } else {
+      html = '<p><strong>Fancy hosting a night like this?</strong> PlayLane Hosts bring screenings to their own communities, and earn from them too.</p>' +
+        '<a class="btn dark" href="https://playlane.co/#host">BECOME A PLAYLANE HOST ↗</a>';
+    }
+    host.innerHTML = html;
+    var wa = document.getElementById('waBtn');
+    if (wa) wa.href = d.whatsappUrl;
+    show('doneState');
+    $('card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('shareBtn').addEventListener('click', function () {
+    var url = 'https://playlane.co/rsvp';
+    var text = 'Come to the PlayLane private screening of Rye Lane with me. Saturday 31 October, 6PM, Birmingham. RSVP here:';
+    var b = this;
+    if (navigator.share) { navigator.share({ title: 'Rye Lane, a PlayLane screening', text: text, url: url }).catch(function () {}); return; }
+    var copied = function () { b.textContent = 'LINK COPIED ✓'; setTimeout(function () { b.textContent = 'SHARE THE INVITE ↗'; }, 2200); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text + ' ' + url).then(copied, function () { window.prompt('Copy this link:', url); });
+    else window.prompt('Copy this link:', url);
+  });
+})();
+</script>
+</body>
+</html>

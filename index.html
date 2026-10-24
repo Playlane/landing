@@ -1222,6 +1222,9 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
     });
   });
 
+  /* playlane.co/#host opens the host sign-up straight away (linked from the RSVP page and emails) */
+  if (location.hash === '#host') openModal();
+
   modalClose.addEventListener('click', closeModal);
   successClose.addEventListener('click', closeModal);
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
