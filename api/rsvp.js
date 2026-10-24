@@ -343,7 +343,7 @@ function getRsvpEmailText(firstName, hostStatus) {
 }
 
 function getRsvpEmailHTML(firstName, hostStatus) {
-  const Y = "#f9eb89", R = "#f4553a", INK = "#151412";
+  const Y = "#fff69a", R = "#f4553a", INK = "#151412";
   const serif = "Georgia,'Times New Roman',serif";
   const mono = "'Courier New',monospace";
   const row = (label, value) =>
