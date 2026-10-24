@@ -323,7 +323,7 @@ function getRsvpEmailText(firstName, hostStatus) {
     `📍 WHERE: ${EVENT.venue}, ${EVENT.address}`,
     `   Map: ${MAPS_URL}`,
     "✨ DRESS CODE: Relaxed with spark. Pyjamas and heels? We see the vision. PlayLane is an occasion, after all.",
-    "🛋️ BRING: Your throw blanket.",
+    "ACCESSORIES: Your throw blanket.",
     "👯 PLUS ONES: Bringing someone? Love that. Just make sure they RSVP separately. Spaces are limited, and every guest needs a confirmed spot.",
     "",
     "⸻",
@@ -343,7 +343,7 @@ function getRsvpEmailText(firstName, hostStatus) {
 }
 
 function getRsvpEmailHTML(firstName, hostStatus) {
-  const Y = "#fcf583", R = "#f4553a", INK = "#151412";
+  const Y = "#f9eb89", R = "#f4553a", INK = "#151412";
   const serif = "Georgia,'Times New Roman',serif";
   const mono = "'Courier New',monospace";
   const row = (label, value) =>
@@ -375,7 +375,7 @@ function getRsvpEmailHTML(firstName, hostStatus) {
     ${row("📅 WHEN", "Saturday 31 October 2026, 6PM")}
     ${row("📍 WHERE", `<strong>${escapeHtml(EVENT.venue)}</strong><br>${escapeHtml(EVENT.address)}<br><a href="${MAPS_URL}" target="_blank" style="font-family:${mono};font-size:13px;font-weight:bold;color:${INK}">OPEN IN MAPS &#8599;&#xFE0E;</a>`)}
     ${row("✨ DRESS", "Relaxed with spark. Pyjamas and heels? We see the vision. PlayLane is an occasion, after all.")}
-    ${row("🛋️ BRING", "Your throw blanket.")}
+    ${row("ACCESSORIES", "Your throw blanket.")}
     ${row("👯 PLUS ONES", "Bringing someone? Love that. Just make sure they RSVP separately. Spaces are limited, and every guest needs a confirmed spot.")}
   </table>
 </td></tr>
