@@ -8,8 +8,7 @@
 //
 // Uses the same Vercel environment variables as the host sign-up:
 //   AIRTABLE_PERSONAL_ACCESS_TOKEN, RESEND_API_KEY, WHATSAPP_HOST_GROUP_URL
-// The RSVP table lives in its own base (applVTfcDBz1r5Cvr), so the Airtable token needs access to
-// BOTH bases: the Hosts base and the RSVP base.
+// The RSVP table lives in the same base as the Hosts table.
 
 import {
   EMAIL_SUBJECT as HOST_EMAIL_SUBJECT,
@@ -35,8 +34,8 @@ const MAPS_URL =
 //   Needs (Long text), Wants to host (Checkbox), Host status (Single line text)
 const AIRTABLE_BASE_ID = "app3DdTXYXOPuzs0V";
 const HOSTS_TABLE = "tblqrXUZZcZaStDZO"; // the "Hosts" table (Name, Email, Phone, City, Country)
-const RSVP_BASE_ID = "applVTfcDBz1r5Cvr";
-const RSVP_TABLE = "tblUFBHvuT3CgroD2"; // the "RSVP" table
+const RSVP_BASE_ID = AIRTABLE_BASE_ID; // same base as Hosts
+const RSVP_TABLE = "RSVP"; // the table's name in Airtable
 const AIRTABLE_API = process.env.AIRTABLE_API_URL || "https://api.airtable.com"; // overridable for testing
 const RESEND_API = process.env.RESEND_API_URL || "https://api.resend.com";
 
