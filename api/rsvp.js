@@ -8,7 +8,7 @@
 //
 // Uses the same Vercel environment variables as the host sign-up:
 //   AIRTABLE_PERSONAL_ACCESS_TOKEN, RESEND_API_KEY, WHATSAPP_HOST_GROUP_URL
-// Optional: AIRTABLE_RSVP_TABLE (defaults to the table name "Rye Lane RSVPs")
+// Optional: AIRTABLE_RSVP_TABLE (defaults to the table name "RSVP")
 
 import {
   EMAIL_SUBJECT as HOST_EMAIL_SUBJECT,
@@ -34,7 +34,7 @@ const MAPS_URL =
 //   Needs (Long text), Wants to host (Checkbox), Host status (Single line text)
 const AIRTABLE_BASE_ID = "app3DdTXYXOPuzs0V";
 const HOSTS_TABLE = "tblqrXUZZcZaStDZO"; // the "Hosts" table (Name, Email, Phone, City, Country)
-const RSVP_TABLE = process.env.AIRTABLE_RSVP_TABLE || "Rye Lane RSVPs";
+const RSVP_TABLE = process.env.AIRTABLE_RSVP_TABLE || "RSVP";
 const AIRTABLE_API = process.env.AIRTABLE_API_URL || "https://api.airtable.com"; // overridable for testing
 const RESEND_API = process.env.RESEND_API_URL || "https://api.resend.com";
 
@@ -46,7 +46,7 @@ const FULL_MESSAGE =
 
 // Error codes shown to the guest as "Error code: …". Full details are in Vercel → Logs.
 //   RSVP_AUTH        Airtable token missing or invalid (AIRTABLE_PERSONAL_ACCESS_TOKEN).
-//   RSVP_TABLE       "Rye Lane RSVPs" table not found, or the token can't access it.
+//   RSVP_TABLE       "RSVP" table not found, or the token can't access it.
 //   RSVP_FIELD       A field name doesn't match. Expected: Name, Email, Phone, Needs, Wants to host, Host status.
 //   RSVP_FIELD_TYPE  A field has the wrong type ("Wants to host" must be a Checkbox).
 //   RSVP_BUSY        Airtable rate limit. Fixes itself within a minute.
