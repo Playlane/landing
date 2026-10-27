@@ -18,7 +18,7 @@ import {
 
 // ─── The event. Change these for the next screening. ─────────────────────
 const EVENT = {
-  capacity: 20,
+  capacity: 15,
   film: "Rye Lane",
   when: "Saturday 31 October 2026, 6PM",
   venue: "Cortland Broad Street",
