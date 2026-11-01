@@ -146,7 +146,7 @@ const MOMENTS = [
     body: "Cosmos, mocktails and the usual suspects. Thank you for keeping the bar busy and the glasses full.",
   },
   {
-    img: "snacks.jpg", w: 1100, h: 733, alt: "The snack table with popcorn, crisps and salmon",
+    img: "snack-table.jpg", w: 1100, h: 733, alt: "The snack table with popcorn, crisps, salmon and wings, under the night’s posters",
     label: "THE SNACKS",
     title: "Nobody rationed the popcorn.",
     body: "As promised. Sweet, salted, wings, salmon and more. If you left hungry, that’s on you.",
