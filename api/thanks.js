@@ -16,6 +16,8 @@ const RESEND_API = process.env.RESEND_API_URL || "https://api.resend.com";
 
 const FROM = "Koko at PlayLane <helloneighbour@playlane.co>";
 const SUBJECT = "Thank you for coming to the Lane ♡";
+// Which design guests get: "yellow", "poster" or "afterdark"
+const DESIGN = "yellow";
 const SEND_ID = "watchlane-rye-lane-thanks-2026-11"; // stops the same guest getting this twice
 const IMG = "https://playlane.co/images/email";
 const HOST_URL = "https://playlane.co/#host";
@@ -86,7 +88,7 @@ export default async function handler(req, res) {
   }
   if (url.searchParams.get("view") === "email") {
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    return res.status(200).send(emailHTML());
+    return res.status(200).send(emailHTML(url.searchParams.get("design") || DESIGN));
   }
 
   const k = encodeURIComponent(key);
@@ -118,7 +120,7 @@ export default async function handler(req, res) {
 <input name="t" type="email" placeholder="your@email.com" required><button type="submit">Send me a test</button></form></div>
 <div class="box"><b>2. Send to everyone</b><p>This goes to <b>${guests.length} guest${guests.length === 1 ? "" : "s"}</b> on the RSVP list.</p>
 <form method="post" action="?key=${k}" onsubmit="return confirm('Send to ${guests.length} guests now?')"><button class="go" type="submit">Send to ${guests.length} guests</button></form></div>
-<p>Preview:</p></div><iframe src="?key=${k}&view=email" title="Email preview"></iframe><div>`));
+<p>Preview (guests get <b>${DESIGN}</b>):</p></div><iframe src="?key=${k}&view=email" title="Email preview"></iframe><div>`));
   } catch (err) {
     console.error("[thanks] error:", err);
     return res.status(500).send(page("Error", `<div class="box bad"><h1>Something went wrong</h1><p>${esc(err.message || err)}</p></div>`));
@@ -137,7 +139,7 @@ const MOMENTS = [
     img: "poster.jpg", w: 640, h: 918, alt: "The What We’re Watching poster",
     label: "THE FILM",
     title: "We did something a little illegal.",
-    body: "A romance movie on a Halloween night. And somehow it worked. The blankets showed up and showed out, the reactions to <em>Rye Lane</em> were half the film, and the conversations afterwards? That’s exactly why we do this.",
+    body: "A romance movie on a Halloween night. And somehow it worked. The blankets showed up and showed out, the reactions to <strong><em>Rye Lane</em></strong> were half the film, and the conversations afterwards? That’s exactly why we do this.",
   },
   {
     img: "drinks.jpg", w: 1100, h: 733, alt: "The Pick your poison drinks menu and bar",
@@ -146,7 +148,7 @@ const MOMENTS = [
     body: "Cosmos, mocktails and the usual suspects. Thank you for keeping the bar busy and the glasses full.",
   },
   {
-    img: "snack-table.jpg", w: 1100, h: 733, alt: "The snack table with popcorn, crisps, salmon and wings, under the night’s posters",
+    img: "popcorn.jpg", w: 1100, h: 733, alt: "Two big bowls of popcorn, salted and caramel",
     label: "THE SNACKS",
     title: "Nobody rationed the popcorn.",
     body: "As promised. Sweet, salted, wings, salmon and more. If you left hungry, that’s on you.",
@@ -173,7 +175,7 @@ function emailText() {
   ].join("\n");
 }
 
-function emailHTML() {
+function designYellow() {
   const Y = "#fff69a", R = "#f4502e", INK = "#151412", PEACH = "#ffd3a0", FOOT = "#060606";
   const serif = "Georgia,'Times New Roman',serif";
   const mono = "'Courier New',Courier,monospace";
@@ -261,6 +263,169 @@ ${[bar, snacks].map(m => `
 <td class="foot-r" valign="middle" style="padding-left:22px;font-family:${serif};font-size:18px;font-style:italic;line-height:1.45;color:${Y}">
  Until the next one.<br>And there will be a next one.
 </td></tr></table>
+</td></tr>
+
+</table></td></tr></table></body></html>`;
+}
+
+function emailHTML(design = DESIGN) {
+  if (design === "poster") return designPoster();
+  if (design === "afterdark") return designAfterDark();
+  return designYellow();
+}
+
+// Shared bits for the two extra designs
+const RESPONSIVE = `<style>
+@media (max-width:600px){
+ .shell{width:100%!important}
+ .pad{padding-left:20px!important;padding-right:20px!important}
+ .col{display:block!important;width:100%!important;padding:0!important}
+ .col-gap{padding-top:18px!important}
+ .h1{font-size:46px!important}
+}
+</style>`;
+const FAVOUR = "Hit reply and tell me your favourite moment of the night, or one film you’d want us to watch next. One line is plenty. I read every single one.";
+const HOST_COPY = "If last night got you thinking “I could do this for my people”, you can. PlayLane Hosts bring nights like this to their own communities, and earn from the screenings they host.";
+
+// ─── Design B: "The Poster" ─ cream paper, black serif, red band, numbered like the night's posters
+function designPoster() {
+  const PAPER = "#f3ebdc", INK = "#151412", R = "#e3361f";
+  const serif = "Georgia,'Times New Roman',serif";
+  const mono = "'Courier New',Courier,monospace";
+  const num = n => `<div style="font-family:${serif};font-weight:bold;font-size:44px;line-height:1;color:${R};margin:0 0 6px">0${n}</div>`;
+  const ttl = t => `<div style="font-family:${serif};font-weight:bold;font-size:24px;line-height:1.15;color:${INK};margin:0 0 8px">${t}</div>`;
+  const txt = t => `<div style="font-family:${serif};font-size:16px;line-height:1.55;color:${INK}">${t}</div>`;
+  const img = (m, w) => `<img src="${IMG}/thanks/${m.img}" width="${w}" alt="${m.alt}" style="display:block;border:0;width:100%;max-width:${w}px;height:auto">`;
+  const [film, bar, snacks] = MOMENTS;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Thank you for coming to the Lane</title>${RESPONSIVE}</head>
+<body style="margin:0;padding:0;background:#d9cfbd">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0">A romance movie on a Halloween night. We did that. Thank you for coming.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#d9cfbd"><tr><td align="center" style="padding:24px 10px">
+<table role="presentation" class="shell" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:100%;background:${PAPER}"><tr><td style="padding:12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid ${INK}">
+
+<tr><td class="pad" style="padding:16px 24px;border-bottom:1px solid ${INK}">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="font-family:${mono};font-size:11px;letter-spacing:3px;color:${INK}">KOKO’S WATCHLANE</td>
+<td align="right" style="font-family:${mono};font-size:11px;letter-spacing:3px;color:${INK}">A THANK YOU NOTE</td>
+</tr></table></td></tr>
+
+<tr><td style="background:${R};padding:36px 28px 34px" class="pad">
+ <div class="h1" style="font-family:${serif};font-weight:bold;font-size:60px;line-height:.95;letter-spacing:-2px;color:${INK}">Last night was a lot of you.</div>
+ <div style="font-family:${serif};font-style:italic;font-size:19px;line-height:1.4;color:${PAPER};margin-top:16px">A romance movie on a Halloween night. We did that.</div>
+</td></tr>
+
+<tr><td class="pad" style="padding:28px 28px 8px">
+ ${INTRO.map(p => `<p style="font-family:${serif};font-size:18px;line-height:1.55;color:${INK};margin:0 0 14px">${p}</p>`).join("")}
+</td></tr>
+
+<tr><td class="pad" style="padding:8px 28px 0">
+<div style="border-top:1px solid ${INK};padding:14px 0 0;font-family:${mono};font-size:11px;letter-spacing:3px;color:${INK}">HOW THE NIGHT WENT</div>
+</td></tr>
+
+<tr><td class="pad" style="padding:18px 28px 0">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td class="col" valign="top" width="250" style="width:250px;padding-right:22px">${img(film, 250)}</td>
+<td class="col col-gap" valign="middle">${num(1)}${ttl(film.title)}${txt(film.body)}</td>
+</tr></table></td></tr>
+
+<tr><td class="pad" style="padding:26px 28px 0">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+${[bar, snacks].map((m, i) => `<td class="col${i ? " col-gap" : ""}" valign="top" width="50%" style="width:50%;${i ? "padding-left:11px" : "padding-right:11px"}">
+ ${img(m, 270)}<div style="padding-top:14px">${num(i + 2)}${ttl(m.title)}${txt(m.body)}</div></td>`).join("")}
+</tr></table></td></tr>
+
+<tr><td class="pad" style="padding:30px 28px 30px">
+<div style="border:1px dashed ${INK};padding:18px 20px">
+ <div style="font-family:${mono};font-size:11px;letter-spacing:3px;color:${R};margin:0 0 8px">ONE SMALL FAVOUR</div>
+ ${txt(FAVOUR)}
+</div></td></tr>
+
+<tr><td class="pad" style="background:${INK};padding:32px 28px 34px">
+ <div style="font-family:${mono};font-size:11px;letter-spacing:3px;color:${PAPER};margin:0 0 10px">FANCY HOSTING ONE OF THESE YOURSELF?</div>
+ <div style="font-family:${serif};font-weight:bold;font-size:32px;line-height:1.05;color:${PAPER};margin:0 0 12px">Your people. Your night. <em style="color:${R}">Your Lane.</em></div>
+ <div style="font-family:${serif};font-size:16px;line-height:1.55;color:${PAPER};margin:0 0 20px">${HOST_COPY}</div>
+ <table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:${R};padding:14px 22px">
+ <a href="${HOST_URL}" target="_blank" style="font-family:${mono};font-weight:bold;font-size:14px;letter-spacing:2px;color:${PAPER};text-decoration:none">BECOME A PLAYLANE HOST &nbsp;&#8599;&#xFE0E;</a></td></tr></table>
+</td></tr>
+
+<tr><td class="pad" style="padding:26px 28px 18px">
+ <div style="font-family:${serif};font-style:italic;font-size:24px;line-height:1.3;color:${INK}">See you on the Lane,<br>Koko <span style="color:${R}">♡</span></div>
+ <div style="font-family:${serif};font-size:15px;color:#5a554b;margin-top:8px">Until the next one. And there will be a next one.</div>
+</td></tr>
+
+<tr><td align="center" style="padding:6px 24px 18px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td style="border-top:1px solid ${INK}">&nbsp;</td>
+<td width="150" align="center" style="width:150px;padding:0 12px"><img src="${IMG}/wordmark.png" width="120" height="18" alt="PLAYLANE" style="display:block;border:0;width:120px;height:18px"></td>
+<td style="border-top:1px solid ${INK}">&nbsp;</td></tr></table></td></tr>
+
+</table></td></tr></table></td></tr></table></body></html>`;
+}
+
+// ─── Design C: "After Dark" ─ dark cinema, photos as scenes, ends with a credits roll
+function designAfterDark() {
+  const BG = "#0f0e0d", CARD = "#1b1a18", CREAM = "#f4ede0", Y = "#fff69a", R = "#f4502e";
+  const serif = "Georgia,'Times New Roman',serif";
+  const mono = "'Courier New',Courier,monospace";
+  const grot = "'Arial Black','Helvetica Neue',Arial,sans-serif";
+  const scene = (m, n) => `
+<tr><td class="pad" style="padding:30px 36px 0">
+ <div style="font-family:${mono};font-size:12px;letter-spacing:3px;color:${Y};margin:0 0 12px">SCENE 0${n} &nbsp;·&nbsp; ${m.label}</div>
+ <div style="background:${CARD};padding:10px;border-top:6px dotted #3a3833;border-bottom:6px dotted #3a3833">
+ <img src="${IMG}/thanks/${m.img}" width="${n === 1 ? 300 : 528}" alt="${m.alt}" style="display:block;border:0;width:100%;max-width:${n === 1 ? 300 : 528}px;height:auto;margin:0 auto"></div>
+ <div style="font-family:${grot};font-weight:900;font-size:25px;line-height:1.05;letter-spacing:-.5px;color:${CREAM};margin:18px 0 8px">${m.title}</div>
+ <div style="font-family:${serif};font-size:16px;line-height:1.6;color:#cfc8ba">${m.body}</div>
+</td></tr>`;
+  const credit = (role, who) => `<tr><td align="right" width="50%" style="width:50%;padding:5px 10px;font-family:${mono};font-size:12px;letter-spacing:2px;color:#a39d90">${role}</td><td style="padding:5px 10px;font-family:${serif};font-size:16px;color:${CREAM}">${who}</td></tr>`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><title>Thank you for coming to the Lane</title>${RESPONSIVE}</head>
+<body style="margin:0;padding:0;background:#000">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0">A romance movie on a Halloween night. We did that. Thank you for coming.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#000"><tr><td align="center" style="padding:24px 10px">
+<table role="presentation" class="shell" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:100%;background:${BG}">
+
+<tr><td class="pad" style="padding:28px 36px 0">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+<td><img src="${IMG}/wordmark-yellow.png" width="150" height="22" alt="PLAYLANE" style="display:block;border:0;width:150px;height:22px"></td>
+<td align="right" style="font-family:${mono};font-size:11px;letter-spacing:3px;color:#a39d90">THE MORNING AFTER</td>
+</tr></table></td></tr>
+
+<tr><td class="pad" style="padding:40px 36px 10px">
+ <div class="h1" style="font-family:${grot};font-weight:900;font-size:58px;line-height:.95;letter-spacing:-2.5px;color:${Y}">Thank you for coming to the Lane.</div>
+ <div style="width:70px;height:6px;background:${R};margin:24px 0 24px"></div>
+ ${INTRO.map(p => `<p style="font-family:${serif};font-size:18px;line-height:1.6;color:${CREAM};margin:0 0 14px">${p}</p>`).join("")}
+</td></tr>
+
+${MOMENTS.map((m, i) => scene(m, i + 1)).join("")}
+
+<tr><td class="pad" style="padding:40px 36px 0" align="center">
+ <div style="font-family:${mono};font-size:12px;letter-spacing:4px;color:${Y};margin:0 0 14px">— CREDITS —</div>
+ <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+ ${credit("STARRING", "You, in your best throw blanket")}
+ ${credit("FILM", "<strong><em>Rye Lane</em></strong>")}
+ ${credit("HOSTED BY", "Koko")}
+ ${credit("CATERING", "Popcorn, unrationed")}
+ ${credit("SOUNDTRACK", "Everyone, after the film")}
+ </table>
+</td></tr>
+
+<tr><td class="pad" style="padding:34px 36px 0">
+<div style="border:1px solid ${Y};padding:18px 20px">
+ <div style="font-family:${mono};font-size:12px;letter-spacing:3px;color:${Y};margin:0 0 8px">POST-CREDITS SCENE</div>
+ <div style="font-family:${serif};font-size:16px;line-height:1.6;color:${CREAM}">${FAVOUR}</div>
+</div></td></tr>
+
+<tr><td class="pad" style="padding:36px 36px 38px">
+<div style="background:${Y};padding:28px 24px 26px">
+ <div style="font-family:${mono};font-weight:bold;font-size:11px;letter-spacing:3px;color:#151412;margin:0 0 10px">COMING SOON: YOUR OWN SCREENING?</div>
+ <div style="font-family:${grot};font-weight:900;font-size:30px;line-height:1;letter-spacing:-1px;color:#151412;margin:0 0 12px">Your people. Your night. Your Lane.</div>
+ <div style="font-family:${serif};font-size:16px;line-height:1.55;color:#151412;margin:0 0 20px">${HOST_COPY}</div>
+ <table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:#151412;padding:14px 22px">
+ <a href="${HOST_URL}" target="_blank" style="font-family:${mono};font-weight:bold;font-size:14px;letter-spacing:2px;color:${Y};text-decoration:none">BECOME A PLAYLANE HOST &nbsp;&#8599;&#xFE0E;</a></td></tr></table>
+</div></td></tr>
+
+<tr><td class="pad" align="center" style="background:#060606;padding:28px 36px 32px">
+ <img src="${IMG}/tonight/signoff.png" width="200" height="121" alt="See you on the Lane, Koko ♡" style="display:block;border:0;width:200px;height:auto;margin:0 auto">
+ <div style="font-family:${serif};font-style:italic;font-size:16px;color:#a39d90;margin-top:10px">Until the next one. And there will be a next one.</div>
 </td></tr>
 
 </table></td></tr></table></body></html>`;
