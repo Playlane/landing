@@ -151,7 +151,7 @@ const MOMENTS = [
     img: "popcorn.jpg", w: 1100, h: 733, alt: "Two big bowls of popcorn, salted and caramel",
     label: "THE SNACKS",
     title: "Nobody rationed the popcorn.",
-    body: "As promised. Sweet, salted, wings, salmon and more. If you left hungry, that’s on you.",
+    body: "As promised. Sweet, salted, wings, salmon and more. We hope you went home full and happy.",
   },
 ];
 
