@@ -9,7 +9,7 @@
 <meta name="google-site-verification" content="Y4q4MitpDvlTERfaF6-jZXwup_xZGbM3B7XoB32hhaY" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -19,7 +19,7 @@
   --ink-muted: #6B6560;
   --ink-light: #A8A29C;
   --white: #FDFAF4;
-  --yellow: #FFFFFF;
+  --yellow: #FFF69A;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans: 'DM Sans', system-ui, sans-serif;
   --silk: 'Silkscreen', monospace;
@@ -408,7 +408,7 @@ footer { background: var(--ink); border-top: 1px solid rgba(244,240,232,0.08); p
   content: '';
   display: block;
   height: 5px;
-  background: linear-gradient(90deg, var(--yellow) 0%, #f5e070 50%, var(--yellow) 100%);
+  background: var(--yellow);
 }
 
 .modal-body { padding: 40px 44px 44px; }
@@ -691,11 +691,11 @@ body{background:#f7f5ef}
 .st-hero-copy h1{max-width:900px;margin-left:auto;margin-right:auto}
 .st-hero-copy{align-items:center;text-align:center}
 .st-hero-copy .st-buttons{justify-content:center}
-.st-eyebrow{color:#f9eb89;font-size:12px}
+.st-eyebrow{color:#FFF69A;font-size:12px}
 .st-hero-copy h1{font-size:clamp(56px,6vw,108px);line-height:.95;letter-spacing:-.05em;margin:24px 0}
 .st-hero-copy p{max-width:460px;font-size:18px;margin:1em 0}
 .st-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.st-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:16px 20px;background:#f9eb89;color:#11110f;font:13px 'Silkscreen',monospace}
+.st-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:8px;min-height:48px;padding:16px 20px;background:#FFF69A;color:#11110f;font:13px 'Silkscreen',monospace}
 .st-btn.st-outline{border:1px solid #e5ddaf;background:transparent;color:#fff}
 .st-intro{padding:110px 24px 95px;text-align:center;max-width:960px;margin:auto}
 .st-intro h2{font-size:clamp(42px,6vw,86px);line-height:1.03;letter-spacing:-.045em;margin:0 0 24px}
@@ -761,6 +761,49 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
 .st-head p,.st-screening p{font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.45}
 .st-head p{margin-top:clamp(44px,4.6vw,72px)}
 @media(max-width:800px){.st-head p{margin-top:18px;font-size:18px}.st-screening p{font-size:18px}}
+/* ═══════════════════════════════════════
+   STORY v2 (approved Nov 2026)
+═══════════════════════════════════════ */
+em, i, .st-page *, .modal-card * { font-style: normal !important; }
+.st-live-copy{position:absolute;z-index:3;left:40px;top:clamp(150px,22%,190px);right:460px}
+.st-live-copy .st-live-title{position:static}
+.st-live-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:48px}
+.sx-dsd{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+.sx-corm{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700}
+.sx-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:60px;padding:0 30px;border:0;border-radius:12px;font:400 15px 'Silkscreen',monospace;letter-spacing:.02em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .15s ease}
+.sx-btn:hover{transform:translateY(-2px);opacity:1}
+.st-page a.sx-yellow,.sx-yellow{background:#FFF69A;color:#11110F}
+.st-page .sx-ghost,.sx-ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.85)}
+.sx-steps{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.sx-steps img{display:block;width:100%;aspect-ratio:4 / 3;object-fit:cover;border-radius:4px}
+.sx-step-text{margin-top:22px;padding-top:18px;border-top:1px solid rgba(17,17,15,.18)}
+.sx-step-text h3{margin:0;font-size:30px;line-height:1.1;color:#11110F}
+.sx-step-text p{margin:10px 0 0;max-width:340px;font-size:17px;line-height:1.55;color:#4A443E}
+.sx-cinema{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,2fr);gap:clamp(40px,5vw,72px);align-items:center}
+.sx-pols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,26px);align-items:start;padding-top:14px}
+.sx-pol{margin:0;background:#FFFDF8;padding:12px 12px 0;box-shadow:0 1px 2px rgba(17,17,15,.06),0 10px 28px rgba(17,17,15,.1)}
+.sx-pol img{display:block;width:100%;aspect-ratio:4 / 4.6;object-fit:cover}
+.sx-pol figcaption{padding:14px 4px 16px;text-align:center;font-size:17px;line-height:1.35;color:#11110F}
+.modal-tag{margin:-18px 0 28px;font-family:'Silkscreen',monospace;font-size:14px;letter-spacing:.04em;color:var(--ink)}
+.ea-title{font-family:'Silkscreen',monospace;font-weight:400;font-size:26px;line-height:1.2;color:var(--ink);padding-right:44px;margin-bottom:14px}
+.wl-submit.ea-submit{background:#FFF69A;color:#11110F;font-family:'Silkscreen',monospace;font-weight:400;font-size:15px;letter-spacing:.02em}
+.ea-success{text-align:center;padding:48px 44px 44px}
+.ea-success[hidden]{display:none}
+.ea-success p{color:var(--ink-muted);font-size:15px;line-height:1.65;max-width:360px;margin:14px auto 0}
+.ea-done{margin-top:24px;min-height:48px;padding:0 28px;border:0;border-radius:10px;background:#11110F;color:#F7F5EF;font:400 13px 'Silkscreen',monospace;cursor:pointer}
+@media(max-width:900px){
+  .sx-steps{grid-template-columns:1fr;gap:44px}
+  .sx-cinema{grid-template-columns:1fr}
+  .sx-pols{grid-template-columns:1fr 1fr}
+  .sx-pols figure:nth-child(3){grid-column:1 / -1;max-width:60%;justify-self:center}
+}
+@media(max-width:800px){
+  .st-live-copy{left:20px;right:20px;top:auto;bottom:32px}
+  .st-live{height:720px}
+  .st-live-comments{top:16px;bottom:auto;height:300px;width:auto;left:20px;right:20px}
+  .st-live-comments .st-bubble{width:100%}
+  .st-live-ctas .sx-btn{min-height:52px;padding:0 20px;font-size:13px}
+}
 </style>
 </head>
 <body>
@@ -773,8 +816,9 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
     <!-- Form state -->
     <div class="modal-body" id="modalFormState">
       <p class="modal-eyebrow">Become a Host</p>
-      <h2 class="modal-title">Host your<br><em>own screening</em></h2>
-      <p class="modal-sub">Open your living room, rooftop or garden to films and the people who live nearby. Sign up and you'll join our WhatsApp group with other Playlane hosts.</p>
+      <h2 class="modal-title">Host your<br>own screening</h2>
+      <p class="modal-sub">From cosy caf&eacute;s and rooftops to unexpected neighbourhood spaces or a private cinema room, bring your taste in films to life.</p>
+      <p class="modal-tag">YOUR WATCHLANE. YOUR WAY.</p>
 
       <form class="wl-form" id="waitlistForm" novalidate>
         <div class="wl-field">
@@ -844,13 +888,53 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
 </div>
 
 
+<!-- ═══════════ EARLY ACCESS (GET THE APP) ═══════════ -->
+<div class="modal-overlay" id="earlyModal" role="dialog" aria-modal="true" aria-labelledby="earlyTitle">
+  <div class="modal-card">
+    <button class="modal-close" id="earlyClose" aria-label="Close">&times;</button>
+    <div class="modal-body" id="earlyFormState">
+      <h2 class="ea-title" id="earlyTitle">BE FIRST IN THE LANE.</h2>
+      <p class="modal-sub">PlayLane is coming. Join the waitlist to get early access to a new way to discover films, create WatchLanes and bring your people together.</p>
+      <form class="wl-form" id="earlyForm" novalidate>
+        <div class="wl-field">
+          <label class="wl-label" for="ea-name">Name</label>
+          <input class="wl-input" type="text" id="ea-name" name="name" autocomplete="name" maxlength="80" required />
+          <span class="wl-error" id="ea-name-err">Please enter your name.</span>
+        </div>
+        <div class="wl-field">
+          <label class="wl-label" for="ea-email">Email</label>
+          <input class="wl-input" type="email" id="ea-email" name="email" autocomplete="email" required />
+          <span class="wl-error" id="ea-email-err">Please enter a valid email.</span>
+        </div>
+        <div class="wl-field">
+          <label class="wl-label" for="ea-location">Location</label>
+          <input class="wl-input" type="text" id="ea-location" name="location" placeholder="City or town" autocomplete="address-level2" maxlength="80" required />
+          <span class="wl-error" id="ea-location-err">Please enter your city or town.</span>
+        </div>
+        <button type="submit" class="wl-submit ea-submit" id="earlySubmit">
+          <span class="wl-btn-text">JOIN THE WAITLIST</span>
+          <span class="wl-spinner"></span>
+        </button>
+        <span class="wl-error" id="ea-api-err" style="text-align:center;margin-top:2px;"></span>
+        <p class="wl-privacy">No app download yet. We&rsquo;ll let you know when it&rsquo;s time to join.</p>
+      </form>
+    </div>
+    <div class="ea-success" id="earlySuccess" hidden>
+      <div class="success-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2 class="ea-title" style="padding-right:0;margin:0">YOU&rsquo;RE IN THE LANE.</h2>
+      <p>Thanks for joining the waitlist. We&rsquo;ll let you know when it&rsquo;s time to join.</p>
+      <button type="button" class="ea-done" id="earlyDone">Done</button>
+    </div>
+  </div>
+</div>
+
+
 <!-- ═══════════ PAGE ═══════════ -->
 <div class="st-page">
 
   <nav class="st-nav" aria-label="Main">
     <span class="st-logo st-pixel">PLAYLANE</span>
     <div class="st-links">
-      <a href="#story">THE STORY</a>
       <button type="button" class="st-navbtn open-waitlist">BECOME A HOST <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
     </div>
   </nav>
@@ -863,105 +947,92 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
         <div class="st-live-comments" aria-label="What people are saying">
           <div class="st-live-track"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div><div class="st-dup" aria-hidden="true"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div></div></div>
         </div>
-        <h1 class="st-live-title">Cinema for<br>the Curious<br>Neighbour</h1>
+        <div class="st-live-copy">
+          <h1 class="st-live-title">Cinema for<br>the Curious<br>Neighbour</h1>
+          <div class="st-live-ctas">
+            <button type="button" class="sx-btn sx-yellow open-early"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg> Get the app <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+            <button type="button" class="sx-btn sx-ghost open-waitlist"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF69A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M3 9l1.6-5 16 3-1.1 2"></path><path d="M8.2 4.8L6.6 9M13.2 5.8L11.6 9"></path></svg> Become a founding host <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+          </div>
+        </div>
       </div>
-      <div class="st-live-tagline">film by film, you build your lane and create your tribe</div>
+      <section id="story" style="background:#FAF0E2;color:#11110F;padding:clamp(72px,8vw,112px) clamp(22px,5vw,76px)">
+        <div style="max-width:1280px;margin:0 auto">
+          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
+            <h2 class="sx-dsd" style="margin:0;font-size:clamp(42px,4.6vw,64px);line-height:1.04;color:#11110F">Film by film,<br>you build your lane.</h2>
+            <p style="margin:0;max-width:420px;font-size:19px;line-height:1.5">Host for the joy of it, or create a ticketed experience. Every WatchLane is yours to shape.</p>
+          </div>
+          <ol class="sx-steps">
+          <li>
+            <img src="./images/film-posters.jpg" alt="Film posters lit up in a cinema display case" style="object-position:50% 45%" loading="lazy">
+            <div class="sx-step-text">
+              <h3 class="sx-dsd">Discover films</h3>
+              <p>Choose from the Playlane film store, starting with African cinema.</p>
+            </div>
+          </li>
+          <li>
+            <img src="./images/living-room.jpg" alt="Friends gathered on a living room floor" loading="lazy">
+            <div class="sx-step-text">
+              <h3 class="sx-dsd">Invite your people</h3>
+              <p>Send one invite to friends, neighbours and the people on your street.</p>
+            </div>
+          </li>
+          <li>
+            <img src="./images/story-details.jpg" alt="Drinks and a handmade menu set out for a screening" loading="lazy">
+            <div class="sx-step-text">
+              <h3 class="sx-dsd">Create experiences</h3>
+              <p>Set the room, press play, and stay for the conversation afterwards.</p>
+            </div>
+          </li>
+          </ol>
+        </div>
+      </section>
     </div>
     <div class="st-hero-copy">
       <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
       <div class="st-buttons">
-        <a class="st-btn" href="#story">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10"></path><path d="M17 8v9H8"></path></svg></a>
+        <a class="st-btn" href="./about.html">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
         <button type="button" class="st-btn st-outline open-waitlist">BECOME A HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
       </div>
     </div>
   </section>
 
-  <section class="st-intro" id="story">
-    <div class="st-label st-pixel">THE FUN OF WATCHING FILMS TOGETHER</div>
-    <h2 class="st-serif">Good films. Great company. Your neighbourhood.</h2>
-    <p>Your next favourite cinema might be a café, a gallery or that little restaurant around the corner.</p>
-  </section>
-
-  <section class="st-story st-dark">
-    <div class="st-head">
+  <!-- NOT EVERY CINEMA LOOKS LIKE A CINEMA -->
+  <section style="background:#F6EEE2;color:#11110F;padding:clamp(80px,9vw,120px) clamp(22px,5vw,76px)">
+    <div class="sx-cinema">
       <div>
-        <span class="st-label st-pixel">01 / THE ANTICIPATION</span>
-        <h2 class="st-serif">The night starts<br>before the film.</h2>
+        <h2 class="sx-corm" style="margin:0;font-size:clamp(46px,5vw,78px);line-height:.98;letter-spacing:-.025em;color:#11110F">Not every cinema looks like a cinema.</h2>
+        <p style="margin:30px 0 0;max-width:360px;font-size:19px;line-height:1.5">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
       </div>
-      <p>Hair appointments. Outfit decisions. The snack run. All part of the programme.</p>
-    </div>
-    <div class="st-photos">
-      <figure class="st-print st-tl">
-        <img loading="lazy" src="./images/story-getting-ready.jpg" alt="Woman getting her hair styled in a salon">
-        <figcaption>01 / GETTING READY FOR A FILM NIGHT.</figcaption>
-      </figure>
-      <figure class="st-print st-tr">
-        <img loading="lazy" src="./images/story-snack-run.jpg" alt="Woman shopping for snacks in a grocery aisle">
-        <figcaption>02 / SOMETHING FOR THE SCREENING.</figcaption>
-      </figure>
+      <div class="sx-pols">
+        <figure class="sx-pol">
+          <img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy">
+          <figcaption>A restaurant after closing.</figcaption>
+        </figure>
+        <figure class="sx-pol">
+          <img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" style="object-position:60% 40%" loading="lazy">
+          <figcaption>A room full of neighbours.</figcaption>
+        </figure>
+        <figure class="sx-pol">
+          <img src="./images/rooftop.jpg" alt="A rooftop screening under string lights" loading="lazy">
+          <figcaption>A neighbourhood rooftop.</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <section class="st-story st-light">
-    <div class="st-head">
-      <div>
-        <span class="st-label st-pixel">02 / THE POSSIBILITIES</span>
-        <h2 class="st-serif">Not every cinema<br>looks like a cinema.</h2>
+  <!-- FILM BY FILM, YOU BUILD YOUR TRIBE -->
+  <section id="host" style="position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;text-align:center;color:#F6EEE2;overflow:hidden;background:#1C130F;padding:0">
+    <img src="./images/friends-laughing.jpg" alt="" aria-hidden="true" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;filter:sepia(.2) saturate(1.1)">
+    <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(70% 70% at 50% 50%,rgba(28,19,15,.55) 0%,rgba(28,19,15,.82) 100%)"></div>
+    <div style="position:relative;z-index:1;padding:110px 24px">
+      <p style="margin:0;font-size:15px;font-weight:600;letter-spacing:.42em">FILM BY FILM,</p>
+      <h2 class="sx-corm" style="margin:22px 0 0;font-size:clamp(60px,8.4vw,128px);line-height:1;letter-spacing:-.025em;color:#F6EEE2">you build your tribe.</h2>
+      <p style="margin:40px 0 0;font-size:15px;font-weight:600;letter-spacing:.42em">WHERE YOU WATCH. WHERE YOU PLAY.</p>
+      <div style="margin-top:44px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px">
+        <button type="button" class="sx-btn sx-yellow open-early" style="min-height:62px;padding:0 34px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg> Get the app <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+        <button type="button" class="sx-btn sx-ghost open-waitlist" style="min-height:62px;padding:0 34px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF69A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M3 9l1.6-5 16 3-1.1 2"></path><path d="M8.2 4.8L6.6 9M13.2 5.8L11.6 9"></path></svg> Become a host <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
       </div>
-      <p>We bring films to neighbourhood spaces, with screenings shaped by local Hosts and the people who show up.</p>
     </div>
-    <div class="st-venues">
-      <figure class="st-print st-tl">
-        <img loading="lazy" src="./images/story-lamp-lit-screening.jpg" alt="A dark screening room with velvet armchairs and small lamps glowing on each table">
-        <figcaption>03 / A FAMILIAR PLACE, A DIFFERENT NIGHT.</figcaption>
-      </figure>
-      <figure class="st-print st-tr">
-        <img loading="lazy" src="./images/story-restaurant-hall.jpg" alt="A large open restaurant hall with timber tables, leather booths and fairy lights">
-        <figcaption>04 / SAME ROOM, NEW STORY.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="st-story st-dark">
-    <div class="st-screening">
-      <div>
-        <span class="st-label st-pixel">03 / THE EXPERIENCE</span>
-        <h2 class="st-serif">More than<br>just watching.</h2>
-        <p>Films are everywhere. Shared experiences are becoming rarer.</p>
-        <p>We believe audiences deserve more than a seat. Independent filmmakers deserve more opportunities for their stories to be experienced together.</p>
-      </div>
-      <figure class="st-print st-tr">
-        <img loading="lazy" src="./images/story-better-together.jpg" alt="People laughing and watching a projected film together in an intimate venue">
-        <figcaption>05 / GOOD FILMS. BETTER TOGETHER.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="st-story st-light">
-    <div class="st-head">
-      <div>
-        <span class="st-label st-pixel">04 / THE LITTLE THINGS</span>
-        <h2 class="st-serif">Film meets culture.<br>People make it happen.</h2>
-      </div>
-      <p>The film is the starting point. The people make the night.</p>
-    </div>
-    <div class="st-photos">
-      <figure class="st-print st-tl">
-        <img loading="lazy" src="./images/story-details.jpg" alt="Drinks and a handmade menu prepared for a gathering">
-        <figcaption>06 / THE DETAILS MAKE THE NIGHT.</figcaption>
-      </figure>
-      <figure class="st-print st-tr">
-        <img loading="lazy" src="./images/story-lights-down.jpg" alt="Audience silhouettes watching a film projection">
-        <figcaption>07 / AND THEN THE LIGHTS GO DOWN.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="st-bottom" id="host">
-    <span class="st-label st-pixel">THE INVITATION</span>
-    <h2 class="st-serif">A neighbourhood is never just one story.</h2>
-    <p>Stories that travel through people bring our neighbourhoods to life.</p>
-    <button type="button" class="st-btn open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
   </section>
 
   <footer class="st-footer">
@@ -1464,6 +1535,75 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
   successClose.addEventListener('click', resetModal);
   overlay.addEventListener('click', function (e) { if (e.target === overlay) resetModal(); });
 
+})();
+</script>
+
+<script>
+/* ── EARLY ACCESS WAITLIST ("Get the app") ── */
+(function () {
+  var API = '/api/early-access';
+  var overlay = document.getElementById('earlyModal');
+  if (!overlay) return;
+  var form = document.getElementById('earlyForm');
+  var formState = document.getElementById('earlyFormState');
+  var success = document.getElementById('earlySuccess');
+  var submitBtn = document.getElementById('earlySubmit');
+  var nameIn = document.getElementById('ea-name');
+  var emailIn = document.getElementById('ea-email');
+  var locIn = document.getElementById('ea-location');
+  var errs = {
+    name: document.getElementById('ea-name-err'),
+    email: document.getElementById('ea-email-err'),
+    location: document.getElementById('ea-location-err'),
+    api: document.getElementById('ea-api-err')
+  };
+  function show(el, msg) { if (msg) el.textContent = msg; el.classList.add('show'); }
+  function clear() { Object.keys(errs).forEach(function (k) { errs[k].classList.remove('show'); }); errs.api.textContent = ''; }
+
+  function open() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    overlay.scrollTop = 0;
+    setTimeout(function () { nameIn.focus({ preventScroll: true }); }, 350);
+  }
+  function close() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(function () {
+      if (!success.hidden) { form.reset(); success.hidden = true; formState.hidden = false; }
+      clear();
+    }, 300);
+  }
+  document.querySelectorAll('.open-early').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); open(); });
+  });
+  if (location.hash === '#early-access') open();
+  document.getElementById('earlyClose').addEventListener('click', close);
+  document.getElementById('earlyDone').addEventListener('click', close);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clear();
+    var name = nameIn.value.trim(), email = emailIn.value.trim(), loc = locIn.value.trim();
+    var ok = true;
+    if (!name) { show(errs.name); ok = false; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { show(errs.email); ok = false; }
+    if (!loc) { show(errs.location); ok = false; }
+    if (!ok) return;
+    submitBtn.disabled = true; submitBtn.classList.add('loading');
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, email: email, location: loc }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok) throw new Error(res.d.message || 'Something went wrong. Please try again.');
+        formState.hidden = true; success.hidden = false;
+      })
+      .catch(function (err) {
+        show(errs.api, err && err.message && err.message !== 'Failed to fetch' ? err.message : 'We couldn’t reach Playlane. Check your connection and try again.');
+      })
+      .then(function () { submitBtn.disabled = false; submitBtn.classList.remove('loading'); });
+  });
 })();
 </script>
 </body>

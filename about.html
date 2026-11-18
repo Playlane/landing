@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Playlane — Cinema for the Curious Neighbour</title>
+<meta name="description" content="Playlane is a social cinema platform where films bring people together, in living rooms, cafés, rooftops and community spaces close to home." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#F7F5EF;color:#11110F;font-family:'DM Sans',Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid #11110F;outline-offset:3px}
+em,i{font-style:normal}
+img{display:block;max-width:100%}
+.serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+.pixel{font-family:'Silkscreen',monospace;font-weight:400;letter-spacing:.04em}
+.wrap{max-width:1240px;margin:0 auto}
+.pad{padding-left:clamp(22px,5vw,76px);padding-right:clamp(22px,5vw,76px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:10px;font:400 14px 'Silkscreen',monospace;letter-spacing:.02em;text-transform:uppercase;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-yellow{background:#FFF69A;color:#11110F}
+.btn-dark{background:#11110F;color:#F7F5EF}
+.btn-ghost{color:#F7F5EF;box-shadow:inset 0 0 0 1.5px rgba(247,245,239,.8)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px)}
+.list{list-style:none;border-top:1px solid rgba(17,17,15,.15)}
+.list li{padding:16px 0;border-bottom:1px solid rgba(17,17,15,.15);font-size:18px}
+@media(max-width:900px){.two{grid-template-columns:1fr}.back{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="pad" aria-label="Main" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:20px;padding-bottom:20px">
+  <a href="./" class="pixel" style="font-size:clamp(20px,2.4vw,28px);font-weight:700">PLAYLANE</a>
+  <div style="display:flex;align-items:center;gap:24px">
+    <a href="./" class="pixel back" style="font-size:12px;display:inline-flex;align-items:center;min-height:44px">BACK TO HOME</a>
+    <a href="./#early-access" class="btn btn-yellow" style="min-height:44px;padding:0 18px;font-size:12px">Get the app</a>
+  </div>
+</nav>
+
+<main>
+  <!-- INTRO -->
+  <section class="pad" style="padding-top:clamp(40px,6vw,88px);padding-bottom:clamp(64px,8vw,112px)">
+    <div class="wrap two" style="grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center">
+      <div>
+        <p class="pixel" style="font-size:13px;color:#5A544E">About Playlane</p>
+        <h1 class="serif" style="margin-top:18px;font-size:clamp(52px,6vw,92px);line-height:1">Cinema for the curious neighbour.</h1>
+        <p style="margin-top:30px;max-width:520px;font-size:20px;line-height:1.6;color:#3E3A36">Playlane is a social cinema platform where films bring people together. Screenings, called WatchLanes, happen in local spaces close to where people live.</p>
+        <p style="margin-top:18px;font-size:20px;font-weight:600">Good films. Great company. Your neighbourhood.</p>
+      </div>
+      <img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" style="width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:6px">
+    </div>
+  </section>
+
+  <!-- WHAT IS A WATCHLANE -->
+  <section class="pad" style="background:#11110F;color:#F7F5EF;padding-top:clamp(72px,8vw,120px);padding-bottom:clamp(72px,8vw,120px)">
+    <div class="wrap">
+      <p class="pixel" style="font-size:13px;color:#FFF69A">What is a WatchLane?</p>
+      <p class="serif" style="margin-top:20px;max-width:980px;font-size:clamp(34px,3.8vw,56px);line-height:1.15">A screening in a real local space, opened by a Host for the people who live nearby.</p>
+      <ul style="list-style:none;margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border-top:1px solid rgba(247,245,239,.18)">
+        <li style="padding:22px 0;border-bottom:1px solid rgba(247,245,239,.18);font-size:18px">Living rooms</li>
+        <li style="padding:22px 0;border-bottom:1px solid rgba(247,245,239,.18);font-size:18px">Caf&eacute;s</li>
+        <li style="padding:22px 0;border-bottom:1px solid rgba(247,245,239,.18);font-size:18px">Restaurants after closing</li>
+        <li style="padding:22px 0;border-bottom:1px solid rgba(247,245,239,.18);font-size:18px">Rooftops and gardens</li>
+        <li style="padding:22px 0;border-bottom:1px solid rgba(247,245,239,.18);font-size:18px">Community spaces</li>
+        <li style="padding:22px 0;border-bottom:1px solid rgba(247,245,239,.18);font-size:18px">Private cinema rooms</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GUESTS AND HOSTS -->
+  <section class="pad" style="padding-top:clamp(72px,8vw,120px);padding-bottom:clamp(72px,8vw,120px)">
+    <div class="wrap">
+      <h2 class="serif" style="font-size:clamp(40px,4.4vw,64px);line-height:1.05">Two ways to be part of it.</h2>
+      <div class="two" style="margin-top:48px;gap:32px">
+        <div>
+          <img src="./images/living-room.jpg" alt="Friends on a living room floor choosing a film" loading="lazy" style="width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:6px">
+          <h3 class="serif" style="margin-top:28px;font-size:34px;line-height:1.1">Come and watch</h3>
+          <ul class="list" style="margin-top:18px">
+            <li>Discover WatchLanes in your neighbourhood</li>
+            <li>Save a seat and show up</li>
+            <li>Watch together, then stay for the conversation</li>
+          </ul>
+          <a href="./#early-access" class="btn btn-yellow" style="margin-top:28px">Join the waitlist</a>
+        </div>
+        <div>
+          <img src="./images/story-lamp-lit-screening.jpg" alt="A screening room with velvet armchairs and small lamps" loading="lazy" style="width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:6px">
+          <h3 class="serif" style="margin-top:28px;font-size:34px;line-height:1.1">Host a WatchLane</h3>
+          <ul class="list" style="margin-top:18px">
+            <li>Pick films from our digital film store</li>
+            <li>Open a space and invite your people</li>
+            <li>Host for the joy of it, or earn from ticket sales</li>
+          </ul>
+          <a href="./#host" class="btn btn-dark" style="margin-top:28px">Become a founding host</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="pad" style="background:#EFEBE2;padding-top:clamp(72px,8vw,120px);padding-bottom:clamp(72px,8vw,120px)">
+    <div class="wrap two" style="align-items:start">
+      <div>
+        <p class="pixel" style="font-size:13px;color:#5A544E">Why we&rsquo;re doing this</p>
+        <h2 class="serif" style="margin-top:18px;font-size:clamp(38px,4vw,58px);line-height:1.08">Films are everywhere. Shared experiences are becoming rarer.</h2>
+      </div>
+      <div style="padding-top:8px">
+        <p style="font-size:19px;line-height:1.65;color:#3E3A36">Audiences deserve more than a seat. Independent filmmakers deserve more places for their stories to be experienced together.</p>
+        <p style="margin-top:20px;font-size:19px;line-height:1.65;color:#3E3A36">Playlane brings films into the places where people already live, and gives neighbours a reason to gather around them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AFRICAN CINEMA -->
+  <section class="pad" style="background:#FFF69A;padding-top:clamp(64px,7vw,104px);padding-bottom:clamp(64px,7vw,104px)">
+    <div class="wrap two" style="grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:end">
+      <h2 class="serif" style="font-size:clamp(42px,5vw,76px);line-height:1">We&rsquo;re starting with African cinema.</h2>
+      <p style="font-size:19px;line-height:1.6">Creating more places for these films to meet audiences, and more opportunities for people to experience them together, closer to their neighbourhoods.</p>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section class="pad" style="background:#11110F;color:#F7F5EF;text-align:center;padding-top:clamp(80px,9vw,130px);padding-bottom:clamp(80px,9vw,130px)">
+    <div class="wrap">
+      <p class="pixel" style="font-size:clamp(22px,2.6vw,32px);color:#FFF69A">BE FIRST IN THE LANE.</p>
+      <p style="margin:22px auto 0;max-width:560px;font-size:19px;line-height:1.6;color:rgba(247,245,239,.85)">PlayLane is coming. Join the waitlist to get early access to a new way to discover films, create WatchLanes and bring your people together.</p>
+      <div style="margin-top:36px;display:flex;flex-wrap:wrap;justify-content:center;gap:14px">
+        <a href="./#early-access" class="btn btn-yellow">Join the waitlist</a>
+        <a href="./#host" class="btn btn-ghost">Become a founding host</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pad" style="background:#11110F;color:rgba(247,245,239,.65);border-top:1px solid rgba(247,245,239,.1);padding-top:26px;padding-bottom:26px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:14px">
+  <a href="./" class="pixel" style="color:#F7F5EF">PLAYLANE</a>
+  <span class="pixel" style="font-size:12px">WHERE YOU WATCH, WHERE YOU PLAY.</span>
+</footer>
+
+</body>
+</html>
