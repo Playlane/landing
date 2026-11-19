@@ -783,6 +783,9 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 .sx-pols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,26px);align-items:start;padding-top:14px}
 .sx-pol{margin:0;background:#FFFDF8;padding:12px 12px 0;box-shadow:0 1px 2px rgba(17,17,15,.06),0 10px 28px rgba(17,17,15,.1)}
 .sx-pol img{display:block;width:100%;aspect-ratio:4 / 4.6;object-fit:cover}
+.sx-pols-dots{display:none;justify-content:center;gap:8px;margin-top:4px}
+.sx-pols-dots span{width:7px;height:7px;border-radius:50%;background:rgba(17,17,15,.22);transition:background .2s,transform .2s}
+.sx-pols-dots span.on{background:#11110F;transform:scale(1.25)}
 .sx-pol figcaption{padding:14px 4px 16px;text-align:center;font-size:17px;line-height:1.35;color:#11110F}
 .modal-tag{margin:-18px 0 28px;font-family:'Silkscreen',monospace;font-size:14px;letter-spacing:.04em;color:var(--ink)}
 .ea-title{font-family:'Silkscreen',monospace;font-weight:400;font-size:26px;line-height:1.2;color:var(--ink);padding-right:44px;margin-bottom:14px}
@@ -794,8 +797,12 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 @media(max-width:900px){
   .sx-steps{grid-template-columns:1fr;gap:44px}
   .sx-cinema{grid-template-columns:1fr}
-  .sx-pols{grid-template-columns:1fr 1fr}
-  .sx-pols figure:nth-child(3){grid-column:1 / -1;max-width:60%;justify-self:center}
+  /* Phone and tablet: polaroids become a swipeable carousel; the next photo peeks in from the right */
+  .sx-pols{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin:0 calc(-1 * clamp(22px,5vw,76px));padding:14px clamp(22px,5vw,76px) 22px;scroll-padding-inline:clamp(22px,5vw,76px)}
+  .sx-pols::-webkit-scrollbar{display:none}
+  .sx-pols .sx-pol{flex:0 0 76%;max-width:340px;scroll-snap-align:start}
+  .sx-pols-dots{display:flex !important}
 }
 @media(max-width:800px){
   .st-live-copy{left:20px;right:20px;top:auto;bottom:32px}
@@ -1003,7 +1010,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         <h2 class="sx-corm" style="margin:0;font-size:clamp(46px,5vw,78px);line-height:.98;letter-spacing:-.025em;color:#11110F">Not every cinema looks like a cinema.</h2>
         <p style="margin:30px 0 0;max-width:360px;font-size:19px;line-height:1.5">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
       </div>
-      <div class="sx-pols">
+      <div class="sx-pols" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
         <figure class="sx-pol">
           <img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy">
           <figcaption>A restaurant after closing.</figcaption>
@@ -1017,6 +1024,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
           <figcaption>A neighbourhood rooftop.</figcaption>
         </figure>
       </div>
+      <div class="sx-pols-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
     </div>
   </section>
 
@@ -1604,6 +1612,25 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
       })
       .then(function () { submitBtn.disabled = false; submitBtn.classList.remove('loading'); });
   });
+})();
+</script>
+
+<script>
+/* ── Polaroid carousel dots (phones) ── */
+(function () {
+  var track = document.querySelector('.sx-pols');
+  var dots = document.querySelectorAll('.sx-pols-dots span');
+  if (!track || !dots.length) return;
+  var cards = track.querySelectorAll('.sx-pol');
+  function update() {
+    var best = 0, bestDist = Infinity, left = track.getBoundingClientRect().left;
+    cards.forEach(function (c, i) {
+      var d = Math.abs(c.getBoundingClientRect().left - left - parseFloat(getComputedStyle(track).scrollPaddingLeft || 0));
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
+  }
+  track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
 })();
 </script>
 </body>
