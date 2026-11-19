@@ -787,6 +787,13 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 .sx-pols-dots span{width:7px;height:7px;border-radius:50%;background:rgba(17,17,15,.22);transition:background .2s,transform .2s}
 .sx-pols-dots span.on{background:#11110F;transform:scale(1.25)}
 .sx-pol figcaption{padding:14px 4px 16px;text-align:center;font-size:17px;line-height:1.35;color:#11110F}
+.st-social{display:flex;gap:28px}
+.st-page .st-social a{font-family:'Silkscreen',monospace;font-size:12px;letter-spacing:.06em;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:800px){
+  footer.st-footer{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6px 16px}
+  .st-social{gap:18px}
+  .st-foot-tag{grid-column:1 / -1}
+}
 .modal-tag{margin:-18px 0 28px;font-family:'Silkscreen',monospace;font-size:14px;letter-spacing:.04em;color:var(--ink)}
 .ea-title{font-family:'Silkscreen',monospace;font-weight:400;font-size:26px;line-height:1.2;color:var(--ink);padding-right:44px;margin-bottom:14px}
 .wl-submit.ea-submit{background:#FFF69A;color:#11110F;font-family:'Silkscreen',monospace;font-weight:400;font-size:15px;letter-spacing:.02em}
@@ -805,13 +812,17 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .sx-pols-dots{display:flex !important}
 }
 @media(max-width:800px){
-  .st-live-copy{left:20px;right:20px;top:auto;bottom:32px}
-  .st-live{height:720px}
-  .st-live-comments{top:14px;bottom:auto;height:min(50%,340px);left:auto;right:12px;width:58vw;max-width:260px}
-  .st-live-comments .st-bubble{width:100%;padding:9px 12px;gap:9px;border-radius:14px;background:rgba(17,17,15,.58);border-color:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-  .st-live-comments .st-avatar{width:28px;height:28px;font-size:11px}
-  .st-live-comments .st-ctext{font-size:12.5px;line-height:1.4;color:#fff}
-  .st-live-comments .st-likes{font-size:10px;color:rgba(255,255,255,.6)}
+  /* Phones: chats in a compact column top-right, headline and buttons flow straight after it */
+  .st-nav{padding:10px 20px}
+  .st-live{height:auto}
+  .st-live-copy{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:262px 20px 40px}
+  .st-live-ctas{margin-top:26px;gap:10px}
+  .st-live-comments .st-live-track,.st-live-comments .st-dup{gap:8px}
+  .st-live-comments{top:12px;bottom:auto;height:236px;left:auto;right:8px;width:50vw;max-width:210px}
+  .st-live-comments .st-bubble{width:100%;padding:7px 9px;gap:7px;border-radius:14px;background:rgba(17,17,15,.58);border-color:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .st-live-comments .st-avatar{width:22px;height:22px;font-size:9px}
+  .st-live-comments .st-ctext{font-size:11px;line-height:1.35;color:#fff}
+  .st-live-comments .st-likes{font-size:9px;color:rgba(255,255,255,.6)}
   .st-live-comments .st-handle{display:none}
   .st-live-track,.st-dup{gap:8px}
   .st-live-ctas .sx-btn{min-height:52px;padding:0 20px;font-size:13px}
@@ -1049,8 +1060,13 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <footer class="st-footer">
-    <span class="st-pixel">PLAYLANE</span>
-    <span class="st-pixel">WHERE YOU WATCH, WHERE YOU PLAY.</span>
+    <span class="st-pixel st-foot-brand">&copy; 2026 PLAYLANE</span>
+    <nav class="st-social" aria-label="PlayLane on social media">
+      <a href="https://instagram.com/joinplaylane" target="_blank" rel="noopener">INSTAGRAM</a>
+      <a href="https://tiktok.com/@joinplaylane" target="_blank" rel="noopener">TIKTOK</a>
+      <a href="https://x.com/joinplaylane" target="_blank" rel="noopener">X</a>
+    </nav>
+    <span class="st-pixel st-foot-tag">WHERE YOU WATCH, WHERE YOU PLAY.</span>
   </footer>
 
 </div>
