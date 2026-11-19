@@ -812,13 +812,17 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .sx-pols-dots{display:flex !important}
 }
 @media(max-width:800px){
-  .st-live-copy{left:20px;right:20px;top:auto;bottom:84px}
-  .st-live{height:720px}
-  .st-live-comments{top:14px;bottom:auto;height:min(44%,300px);left:auto;right:12px;width:58vw;max-width:260px}
-  .st-live-comments .st-bubble{width:100%;padding:9px 12px;gap:9px;border-radius:14px;background:rgba(17,17,15,.58);border-color:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-  .st-live-comments .st-avatar{width:28px;height:28px;font-size:11px}
-  .st-live-comments .st-ctext{font-size:12.5px;line-height:1.4;color:#fff}
-  .st-live-comments .st-likes{font-size:10px;color:rgba(255,255,255,.6)}
+  /* Phones: chats in a compact column top-right, headline and buttons flow straight after it */
+  .st-nav{padding:10px 20px}
+  .st-live{height:auto}
+  .st-live-copy{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:262px 20px 40px}
+  .st-live-ctas{margin-top:26px;gap:10px}
+  .st-live-comments .st-live-track,.st-live-comments .st-dup{gap:8px}
+  .st-live-comments{top:12px;bottom:auto;height:236px;left:auto;right:8px;width:50vw;max-width:210px}
+  .st-live-comments .st-bubble{width:100%;padding:7px 9px;gap:7px;border-radius:14px;background:rgba(17,17,15,.58);border-color:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .st-live-comments .st-avatar{width:22px;height:22px;font-size:9px}
+  .st-live-comments .st-ctext{font-size:11px;line-height:1.35;color:#fff}
+  .st-live-comments .st-likes{font-size:9px;color:rgba(255,255,255,.6)}
   .st-live-comments .st-handle{display:none}
   .st-live-track,.st-dup{gap:8px}
   .st-live-ctas .sx-btn{min-height:52px;padding:0 20px;font-size:13px}
