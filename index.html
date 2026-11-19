@@ -807,8 +807,13 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 @media(max-width:800px){
   .st-live-copy{left:20px;right:20px;top:auto;bottom:32px}
   .st-live{height:720px}
-  .st-live-comments{top:16px;bottom:auto;height:300px;width:auto;left:20px;right:20px}
-  .st-live-comments .st-bubble{width:100%}
+  .st-live-comments{top:14px;bottom:auto;height:250px;width:auto;left:auto;right:16px;max-width:300px;width:78%}
+  .st-live-comments .st-bubble{width:100%;padding:9px 12px;gap:9px;border-radius:14px;background:rgba(17,17,15,.58);border-color:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .st-live-comments .st-avatar{width:28px;height:28px;font-size:11px}
+  .st-live-comments .st-ctext{font-size:13px;line-height:1.4;color:#fff}
+  .st-live-comments .st-likes{font-size:10px;color:rgba(255,255,255,.6)}
+  .st-live-comments .st-handle{display:none}
+  .st-live-track,.st-dup{gap:8px}
   .st-live-ctas .sx-btn{min-height:52px;padding:0 20px;font-size:13px}
 }
 </style>
