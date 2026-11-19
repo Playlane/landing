@@ -61,9 +61,9 @@ function samePhone(a, b) {
 }
 
 const DUPLICATE_MESSAGES = {
-  email: "This email is already registered as a Playlane host. Try a different email, or email helloneighbour@playlane.co to update your details.",
-  phone: "This WhatsApp number is already registered as a Playlane host. Try a different number, or email helloneighbour@playlane.co to update your details.",
-  both: "You're already registered as a Playlane host with this email and WhatsApp number. To update your details or get the WhatsApp group link again, email helloneighbour@playlane.co.",
+  email: "This email is already registered as a PlayLane host. Try a different email, or email helloneighbour@playlane.co to update your details.",
+  phone: "This WhatsApp number is already registered as a PlayLane host. Try a different number, or email helloneighbour@playlane.co to update your details.",
+  both: "You're already registered as a PlayLane host with this email and WhatsApp number. To update your details or get the WhatsApp group link again, email helloneighbour@playlane.co.",
 };
 
 async function readJson(response) {

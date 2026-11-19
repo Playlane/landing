@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Playlane — Cinema for the Curious Neighbour</title>
-<meta name="description" content="Good films. Great company. Your neighbourhood. Discover Playlane and become a Founding Host." />
+<title>PlayLane — Cinema for the Curious Neighbour</title>
+<meta name="description" content="Good films. Great company. Your neighbourhood. Discover PlayLane and become a Founding Host." />
 <!-- Proves to Google that Alexander Phi owns playlane.co (Google Search Console / Play Console). Keep it. -->
 <meta name="google-site-verification" content="Y4q4MitpDvlTERfaF6-jZXwup_xZGbM3B7XoB32hhaY" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -809,7 +809,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 <body>
 
 <!-- ═══════════ WAITLIST MODAL ═══════════ -->
-<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Become a Playlane Host">
+<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Become a PlayLane Host">
   <div class="modal-card">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
 
@@ -859,14 +859,14 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         </div>
 
         <button type="submit" class="wl-submit" id="wlSubmitBtn">
-          <span class="wl-btn-text">Become a Playlane Host</span>
+          <span class="wl-btn-text">Become a PlayLane Host</span>
           <span class="wl-spinner"></span>
         </button>
 
         <span class="wl-error" id="wl-api-err" style="text-align:center;margin-top:2px;"></span>
 
         <p class="wl-privacy">
-          No spam, ever. We'll only use your details for Playlane hosting.<br>
+          No spam, ever. We'll only use your details for PlayLane hosting.<br>
           <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>
         </p>
       </form>
@@ -876,7 +876,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
     <div class="modal-success" id="modalSuccess">
       <div class="success-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h2 class="success-title" id="successTitle">Welcome, host <em>Alex!</em></h2>
-      <p class="success-msg" id="successMsg">We've saved your spot. You'll receive a personal invite the moment Playlane opens in your area. Keep your eyes on your inbox.</p>
+      <p class="success-msg" id="successMsg">We've saved your spot. You'll receive a personal invite the moment PlayLane opens in your area. Keep your eyes on your inbox.</p>
       <div class="success-email-note" id="successEmailNote">
         A confirmation is on its way to <strong id="successEmail">—</strong>. Check your spam folder if you don't see it.
       </div>
@@ -966,7 +966,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
             <img src="./images/film-posters.jpg" alt="Film posters lit up in a cinema display case" style="object-position:50% 45%" loading="lazy">
             <div class="sx-step-text">
               <h3 class="sx-dsd">Discover films</h3>
-              <p>Choose from the Playlane film store, starting with African cinema.</p>
+              <p>Choose from the PlayLane film store, starting with African cinema.</p>
             </div>
           </li>
           <li>
@@ -1478,10 +1478,10 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
       .catch(function (err) {
         var fieldErrs = { name: nameErr, email: emailErr, phone: phoneErr, city: locationErr, country: locationErr };
         if (err.kind === 'network') {
-          showErr(apiErr, "We couldn't reach Playlane. Check your internet connection and try again.");
+          showErr(apiErr, "We couldn't reach PlayLane. Check your internet connection and try again.");
         } else if (err.kind === 'duplicate') {
           /* Already a host: flag the email field, the WhatsApp field, or both */
-          var dupMsg = err.userMsg || 'You\'re already registered as a Playlane host.';
+          var dupMsg = err.userMsg || 'You\'re already registered as a PlayLane host.';
           if (err.field === 'email') showErr(emailErr, dupMsg);
           else if (err.field === 'phone') showErr(phoneErr, dupMsg);
           else showErr(apiErr, dupMsg);
@@ -1507,7 +1507,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 
     /* Personalise the success message */
     successTitle.innerHTML = 'Welcome, host <em>' + firstName + '!</em>';
-    successMsg.textContent  = 'You\'re signed up as a Playlane host. Join the hosts\' WhatsApp group to meet the community and hear about your first screening.';
+    successMsg.textContent  = 'You\'re signed up as a PlayLane host. Join the hosts\' WhatsApp group to meet the community and hear about your first screening.';
 
     /* Send them to the hosts' WhatsApp group */
     if (whatsappUrl) {
@@ -1600,7 +1600,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         formState.hidden = true; success.hidden = false;
       })
       .catch(function (err) {
-        show(errs.api, err && err.message && err.message !== 'Failed to fetch' ? err.message : 'We couldn’t reach Playlane. Check your connection and try again.');
+        show(errs.api, err && err.message && err.message !== 'Failed to fetch' ? err.message : 'We couldn’t reach PlayLane. Check your connection and try again.');
       })
       .then(function () { submitBtn.disabled = false; submitBtn.classList.remove('loading'); });
   });
