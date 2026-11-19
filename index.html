@@ -761,6 +761,15 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
 .st-head p,.st-screening p{font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.45}
 .st-head p{margin-top:clamp(44px,4.6vw,72px)}
 @media(max-width:800px){.st-head p{margin-top:18px;font-size:18px}.st-screening p{font-size:18px}}
+/* Discover section: what PlayLane is (Nov 2026) */
+.st-intro .st-intro-more{margin-top:18px}
+.st-intro .st-intro-kicker{margin-top:34px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(24px,2.6vw,34px);line-height:1.25}
+.st-mission-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:5vw;max-width:1350px;margin:0 auto;align-items:start}
+.st-mission h2{font-size:clamp(43px,6.2vw,95px);letter-spacing:-.045em;line-height:1.04;margin:12px 0 0}
+.st-mission-text{padding-top:clamp(44px,4.6vw,72px);max-width:460px}
+.st-mission-text p{font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:1.45;margin:0 0 1em}
+.st-mission-text p:last-child{margin-bottom:0}
+@media(max-width:800px){.st-mission-grid{grid-template-columns:1fr;gap:0}.st-mission-text{padding-top:22px;max-width:none}.st-mission-text p{font-size:18px}}
 </style>
 </head>
 <body>
@@ -877,9 +886,39 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
   </section>
 
   <section class="st-intro" id="story">
-    <div class="st-label st-pixel">THE FUN OF WATCHING FILMS TOGETHER</div>
-    <h2 class="st-serif">Good films. Great company. Your neighbourhood.</h2>
-    <p>Your next favourite cinema might be a café, a gallery or that little restaurant around the corner.</p>
+    <div class="st-label st-pixel">STORIES TRAVEL THROUGH PEOPLE.</div>
+    <h2 class="st-serif">The audience is becoming part of the story.</h2>
+    <p>PlayLane is a media technology platform building an audience-led film network.</p>
+    <p class="st-intro-more">We’re creating a new way for people to discover films, bring them to others and participate in the experiences and value they create.</p>
+    <p class="st-intro-kicker">Not just consumers. Participants. Insiders.</p>
+  </section>
+
+  <section class="st-story st-dark st-mission">
+    <div class="st-mission-grid">
+      <div>
+        <span class="st-label st-pixel">MORE CONTENT. MORE INDIVIDUAL CONSUMPTION.</span>
+        <h2 class="st-serif">Our biggest competitor is modern isolation.</h2>
+      </div>
+      <div class="st-mission-text">
+        <p>We’ve never had more access to films and entertainment. Yet so much of that experience has become individual.</p>
+        <p>We believe technology can do more than deliver content.</p>
+        <p>It can bring people together around it.</p>
+        <p>PlayLane is building for the moments that happen when watching becomes a shared experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-story st-light st-mission">
+    <div class="st-mission-grid">
+      <div>
+        <span class="st-label st-pixel">PEOPLE ARE THE NETWORK.</span>
+        <h2 class="st-serif">A new role for the audience.</h2>
+      </div>
+      <div class="st-mission-text">
+        <p>Traditionally, audiences have been the destination for films.</p>
+        <p>We’re building a network where people can also help films travel.</p>
+      </div>
+    </div>
   </section>
 
   <section class="st-story st-dark">
