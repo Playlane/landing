@@ -792,7 +792,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 @media(max-width:800px){
   footer.st-footer{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6px 16px}
   .st-social{gap:18px}
-  .st-foot-tag{grid-column:1 / -1}
+  .st-foot-tag{grid-column:1 / -1;justify-self:center;text-align:center;margin-top:6px}
 }
 .modal-tag{margin:-18px 0 28px;font-family:'Silkscreen',monospace;font-size:14px;letter-spacing:.04em;color:var(--ink)}
 .ea-title{font-family:'Silkscreen',monospace;font-weight:400;font-size:26px;line-height:1.2;color:var(--ink);padding-right:44px;margin-bottom:14px}
@@ -806,9 +806,10 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .sx-cinema{grid-template-columns:1fr}
   /* Phone and tablet: polaroids become a swipeable carousel; the next photo peeks in from the right */
   .sx-pols{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-    margin:0 calc(-1 * clamp(22px,5vw,76px));padding:14px clamp(22px,5vw,76px) 22px;scroll-padding-inline:clamp(22px,5vw,76px)}
+    margin:0 calc(-1 * clamp(22px,5vw,76px));padding:14px clamp(22px,5vw,76px) 22px}
   .sx-pols::-webkit-scrollbar{display:none}
-  .sx-pols .sx-pol{flex:0 0 76%;max-width:340px;scroll-snap-align:start}
+  .sx-pols .sx-pol{flex:0 0 78%;max-width:340px;scroll-snap-align:center;scroll-snap-stop:always}
+  .sx-pols::after{content:'';flex:0 0 1px}
   .sx-pols-dots{display:flex !important}
 }
 @media(max-width:800px){
@@ -832,13 +833,13 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 <body>
 
 <!-- ═══════════ WAITLIST MODAL ═══════════ -->
-<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Become a PlayLane Host">
+<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-label="Become a Founding Host">
   <div class="modal-card">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
 
     <!-- Form state -->
     <div class="modal-body" id="modalFormState">
-      <p class="modal-eyebrow">Become a Host</p>
+      <p class="modal-eyebrow">Become a Founding Host</p>
       <h2 class="modal-title">Host your<br>own screening</h2>
       <p class="modal-sub">From cosy caf&eacute;s and rooftops to unexpected neighbourhood spaces or a private cinema room, bring your taste in films to life.</p>
       <p class="modal-tag">YOUR WATCHLANE. YOUR WAY.</p>
@@ -882,7 +883,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         </div>
 
         <button type="submit" class="wl-submit" id="wlSubmitBtn">
-          <span class="wl-btn-text">Become a PlayLane Host</span>
+          <span class="wl-btn-text">Become a Founding Host</span>
           <span class="wl-spinner"></span>
         </button>
 
@@ -958,7 +959,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   <nav class="st-nav" aria-label="Main">
     <span class="st-logo st-pixel">PLAYLANE</span>
     <div class="st-links">
-      <button type="button" class="st-navbtn open-waitlist">BECOME A HOST <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+      <button type="button" class="st-navbtn open-waitlist">BECOME A FOUNDING HOST <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
     </div>
   </nav>
 
@@ -982,28 +983,28 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         <div style="max-width:1280px;margin:0 auto">
           <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
             <h2 class="sx-dsd" style="margin:0;font-size:clamp(42px,4.6vw,64px);line-height:1.04;color:#11110F">Film by film,<br>you build your lane.</h2>
-            <p style="margin:0;max-width:420px;font-size:19px;line-height:1.5">Host for the joy of it, or create a ticketed experience. Every WatchLane is yours to shape.</p>
+            <p style="margin:0;max-width:420px;font-size:19px;line-height:1.5">Bring friends and family together for a film night at home, or create a ticketed cinema experience for your neighbourhood. Every WatchLane is yours to shape.</p>
           </div>
           <ol class="sx-steps">
           <li>
             <img src="./images/film-posters.jpg" alt="Film posters lit up in a cinema display case" style="object-position:50% 45%" loading="lazy">
             <div class="sx-step-text">
               <h3 class="sx-dsd">Discover films</h3>
-              <p>Choose from the PlayLane film store, starting with African cinema.</p>
+              <p>Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
             </div>
           </li>
           <li>
             <img src="./images/living-room.jpg" alt="Friends gathered on a living room floor" loading="lazy">
             <div class="sx-step-text">
               <h3 class="sx-dsd">Invite your people</h3>
-              <p>Send one invite to friends, neighbours and the people on your street.</p>
+              <p>Invite friends, neighbours, or people who discover your WatchLane on the app.</p>
             </div>
           </li>
           <li>
             <img src="./images/story-details.jpg" alt="Drinks and a handmade menu set out for a screening" loading="lazy">
             <div class="sx-step-text">
               <h3 class="sx-dsd">Create experiences</h3>
-              <p>Set the room, press play, and stay for the conversation afterwards.</p>
+              <p>Choose the setting. Make it a moment worth remembering.</p>
             </div>
           </li>
           </ol>
@@ -1014,7 +1015,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
       <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
       <div class="st-buttons">
         <a class="st-btn" href="./discover.html">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
-        <button type="button" class="st-btn st-outline open-waitlist">BECOME A HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+        <button type="button" class="st-btn st-outline open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
       </div>
     </div>
   </section>
@@ -1054,13 +1055,13 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
       <p style="margin:40px 0 0;font-size:15px;font-weight:600;letter-spacing:.42em">WHERE YOU WATCH. WHERE YOU PLAY.</p>
       <div style="margin-top:44px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px">
         <button type="button" class="sx-btn sx-yellow open-early" style="min-height:62px;padding:0 34px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg> Get the app <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
-        <button type="button" class="sx-btn sx-ghost open-waitlist" style="min-height:62px;padding:0 34px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF69A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M3 9l1.6-5 16 3-1.1 2"></path><path d="M8.2 4.8L6.6 9M13.2 5.8L11.6 9"></path></svg> Become a host <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+        <button type="button" class="sx-btn sx-ghost open-waitlist" style="min-height:62px;padding:0 34px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF69A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M3 9l1.6-5 16 3-1.1 2"></path><path d="M8.2 4.8L6.6 9M13.2 5.8L11.6 9"></path></svg> Become a founding host <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
       </div>
     </div>
   </section>
 
   <footer class="st-footer">
-    <span class="st-pixel st-foot-brand">&copy; 2026 PLAYLANE</span>
+    <span class="st-pixel st-foot-brand">PLAYLANE &copy;</span>
     <nav class="st-social" aria-label="PlayLane on social media">
       <a href="https://instagram.com/joinplaylane" target="_blank" rel="noopener">INSTAGRAM</a>
       <a href="https://tiktok.com/@joinplaylane" target="_blank" rel="noopener">TIKTOK</a>
@@ -1644,9 +1645,9 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   if (!track || !dots.length) return;
   var cards = track.querySelectorAll('.sx-pol');
   function update() {
-    var best = 0, bestDist = Infinity, left = track.getBoundingClientRect().left;
+    var best = 0, bestDist = Infinity, r = track.getBoundingClientRect(), mid = r.left + r.width / 2;
     cards.forEach(function (c, i) {
-      var d = Math.abs(c.getBoundingClientRect().left - left - parseFloat(getComputedStyle(track).scrollPaddingLeft || 0));
+      var cr = c.getBoundingClientRect(), d = Math.abs(cr.left + cr.width / 2 - mid);
       if (d < bestDist) { bestDist = d; best = i; }
     });
     dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
