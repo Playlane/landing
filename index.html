@@ -806,9 +806,10 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .sx-cinema{grid-template-columns:1fr}
   /* Phone and tablet: polaroids become a swipeable carousel; the next photo peeks in from the right */
   .sx-pols{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-    margin:0 calc(-1 * clamp(22px,5vw,76px));padding:14px clamp(22px,5vw,76px) 22px;scroll-padding-inline:clamp(22px,5vw,76px)}
+    margin:0 calc(-1 * clamp(22px,5vw,76px));padding:14px clamp(22px,5vw,76px) 22px}
   .sx-pols::-webkit-scrollbar{display:none}
-  .sx-pols .sx-pol{flex:0 0 76%;max-width:340px;scroll-snap-align:start}
+  .sx-pols .sx-pol{flex:0 0 78%;max-width:340px;scroll-snap-align:center;scroll-snap-stop:always}
+  .sx-pols::after{content:'';flex:0 0 1px}
   .sx-pols-dots{display:flex !important}
 }
 @media(max-width:800px){
@@ -1644,9 +1645,9 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   if (!track || !dots.length) return;
   var cards = track.querySelectorAll('.sx-pol');
   function update() {
-    var best = 0, bestDist = Infinity, left = track.getBoundingClientRect().left;
+    var best = 0, bestDist = Infinity, r = track.getBoundingClientRect(), mid = r.left + r.width / 2;
     cards.forEach(function (c, i) {
-      var d = Math.abs(c.getBoundingClientRect().left - left - parseFloat(getComputedStyle(track).scrollPaddingLeft || 0));
+      var cr = c.getBoundingClientRect(), d = Math.abs(cr.left + cr.width / 2 - mid);
       if (d < bestDist) { bestDist = d; best = i; }
     });
     dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
