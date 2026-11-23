@@ -1055,6 +1055,11 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
 .pl-chat .st-bubble{background:#23201C}
 .pl-body,.pl-discover p,.pl-row p,.pl-card figcaption{color:#4A453E}
 @media(max-width:800px){.pl-rows{padding-top:56px}}
+
+/* Why PlayLane text removed: the posters photo spans the column */
+.pl-why-grid{grid-template-columns:1fr}
+.pl-why img{aspect-ratio:21 / 9;object-position:50% 50% !important}
+@media(max-width:800px){.pl-why img{aspect-ratio:16 / 10}}
 </style>
 </head>
 <body>
@@ -1225,10 +1230,6 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
   <section class="pl-why pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap pl-why-grid">
       <img src="./images/film-posters.jpg" alt="Lit film posters in a cinema display case at night" loading="lazy" style="object-position:50% 45%">
-      <div>
-        <p class="pl-pixel pl-why-label">WHY PLAYLANE?</p>
-        <p class="pl-body pl-muted">Because cinema is better when it&rsquo;s shared. PlayLane helps you find and create unforgettable film experiences, with the people around you.</p>
-      </div>
     </div>
   </section>
 
