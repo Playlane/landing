@@ -1120,6 +1120,23 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
   .pl-stack-foot .pl-car-nav button{width:46px;height:46px}
 }
 @media (prefers-reduced-motion: reduce){.pl-scard,.pl-scard::after,.pl-scard figcaption{transition:none}}
+
+/* concept match: tilted front card, fanned cards behind, cream edge, two-line pixel caption */
+.pl-stack{padding-top:calc(60% * .66);overflow:visible}
+.pl-scard{width:60%;aspect-ratio:16 / 10.6;border-radius:22px;border:2px solid #F7EEE1;box-shadow:0 22px 44px rgba(35,32,28,.28);filter:none}
+.pl-scard:not(.front){box-shadow:0 14px 30px rgba(35,32,28,.25)}
+.pl-scard figcaption{max-width:46%;font-size:clamp(14px,1.9vw,24px);letter-spacing:.16em;line-height:1.4;left:clamp(18px,3vw,40px);bottom:clamp(18px,3vw,40px)}
+.pl-dash{gap:10px}
+.pl-dash span,.pl-dash span.on{width:46px;height:5px;border-radius:3px}
+.pl-dash span{background:rgba(35,32,28,.14)}
+.pl-dash span.on{background:#23201C}
+.pl-stack-foot .pl-car-nav button{border-width:2px}
+@media(max-width:800px){
+  .pl-stack{padding-top:calc(64% * .66)}
+  .pl-scard{width:64%;border-radius:16px}
+  .pl-scard figcaption{font-size:12px;max-width:70%;left:14px;bottom:14px}
+  .pl-dash span,.pl-dash span.on{width:24px;height:4px}
+}
 </style>
 </head>
 <body>
@@ -1321,17 +1338,6 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
           <p class="pl-body">Choose the setting. Make it a moment worth remembering.</p>
         </div>
         <img src="./images/create-snack-bar.jpg" alt="A warmly lit bar set with snacks and drinks for a film night" loading="lazy" style="object-position:50% 52%">
-      </div>
-    </div>
-  </section>
-
-  <!-- WHERE YOU WATCH, WHERE YOU PLAY (original size) -->
-  <section style="background:#23201C;padding:0">
-    <div class="st-hero-copy">
-      <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
-      <div class="st-buttons">
-        <a class="st-btn" href="./discover.html">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
-        <button type="button" class="st-btn st-outline open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
       </div>
     </div>
   </section>
@@ -1990,14 +1996,22 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
     var prev = document.getElementById('plPrev'), next = document.getElementById('plNext');
     function layout() {
       var phone = window.matchMedia('(max-width:800px)').matches;
-      var fw = phone ? 70 : 58, step = phone ? 9 : 11, behind = 3;
+      var fw = phone ? 64 : 60, step = phone ? 10.5 : 10, behind = 3;
+      var per = Math.round(stack.clientWidth * fw / 100 * 5) + 'px';
       cards.forEach(function (c, i) {
         var k = (i - active + n) % n;
-        var s = 1 - 0.1 * k;
         var shown = k <= behind;
-        var left = k === 0 ? 0 : fw + k * step - fw * s;
-        c.style.left = (shown ? left : fw + behind * step - fw * 0.6) + '%';
-        c.style.transform = 'perspective(1400px) rotateY(' + (k ? -14 : 0) + 'deg) scale(' + (shown ? s : 0.6) + ')';
+        var kk = shown ? k : behind;
+        if (kk === 0) {
+          c.style.transformOrigin = 'left center';
+          c.style.left = '0%';
+          c.style.transform = 'perspective(' + per + ') rotateY(-8deg)';
+        } else {
+          var s = 0.95 - 0.06 * (kk - 1);
+          c.style.transformOrigin = 'right center';
+          c.style.left = (fw + kk * step - fw) + '%';
+          c.style.transform = 'perspective(' + per + ') rotateY(26deg) scale(' + s + ')';
+        }
         c.style.zIndex = String(n - k);
         c.style.opacity = shown ? '1' : '0';
         c.classList.toggle('front', k === 0);
