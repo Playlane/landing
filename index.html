@@ -1081,6 +1081,15 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
 .pl-rows>.pl-wrap{display:grid;grid-auto-rows:1fr;row-gap:clamp(48px,6vw,96px)}
 .pl-rows .pl-row+.pl-row{margin-top:0}
 @media(max-width:800px){.pl-rows>.pl-wrap{row-gap:36px}}
+
+/* Film by film: three photos in a row under the text */
+.pl-lane-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,20px);margin-top:clamp(40px,5vw,72px)}
+.pl-lane-photos img{display:block;width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px}
+.pl-intro-grid{grid-template-columns:minmax(0,1fr) !important}
+.pl-intro-grid>div:first-child{max-width:760px}
+@media(max-width:800px){.pl-lane-photos{gap:8px;margin-top:28px}.pl-lane-photos img{border-radius:8px}}
+.pl-intro{padding-bottom:clamp(20px,3vw,40px)}
+@media(max-width:800px){.pl-intro{padding-bottom:20px}}
 </style>
 </head>
 <body>
@@ -1238,6 +1247,11 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
       <div>
         <h2 class="pl-serif">Film by film,<br>you build your lane.</h2>
         <p class="pl-body pl-muted">Bring friends and film lovers together for a movie night at home, or create a ticketed cinema experience in your neighbourhood.</p>
+      </div>
+      <div class="pl-lane-photos">
+        <img src="./images/lane-living-room.jpg" alt="Friends on a sofa reacting to a film with popcorn and crisps" loading="lazy" style="object-position:55% 40%">
+        <img src="./images/lane-sofa-night.jpg" alt="Friends watching a film together on a sofa at night" loading="lazy" style="object-position:50% 40%">
+        <img src="./images/lane-cinema-bw.jpg" alt="Friends in cinema seats with popcorn and a drink, in black and white" loading="lazy" style="object-position:60% 35%">
       </div>
     </div>
   </section>
