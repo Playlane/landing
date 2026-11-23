@@ -828,6 +828,98 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .st-live-track,.st-dup{gap:8px}
   .st-live-ctas .sx-btn{min-height:52px;padding:0 20px;font-size:13px}
 }
+
+/* ═══════════════════════════════════════
+   LANDING v3 (Nov 2026 mockup)
+═══════════════════════════════════════ */
+.pl-wrap{max-width:1180px;margin:0 auto}
+.pl-pad{padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)}
+.pl-serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400;color:#11110F}
+.pl-pixel{font-family:'Silkscreen',monospace;font-weight:400;letter-spacing:.12em}
+.pl-body{font-size:17px;line-height:1.55;color:#2A2622}
+/* Header */
+.pl-nav{position:relative;z-index:20;display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px;background:#FAF0E2}
+.pl-logo{font-family:'Silkscreen',monospace;font-weight:700;font-size:24px;letter-spacing:.32em;color:#11110F;text-decoration:none}
+.pl-logo span{color:#D8B23A}
+.pl-links{display:flex;align-items:center;gap:28px}
+.pl-links a,.pl-links button{font-family:'Silkscreen',monospace;font-size:12px;letter-spacing:.08em;color:#11110F;background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:5px;min-height:44px;display:inline-flex;align-items:center}
+.pl-burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;color:#11110F}
+.pl-menu{display:none}
+/* Lane intro */
+.pl-intro{background:#FAF0E2;padding-top:clamp(20px,4vw,48px);padding-bottom:clamp(24px,4vw,56px)}
+.pl-intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.pl-intro h1{margin:0;font-size:clamp(40px,5.4vw,76px);line-height:1.02}
+.pl-intro p{margin:18px 0 0;max-width:470px}
+.pl-intro img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:10px}
+/* Orbit */
+.pl-orbit-sec{background:#11110F;padding:clamp(40px,6vw,80px) 20px}
+.pl-orbit{position:relative;width:min(440px,56vw);aspect-ratio:1;margin:0 auto}
+.pl-ring{position:absolute;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}
+.pl-ring.outer{width:100%;height:100%;border:1px solid rgba(255,255,255,.12)}
+.pl-ring.mid{width:74%;height:74%;border:1px solid rgba(255,255,255,.3)}
+.pl-ring.core{width:46%;height:46%;border:2px solid #FFF69A;display:flex;align-items:center;justify-content:center;text-align:center}
+.pl-ring.core span{font-family:'Silkscreen',monospace;color:#F7F5EF;font-size:clamp(10px,2.6vw,19px);letter-spacing:.12em;line-height:1.45}
+.pl-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:#F7F5EF;transform:translate(-50%,-50%)}
+.pl-lbl{position:absolute;font-family:'Silkscreen',monospace;color:#F7F5EF;font-size:clamp(11px,2.2vw,17px);letter-spacing:.16em;white-space:nowrap}
+.pl-lbl.t{left:50%;top:6.5%;transform:translate(-50%,-50%)}
+.pl-lbl.b{left:50%;top:93.5%;transform:translate(-50%,-50%)}
+.pl-lbl.l{left:13%;top:50%;transform:translate(calc(-100% - 16px),-50%)}
+.pl-lbl.r{left:87%;top:50%;transform:translate(16px,-50%)}
+/* Discover band */
+.pl-discover{background:#FFF69A;padding-top:clamp(36px,5vw,64px);padding-bottom:clamp(36px,5vw,64px)}
+.pl-discover h2{margin:0;font-size:clamp(38px,4.6vw,60px);line-height:1.05}
+.pl-discover p{margin:12px 0 0;max-width:560px}
+.pl-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:52px;padding:0 24px;border-radius:8px;font-family:'Silkscreen',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0}
+.pl-btn-line{background:transparent;color:#11110F;box-shadow:inset 0 0 0 2px #11110F}
+.pl-discover .pl-btn{margin-top:22px;min-width:min(312px,100%)}
+/* Invite / create rows */
+.pl-rows{background:#FAF0E2;padding-top:clamp(28px,4vw,56px);padding-bottom:clamp(28px,4vw,56px)}
+.pl-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,56px);align-items:center}
+.pl-row+.pl-row{margin-top:clamp(22px,3vw,40px)}
+.pl-row h3{margin:0;font-size:clamp(28px,3.4vw,44px);line-height:1.08}
+.pl-row p{margin:10px 0 0}
+.pl-row img{display:block;width:100%;aspect-ratio:2 / 1;object-fit:cover;border-radius:10px}
+/* Dark CTA strip */
+.pl-strip{background:#11110F;padding-top:clamp(28px,4vw,48px);padding-bottom:clamp(28px,4vw,48px);text-align:center}
+.pl-strip p{margin:0;color:#FFF69A;font-size:14px}
+.pl-strip-btns{margin:20px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:760px}
+.pl-strip .pl-btn{flex:1 1 300px;max-width:472px;padding:0 28px}
+.pl-btn-yellow{background:#FFF69A;color:#11110F}
+.pl-btn-yline{background:transparent;color:#F7F5EF;box-shadow:inset 0 0 0 2px #FFF69A}
+.pl-btn span{flex:1;text-align:center}
+/* Not every cinema */
+.pl-cinema{background:#FAF0E2;padding-top:clamp(36px,5vw,72px);padding-bottom:clamp(36px,5vw,72px)}
+.pl-cinema h2{margin:0;font-size:clamp(38px,4.6vw,60px);line-height:1.05}
+.pl-cinema>.pl-wrap>p{margin:12px 0 0;max-width:520px}
+.pl-car{margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.pl-card{margin:0}
+.pl-card img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:10px}
+.pl-card figcaption{margin-top:10px;text-align:center;font-size:14px;color:#2A2622}
+.pl-dots{display:none;justify-content:center;gap:8px;margin-top:14px}
+.pl-dots span{width:8px;height:8px;border-radius:50%;background:rgba(17,17,15,.2)}
+.pl-dots span.on{background:#11110F}
+@media(max-width:800px){
+  .pl-links{display:none}
+  .pl-burger{display:inline-flex}
+  .pl-menu.open{display:flex;flex-direction:column;position:absolute;left:12px;right:12px;top:100%;background:#FFFDF8;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.18);padding:8px 18px 14px}
+  .pl-menu a,.pl-menu button{display:flex;align-items:center;min-height:52px;font-family:'Silkscreen',monospace;font-size:13px;letter-spacing:.08em;color:#11110F;text-decoration:none;background:none;border:0;border-bottom:1px solid rgba(17,17,15,.1);text-align:left;cursor:pointer;width:100%}
+  .pl-menu > :last-child{border-bottom:0}
+  .pl-logo{font-size:20px}
+  .pl-intro-grid{grid-template-columns:1fr}
+  .pl-body{font-size:16px}
+  .pl-row{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
+  .pl-row img{aspect-ratio:2.1 / 1.15}
+  .pl-strip .pl-btn{flex-basis:100%}
+  .pl-car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:22px calc(-1 * clamp(22px,5vw,64px)) 0;padding:0 clamp(22px,5vw,64px)}
+  .pl-car::-webkit-scrollbar{display:none}
+  .pl-card{flex:0 0 calc(50% - 8px);scroll-snap-align:start;scroll-margin-left:clamp(22px,5vw,64px)}
+  .pl-card figcaption{font-size:12px}
+  .pl-dots{display:flex}
+}
+@media(max-width:420px){
+  .pl-row{grid-template-columns:1fr 1fr;gap:14px}
+  .pl-row p{font-size:15px}
+}
 </style>
 </head>
 <body>
@@ -956,91 +1048,104 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 <!-- ═══════════ PAGE ═══════════ -->
 <div class="st-page">
 
-  <nav class="st-nav" aria-label="Main">
-    <span class="st-logo st-pixel">PLAYLANE</span>
-    <div class="st-links">
-      <button type="button" class="st-navbtn open-waitlist">BECOME A FOUNDING HOST <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+  <header class="pl-nav pl-pad" aria-label="Main">
+    <a href="./" class="pl-logo" aria-label="PlayLane home">P<span>LA</span>YLANE</a>
+    <nav class="pl-links" aria-label="Main">
+      <a href="./discover.html">DISCOVER PLAYLANE</a>
+      <button type="button" class="open-early">GET THE APP</button>
+      <button type="button" class="open-waitlist">BECOME A FOUNDING HOST</button>
+    </nav>
+    <button type="button" class="pl-burger" id="plBurger" aria-label="Open menu" aria-expanded="false" aria-controls="plMenu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+    </button>
+    <div class="pl-menu" id="plMenu">
+      <a href="./discover.html">DISCOVER PLAYLANE</a>
+      <button type="button" class="open-early">GET THE APP</button>
+      <button type="button" class="open-waitlist">BECOME A FOUNDING HOST</button>
     </div>
-  </nav>
+  </header>
 
-  <section class="st-hero">
-    <div class="st-hero-shot">
-      <div class="st-live">
-        <img class="st-live-bg" src="./images/hero-tv.jpg" alt="" aria-hidden="true">
-        <div class="st-live-shade" aria-hidden="true"></div>
-        <div class="st-live-copy">
-          <h1 class="st-live-title">Cinema for<br>the Curious<br>Neighbour</h1>
-          <div class="st-live-ctas">
-            <button type="button" class="sx-btn sx-yellow open-early"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg> Get the app <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
-            <button type="button" class="sx-btn sx-ghost open-waitlist"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF69A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M3 9l1.6-5 16 3-1.1 2"></path><path d="M8.2 4.8L6.6 9M13.2 5.8L11.6 9"></path></svg> Become a founding host <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
-          </div>
-        </div>
+  <main>
+  <!-- FILM BY FILM, YOU BUILD YOUR LANE -->
+  <section class="pl-intro pl-pad" id="story" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+    <div class="pl-wrap pl-intro-grid">
+      <div>
+        <h1 class="pl-serif">Film by film,<br>you build your lane.</h1>
+        <p class="pl-body">Bring friends and family together for a film night at home, or create a ticketed cinema experience for your neighbourhood. Every WatchLane is yours to shape.</p>
       </div>
-      <section id="story" style="background:#FAF0E2;color:#11110F;padding:clamp(72px,8vw,112px) clamp(22px,5vw,76px)">
-        <div style="max-width:1280px;margin:0 auto">
-          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-            <h2 class="sx-dsd" style="margin:0;font-size:clamp(42px,4.6vw,64px);line-height:1.04;color:#11110F">Film by film,<br>you build your lane.</h2>
-            <p style="margin:0;max-width:420px;font-size:19px;line-height:1.5">Bring friends and family together for a film night at home, or create a ticketed cinema experience for your neighbourhood .<br>Every WatchLane is yours to shape.</p>
-          </div>
-          <ol class="sx-steps">
-          <li>
-            <img src="./images/film-posters.jpg" alt="Film posters lit up in a cinema display case" style="object-position:50% 45%" loading="lazy">
-            <div class="sx-step-text">
-              <h3 class="sx-dsd">Discover films</h3>
-              <p>Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
-            </div>
-          </li>
-          <li>
-            <img src="./images/living-room.jpg" alt="Friends gathered on a living room floor" loading="lazy">
-            <div class="sx-step-text">
-              <h3 class="sx-dsd">Invite your people</h3>
-              <p>Invite friends, neighbours or people that discover your watchlane on the app</p>
-            </div>
-          </li>
-          <li>
-            <img src="./images/story-details.jpg" alt="Drinks and a handmade menu set out for a screening" loading="lazy">
-            <div class="sx-step-text">
-              <h3 class="sx-dsd">Create experiences</h3>
-              <p>Choose the setting, Make it a moment worth remembering.</p>
-            </div>
-          </li>
-          </ol>
-        </div>
-      </section>
+      <img src="./images/film-posters.jpg" alt="Film posters lit up in a cinema display case" style="object-position:50% 45%">
     </div>
-    <div class="st-hero-copy">
-      <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
-      <div class="st-buttons">
-        <a class="st-btn" href="./discover.html">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
-        <button type="button" class="st-btn st-outline open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+  </section>
+
+  <!-- YOUR WATCHLANE -->
+  <section class="pl-orbit-sec" aria-label="Your WatchLane brings together films, people, hosts and experiences">
+    <div class="pl-orbit" role="img" aria-label="Your WatchLane at the centre, surrounded by films, people, hosts and experiences">
+      <div class="pl-ring outer"></div>
+      <div class="pl-ring mid"></div>
+      <div class="pl-ring core"><span>YOUR<br>WATCHLANE</span></div>
+      <span class="pl-dot" style="left:50%;top:13%"></span>
+      <span class="pl-dot" style="left:50%;top:87%"></span>
+      <span class="pl-dot" style="left:13%;top:50%"></span>
+      <span class="pl-dot" style="left:87%;top:50%"></span>
+      <span class="pl-lbl t">FILMS</span>
+      <span class="pl-lbl b">EXPERIENCES</span>
+      <span class="pl-lbl l">PEOPLE</span>
+      <span class="pl-lbl r">HOSTS</span>
+    </div>
+  </section>
+
+  <!-- DISCOVER FILMS -->
+  <section class="pl-discover pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+    <div class="pl-wrap">
+      <h2 class="pl-serif">Discover films</h2>
+      <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
+      <a class="pl-btn pl-btn-line" href="./discover.html">Discover PlayLane <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+    </div>
+  </section>
+
+  <!-- INVITE / CREATE -->
+  <section class="pl-rows pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+    <div class="pl-wrap">
+      <div class="pl-row">
+        <div>
+          <h3 class="pl-serif">Invite your people</h3>
+          <p class="pl-body">Invite friends, neighbours, or people who discover your WatchLane on the app.</p>
+        </div>
+        <img src="./images/living-room.jpg" alt="Friends gathered on a living room floor" loading="lazy" style="object-position:50% 45%">
       </div>
+      <div class="pl-row">
+        <div>
+          <h3 class="pl-serif">Create experiences</h3>
+          <p class="pl-body">Choose the setting. Make it a moment worth remembering.</p>
+        </div>
+        <img src="./images/story-details.jpg" alt="Drinks set out on ice for a screening" loading="lazy" style="object-position:50% 70%">
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE YOU WATCH, WHERE YOU PLAY -->
+  <section class="pl-strip pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+    <p class="pl-pixel">WHERE YOU WATCH, WHERE YOU PLAY</p>
+    <div class="pl-strip-btns">
+      <a class="pl-btn pl-btn-yellow" href="./discover.html"><span>Discover PlayLane</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+      <button type="button" class="pl-btn pl-btn-yline open-waitlist"><span>Become a Founding Host</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
     </div>
   </section>
 
   <!-- NOT EVERY CINEMA LOOKS LIKE A CINEMA -->
-  <section style="background:#F6EEE2;color:#11110F;padding:clamp(80px,9vw,120px) clamp(22px,5vw,76px)">
-    <div class="sx-cinema">
-      <div>
-        <h2 class="sx-corm" style="margin:0;font-size:clamp(46px,5vw,78px);line-height:.98;letter-spacing:-.025em;color:#11110F">Not every cinema looks like a cinema.</h2>
-        <p style="margin:30px 0 0;max-width:360px;font-size:19px;line-height:1.5">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
+  <section class="pl-cinema pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+    <div class="pl-wrap">
+      <h2 class="pl-serif">Not every cinema<br>looks like a cinema.</h2>
+      <p class="pl-body">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
+      <div class="pl-car" id="plCar" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
+        <figure class="pl-card"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy"><figcaption>A restaurant after closing.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" loading="lazy" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" loading="lazy" style="object-position:50% 35%"><figcaption>A room full of neighbours.</figcaption></figure>
       </div>
-      <div class="sx-pols" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
-        <figure class="sx-pol">
-          <img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy">
-          <figcaption>A restaurant after closing.</figcaption>
-        </figure>
-        <figure class="sx-pol">
-          <img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" style="object-position:60% 40%" loading="lazy">
-          <figcaption>A room full of neighbours.</figcaption>
-        </figure>
-        <figure class="sx-pol">
-          <img src="./images/rooftop.jpg" alt="A rooftop screening under string lights" loading="lazy">
-          <figcaption>A neighbourhood rooftop.</figcaption>
-        </figure>
-      </div>
-      <div class="sx-pols-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
     </div>
   </section>
+  </main>
 
   <!-- FILM BY FILM, YOU BUILD YOUR TRIBE -->
   <section id="host" style="position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;text-align:center;color:#F6EEE2;overflow:hidden;background:#1C130F;padding:0">
@@ -1650,6 +1755,32 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
     dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
   }
   track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+})();
+</script>
+
+<script>
+/* ── Landing v3: menu + carousel dots ── */
+(function () {
+  var burger = document.getElementById('plBurger'), menu = document.getElementById('plMenu');
+  if (burger && menu) {
+    function setOpen(o) { menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o ? 'true' : 'false'); burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); }
+    burger.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!menu.classList.contains('open')); });
+    menu.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('click', function (e) { if (!menu.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  }
+  var car = document.getElementById('plCar'), dots = document.querySelectorAll('#plDots span');
+  if (car && dots.length) {
+    var cards = car.querySelectorAll('.pl-card');
+    car.addEventListener('scroll', function () {
+      window.requestAnimationFrame(function () {
+        var r = car.getBoundingClientRect(), best = 0, bd = Infinity;
+        cards.forEach(function (c, i) { var d = Math.abs(c.getBoundingClientRect().left - r.left - 22); if (d < bd) { bd = d; best = i; } });
+        if (car.scrollLeft + car.clientWidth >= car.scrollWidth - 4) best = cards.length - 1;
+        dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
+      });
+    }, { passive: true });
+  }
 })();
 </script>
 </body>
