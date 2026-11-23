@@ -832,8 +832,8 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 /* ═══════════════════════════════════════
    LANDING v3 (Nov 2026 mockup)
 ═══════════════════════════════════════ */
-.pl-wrap{max-width:1180px;margin:0 auto}
-.pl-pad{padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)}
+.pl-wrap{max-width:1600px;margin:0 auto}
+.pl-pad{padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)}
 .pl-serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400;color:#11110F}
 .pl-pixel{font-family:'Silkscreen',monospace;font-weight:400;letter-spacing:.12em}
 .pl-body{font-size:17px;line-height:1.55;color:#2A2622}
@@ -891,13 +891,18 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 .pl-cinema{background:#FAF0E2;padding-top:clamp(36px,5vw,72px);padding-bottom:clamp(36px,5vw,72px)}
 .pl-cinema h2{margin:0;font-size:clamp(38px,4.6vw,60px);line-height:1.05}
 .pl-cinema>.pl-wrap>p{margin:12px 0 0;max-width:520px}
-.pl-car{margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.pl-card{margin:0}
+.pl-car{margin-top:26px;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+.pl-car::-webkit-scrollbar{display:none}
+.pl-card{margin:0;flex:0 0 calc((100% - 32px) / 3.2);scroll-snap-align:start}
 .pl-card img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:10px}
 .pl-card figcaption{margin-top:10px;text-align:center;font-size:14px;color:#2A2622}
-.pl-dots{display:none;justify-content:center;gap:8px;margin-top:14px}
+.pl-dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
 .pl-dots span{width:8px;height:8px;border-radius:50%;background:rgba(17,17,15,.2)}
 .pl-dots span.on{background:#11110F}
+.pl-car-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.pl-car-nav{display:flex;gap:10px}
+.pl-car-nav button{width:48px;height:48px;border-radius:50%;border:1.5px solid #11110F;background:transparent;color:#11110F;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pl-car-nav button:disabled{opacity:.3;cursor:default}
 @media(max-width:800px){
   .pl-links{display:none}
   .pl-burger{display:inline-flex}
@@ -910,11 +915,11 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .pl-row{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
   .pl-row img{aspect-ratio:2.1 / 1.15}
   .pl-strip .pl-btn{flex-basis:100%}
-  .pl-car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:22px calc(-1 * clamp(22px,5vw,64px)) 0;padding:0 clamp(22px,5vw,64px)}
+  .pl-car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:22px calc(-1 * clamp(22px,5vw,88px)) 0;padding:0 clamp(22px,5vw,88px)}
   .pl-car::-webkit-scrollbar{display:none}
-  .pl-card{flex:0 0 calc(50% - 8px);scroll-snap-align:start;scroll-margin-left:clamp(22px,5vw,64px)}
+  .pl-card{flex:0 0 calc(50% - 8px);scroll-snap-align:start;scroll-margin-left:clamp(22px,5vw,88px)}
   .pl-card figcaption{font-size:12px}
-  .pl-dots{display:flex}
+  .pl-car-nav{display:none}
 }
 @media(max-width:420px){
   .pl-row{grid-template-columns:1fr 1fr;gap:14px}
@@ -1105,7 +1110,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <!-- FILM BY FILM, YOU BUILD YOUR LANE -->
-  <section class="pl-intro pl-pad" id="story" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+  <section class="pl-intro pl-pad" id="story" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap pl-intro-grid">
       <div>
         <h2 class="pl-serif">Film by film,<br>you build your lane.</h2>
@@ -1121,7 +1126,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <!-- WHY PLAYLANE -->
-  <section class="pl-why pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+  <section class="pl-why pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap pl-why-grid">
       <img src="./images/story-lamp-lit-screening.jpg" alt="A screening room lit by small table lamps" loading="lazy">
       <div>
@@ -1149,7 +1154,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <!-- DISCOVER FILMS -->
-  <section class="pl-discover pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+  <section class="pl-discover pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap">
       <h2 class="pl-serif">Discover films</h2>
       <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
@@ -1158,7 +1163,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <!-- INVITE / CREATE -->
-  <section class="pl-rows pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+  <section class="pl-rows pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap">
       <div class="pl-row">
         <div>
@@ -1189,16 +1194,26 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <!-- NOT EVERY CINEMA LOOKS LIKE A CINEMA -->
-  <section class="pl-cinema pl-pad" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
+  <section class="pl-cinema pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap">
-      <h2 class="pl-serif">Not every cinema<br>looks like a cinema.</h2>
-      <p class="pl-body">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
+      <div class="pl-car-head">
+        <div>
+          <h2 class="pl-serif">Not every cinema<br>looks like a cinema.</h2>
+          <p class="pl-body" style="margin:12px 0 0;max-width:520px">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
+        </div>
+        <div class="pl-car-nav">
+          <button type="button" id="plPrev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+          <button type="button" id="plNext" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+        </div>
+      </div>
       <div class="pl-car" id="plCar" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
         <figure class="pl-card"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy"><figcaption>A restaurant after closing.</figcaption></figure>
         <figure class="pl-card"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" loading="lazy" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/private-cinema.jpg" alt="A private cinema room with velvet chairs, cocktails and popcorn" loading="lazy" style="object-position:50% 40%"><figcaption>A private cinema room.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/living-room-tv.jpg" alt="Friends watching a film together in a living room" loading="lazy" style="object-position:50% 50%"><figcaption>A living room with friends.</figcaption></figure>
         <figure class="pl-card"><img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" loading="lazy" style="object-position:50% 35%"><figcaption>A room full of neighbours.</figcaption></figure>
       </div>
-      <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
     </div>
   </section>
   </main>
@@ -1826,16 +1841,22 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
   }
   var car = document.getElementById('plCar'), dots = document.querySelectorAll('#plDots span');
-  if (car && dots.length) {
+  var prev = document.getElementById('plPrev'), next = document.getElementById('plNext');
+  if (car) {
     var cards = car.querySelectorAll('.pl-card');
-    car.addEventListener('scroll', function () {
-      window.requestAnimationFrame(function () {
-        var r = car.getBoundingClientRect(), best = 0, bd = Infinity;
-        cards.forEach(function (c, i) { var d = Math.abs(c.getBoundingClientRect().left - r.left - 22); if (d < bd) { bd = d; best = i; } });
-        if (car.scrollLeft + car.clientWidth >= car.scrollWidth - 4) best = cards.length - 1;
-        dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
-      });
-    }, { passive: true });
+    function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : car.clientWidth; }
+    function update() {
+      var atEnd = car.scrollLeft + car.clientWidth >= car.scrollWidth - 4;
+      var i = atEnd ? cards.length - 1 : Math.round(car.scrollLeft / step());
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+      if (prev) prev.disabled = car.scrollLeft <= 4;
+      if (next) next.disabled = atEnd;
+    }
+    car.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+    if (prev) prev.addEventListener('click', function () { car.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { car.scrollBy({ left: step(), behavior: 'smooth' }); });
+    window.addEventListener('resize', update);
+    update();
   }
 })();
 </script>
