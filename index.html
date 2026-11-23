@@ -1150,6 +1150,27 @@ body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
 
 /* PlayLane yellow */
 .pl-cinema{background:#FFF69A}
+
+/* Discover / Invite / Create: cards with the photo under the text; side by side on desktop, swipe on phones */
+.pl-rows>.pl-wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;column-gap:clamp(20px,2.6vw,40px);row-gap:0}
+.pl-rows .pl-row{display:flex;flex-direction:column;gap:0;margin:0}
+.pl-rows .pl-row>div{flex:1}
+.pl-rows .pl-row .pl-row-title,.pl-rows .pl-row h3{font-size:clamp(30px,2.8vw,42px);line-height:1.05}
+.pl-rows .pl-row p{max-width:none;margin-top:14px}
+.pl-rows .pl-row img{margin-top:24px;aspect-ratio:4 / 3;width:100%;border-radius:14px}
+.pl-rows-dots{display:none}
+@media(max-width:800px){
+  .pl-rows>.pl-wrap{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:16px;
+    margin:0 calc(-1 * clamp(22px,5vw,88px));padding:0 clamp(22px,5vw,88px)}
+  .pl-rows>.pl-wrap::-webkit-scrollbar{display:none}
+  .pl-rows .pl-row{flex:0 0 84%;scroll-snap-align:start;scroll-margin-left:clamp(22px,5vw,88px)}
+  .pl-rows .pl-row .pl-row-title,.pl-rows .pl-row h3{font-size:32px}
+  .pl-rows .pl-row p{font-size:16px;line-height:1.6;margin-top:12px}
+  .pl-rows .pl-row img{margin-top:20px;aspect-ratio:4 / 3.2}
+  .pl-rows-dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+  .pl-rows-dots span{width:8px;height:8px;border-radius:50%;background:rgba(35,32,28,.2)}
+  .pl-rows-dots span.on{background:#23201C}
+}
 </style>
 </head>
 <body>
@@ -1353,6 +1374,7 @@ body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
         <img src="./images/create-snack-bar.jpg" alt="A warmly lit bar set with snacks and drinks for a film night" loading="lazy" style="object-position:50% 52%">
       </div>
     </div>
+    <div class="pl-rows-dots" id="plRowsDots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
   </section>
 
   <!-- NOT EVERY CINEMA LOOKS LIKE A CINEMA -->
@@ -2000,6 +2022,18 @@ body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
     menu.addEventListener('click', function () { setOpen(false); });
     document.addEventListener('click', function (e) { if (!menu.contains(e.target)) setOpen(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  }
+  var rowsWrap = document.querySelector('.pl-rows > .pl-wrap'), rowDots = document.querySelectorAll('#plRowsDots span');
+  if (rowsWrap && rowDots.length) {
+    var rowCards = rowsWrap.querySelectorAll('.pl-row');
+    rowsWrap.addEventListener('scroll', function () {
+      window.requestAnimationFrame(function () {
+        var st = rowCards.length > 1 ? rowCards[1].offsetLeft - rowCards[0].offsetLeft : 1;
+        var end = rowsWrap.scrollLeft + rowsWrap.clientWidth >= rowsWrap.scrollWidth - 4;
+        var i = end ? rowCards.length - 1 : Math.round(rowsWrap.scrollLeft / st);
+        rowDots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+      });
+    }, { passive: true });
   }
   var stack = document.getElementById('plStack');
   if (stack) {
