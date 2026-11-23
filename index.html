@@ -1179,7 +1179,6 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
       <div>
       <h2 class="pl-serif">Discover films</h2>
       <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
-      <a class="pl-btn pl-btn-line" href="./discover.html">Discover PlayLane <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
       </div>
       <img src="./images/discover-films.jpg" alt="A hand picking a film from a box of films" loading="lazy" style="object-position:40% 50%">
     </div>
@@ -1230,11 +1229,11 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         </div>
       </div>
       <div class="pl-car" id="plCar" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
-        <figure class="pl-card"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy"><figcaption>A restaurant after closing.</figcaption></figure>
-        <figure class="pl-card"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" loading="lazy" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
         <figure class="pl-card"><img src="./images/private-cinema.jpg" alt="A private cinema room with velvet chairs, cocktails and popcorn" loading="lazy" style="object-position:50% 40%"><figcaption>A private cinema room.</figcaption></figure>
         <figure class="pl-card"><img src="./images/living-room-tv.jpg" alt="Friends watching a film together in a living room" loading="lazy" style="object-position:50% 50%"><figcaption>A living room with friends.</figcaption></figure>
         <figure class="pl-card"><img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" loading="lazy" style="object-position:50% 35%"><figcaption>A room full of neighbours.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy"><figcaption>A restaurant after closing.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" loading="lazy" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
       </div>
       <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
     </div>
@@ -1872,12 +1871,30 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
       var atEnd = car.scrollLeft + car.clientWidth >= car.scrollWidth - 4;
       var i = atEnd ? cards.length - 1 : Math.round(car.scrollLeft / step());
       dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
-      if (prev) prev.disabled = car.scrollLeft <= 4;
-      if (next) next.disabled = atEnd;
     }
     car.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
-    if (prev) prev.addEventListener('click', function () { car.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    if (next) next.addEventListener('click', function () { car.scrollBy({ left: step(), behavior: 'smooth' }); });
+    function atEnd() { return car.scrollLeft + car.clientWidth >= car.scrollWidth - 4; }
+    function go(dir) {
+      if (dir > 0 && atEnd()) car.scrollTo({ left: 0, behavior: 'smooth' });
+      else if (dir < 0 && car.scrollLeft <= 4) car.scrollTo({ left: car.scrollWidth, behavior: 'smooth' });
+      else car.scrollBy({ left: dir * step(), behavior: 'smooth' });
+    }
+    if (prev) prev.addEventListener('click', function () { go(-1); pause(); });
+    if (next) next.addEventListener('click', function () { go(1); pause(); });
+    /* automatic scroll, looping back to the first photo */
+    var timer = null, resumeAt = 0, visible = false;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function pause() { resumeAt = Date.now() + 6000; }
+    if (!still) {
+      timer = setInterval(function () {
+        if (!visible || document.hidden || Date.now() < resumeAt || car.matches(':hover')) return;
+        go(1);
+      }, 3200);
+      ['touchstart', 'pointerdown', 'wheel', 'focusin'].forEach(function (ev) { car.addEventListener(ev, pause, { passive: true }); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.3 }).observe(car);
+      } else { visible = true; }
+    }
     window.addEventListener('resize', update);
     update();
   }
