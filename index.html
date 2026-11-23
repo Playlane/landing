@@ -951,6 +951,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 .st-page{position:relative}
 .pl-nav{position:absolute;top:0;left:0;right:0;background:transparent}
 .st-page a.pl-logo,.pl-logo{color:#fff}
+.st-page a.pl-top-host{color:#fff}
 .pl-top-host{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0;border:0;background:none;cursor:pointer;color:#fff;font-family:'Silkscreen',monospace;font-size:13px;letter-spacing:.14em;text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:1px}
 .st-live{height:min(860px,100svh);min-height:640px}
 .st-live-copy{top:auto;bottom:clamp(56px,9vh,96px)}
@@ -979,6 +980,116 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .pl-chat .st-bubble{padding:12px 14px}
   .pl-spark{right:-4px;top:-28px;width:32px;height:32px}
 }
+
+/* ── Landing v4: one upright modern serif, Silkscreen as signature, PlayLane silver ── */
+body,.st-page,footer.st-footer{background:#E6E6E3}
+.pl-intro,.pl-why,.pl-discover,.pl-rows,.pl-cinema{background:#E6E6E3}
+em{font-style:normal}
+/* one serif for every headline, always upright */
+.st-live-title,.pl-serif,#host h2.sx-corm{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-style:normal}
+.st-live-title{letter-spacing:-.02em;line-height:.98}
+/* larger, more deliberate headlines */
+.pl-intro h2{font-size:clamp(48px,6.2vw,96px);line-height:.98;letter-spacing:-.02em}
+.pl-discover h2,.pl-cinema h2{font-size:clamp(44px,5.4vw,84px);line-height:1;letter-spacing:-.02em}
+.pl-row h3{font-size:clamp(34px,3.8vw,56px);line-height:1.02;letter-spacing:-.015em}
+#host h2.sx-corm{letter-spacing:-.02em}
+.pl-intro-grid{grid-template-columns:minmax(0,760px) minmax(0,440px)}
+/* restrained supporting text */
+.pl-body{font-size:16px;line-height:1.65;color:#4A4844}
+.pl-intro p{margin-top:28px;max-width:440px}
+.pl-discover p{margin-top:22px;max-width:440px}
+.pl-row p{margin-top:16px;max-width:420px}
+.pl-cinema .pl-body{margin-top:22px !important;max-width:440px !important}
+.pl-card figcaption{margin-top:14px;font-size:13px;color:#4A4844}
+/* more breathing room */
+.pl-intro{padding-top:clamp(80px,10vw,160px);padding-bottom:clamp(64px,8vw,128px)}
+.pl-why{padding-bottom:clamp(80px,10vw,160px)}
+.pl-discover{padding-top:clamp(64px,8vw,128px);padding-bottom:clamp(64px,8vw,128px)}
+.pl-rows{padding-top:0;padding-bottom:clamp(80px,10vw,160px)}
+.pl-row+.pl-row{margin-top:clamp(48px,6vw,96px)}
+.pl-cinema{padding-top:clamp(80px,10vw,160px);padding-bottom:clamp(80px,10vw,160px)}
+.pl-car{margin-top:clamp(36px,4vw,56px)}
+/* neutral graphite chat to sit on silver */
+.pl-chat .st-bubble{background:#2E2E2B;box-shadow:0 8px 22px rgba(17,17,15,.14)}
+.pl-car-nav button{border-color:rgba(17,17,15,.5)}
+@media(max-width:800px){
+  .pl-intro{padding-top:56px;padding-bottom:48px}
+  .pl-intro h2{font-size:30px;line-height:1.02}
+  .pl-intro p{margin-top:14px}
+  .pl-why{padding-bottom:56px}
+  .pl-discover{padding-top:48px;padding-bottom:48px}
+  .pl-discover h2{font-size:32px}
+  .pl-discover p{margin-top:12px}
+  .pl-rows{padding-bottom:56px}
+  .pl-row+.pl-row{margin-top:36px}
+  .pl-row h3{font-size:28px}
+  .pl-row p{margin-top:10px}
+  .pl-cinema{padding-top:56px;padding-bottom:56px}
+  .pl-cinema h2{font-size:clamp(36px,10vw,44px)}
+  .pl-body{font-size:15px}
+  .pl-intro .pl-body,.pl-discover p{font-size:14px;line-height:1.55}
+}
+
+/* Discover films, Invite your people, Create experiences: identical type */
+.pl-discover h2,.pl-row h3{font-size:clamp(40px,4.6vw,64px);line-height:1.02;letter-spacing:-.02em}
+.pl-discover p,.pl-row p{font-size:16px;line-height:1.65;color:#4A4844;margin-top:20px;max-width:440px}
+@media(max-width:800px){
+  .pl-discover h2,.pl-row h3{font-size:28px;line-height:1.05}
+  .pl-discover p,.pl-row p{font-size:14px;line-height:1.55;margin-top:10px}
+}
+
+/* Phones: Discover films photo matches Invite / Create photos */
+@media(max-width:800px){
+  .pl-disc-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(16px,4vw,56px)}
+  .pl-disc-grid img{aspect-ratio:2.1 / 1.15}
+}
+@media(max-width:420px){
+  .pl-disc-grid{grid-template-columns:1fr 1fr;gap:14px}
+}
+
+/* ── PlayLane palette: cream, soft yellow, warm silver, ink ── */
+body,.st-page,footer.st-footer{background:#F7EEE1}
+.pl-intro,.pl-why,.pl-cinema{background:#F7EEE1}
+.pl-orbit-sec{background:#23201C}
+.pl-discover{background:#FCEAA6}
+.pl-rows{background:#E2DAD5;padding-top:clamp(80px,10vw,160px)}
+.pl-chat .st-bubble{background:#23201C}
+.pl-body,.pl-discover p,.pl-row p,.pl-card figcaption{color:#4A453E}
+@media(max-width:800px){.pl-rows{padding-top:56px}}
+
+/* Why PlayLane text removed: the posters photo spans the column */
+.pl-why-grid{grid-template-columns:1fr}
+.pl-why img{aspect-ratio:21 / 9;object-position:50% 50% !important}
+@media(max-width:800px){.pl-why img{aspect-ratio:16 / 10}}
+
+/* Film by film: scrolling chat removed, text alone */
+.pl-intro-grid{grid-template-columns:minmax(0,760px) !important}
+@media(max-width:800px){.pl-intro h2{font-size:clamp(36px,10vw,44px)}.pl-intro .pl-body{font-size:15px;line-height:1.6}}
+@media(min-width:801px){.pl-intro .pl-body{font-size:18px;max-width:520px}.pl-why img{aspect-ratio:16 / 8}}
+
+/* Discover films joins Invite / Create: one section, equal spacing between all three */
+.pl-rows{background:#E2DAD5;padding-top:clamp(80px,10vw,160px);padding-bottom:clamp(80px,10vw,160px)}
+.pl-row .pl-row-title{margin:0;font-size:clamp(40px,4.6vw,64px);line-height:1.02;letter-spacing:-.02em}
+.pl-row img{aspect-ratio:2 / 1}
+@media(max-width:800px){
+  .pl-rows{padding-top:56px;padding-bottom:56px}
+  .pl-row .pl-row-title{font-size:28px;line-height:1.05}
+  .pl-row img{aspect-ratio:2.1 / 1.15}
+}
+
+/* equal row heights so the three photos are evenly spaced at every width */
+.pl-rows>.pl-wrap{display:grid;grid-auto-rows:1fr;row-gap:clamp(48px,6vw,96px)}
+.pl-rows .pl-row+.pl-row{margin-top:0}
+@media(max-width:800px){.pl-rows>.pl-wrap{row-gap:36px}}
+
+/* Film by film: three photos in a row under the text */
+.pl-lane-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,20px);margin-top:clamp(40px,5vw,72px)}
+.pl-lane-photos img{display:block;width:100%;aspect-ratio:4 / 5;object-fit:cover;border-radius:10px}
+.pl-intro-grid{grid-template-columns:minmax(0,1fr) !important}
+.pl-intro-grid>div:first-child{max-width:760px}
+@media(max-width:800px){.pl-lane-photos{gap:8px;margin-top:28px}.pl-lane-photos img{border-radius:8px}}
+.pl-intro{padding-bottom:clamp(80px,10vw,160px)}
+@media(max-width:800px){.pl-intro{padding-bottom:56px}}
 </style>
 </head>
 <body>
@@ -1109,7 +1220,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 
   <header class="pl-nav pl-pad" aria-label="Main">
     <a href="./" class="pl-logo" aria-label="PlayLane home">PLAYLANE</a>
-    <button type="button" class="pl-top-host open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+    <a class="pl-top-host" href="./discover.html">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
   </header>
 
   <main>
@@ -1137,21 +1248,10 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         <h2 class="pl-serif">Film by film,<br>you build your lane.</h2>
         <p class="pl-body pl-muted">Bring friends and film lovers together for a movie night at home, or create a ticketed cinema experience in your neighbourhood.</p>
       </div>
-      <div class="pl-chat-wrap">
-        <div class="st-live-comments pl-chat" aria-label="What people are saying">
-          <div class="st-live-track"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div><div class="st-dup" aria-hidden="true"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY PLAYLANE -->
-  <section class="pl-why pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
-    <div class="pl-wrap pl-why-grid">
-      <img src="./images/story-lamp-lit-screening.jpg" alt="A screening room lit by small table lamps" loading="lazy">
-      <div>
-        <p class="pl-pixel pl-why-label">WHY PLAYLANE?</p>
-        <p class="pl-body pl-muted">Because cinema is better when it&rsquo;s shared. PlayLane helps you find and create unforgettable film experiences, with the people around you.</p>
+      <div class="pl-lane-photos">
+        <img src="./images/lane-living-room.jpg" alt="Friends on a sofa reacting to a film with popcorn and crisps" loading="lazy" style="object-position:55% 40%">
+        <img src="./images/lane-sofa-night.jpg" alt="Friends watching a film together on a sofa at night" loading="lazy" style="object-position:50% 40%">
+        <img src="./images/lane-cinema-bw.jpg" alt="Friends in cinema seats with popcorn and a drink, in black and white" loading="lazy" style="object-position:60% 35%">
       </div>
     </div>
   </section>
@@ -1173,20 +1273,16 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
     </div>
   </section>
 
-  <!-- DISCOVER FILMS -->
-  <section class="pl-discover pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
-    <div class="pl-wrap pl-disc-grid">
-      <div>
-      <h2 class="pl-serif">Discover films</h2>
-      <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
-      </div>
-      <img src="./images/discover-films.jpg" alt="A hand picking a film from a box of films" loading="lazy" style="object-position:40% 50%">
-    </div>
-  </section>
-
   <!-- INVITE / CREATE -->
   <section class="pl-rows pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap">
+      <div class="pl-row">
+        <div>
+          <h2 class="pl-serif pl-row-title">Discover films</h2>
+          <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
+        </div>
+        <img src="./images/discover-films.jpg" alt="A hand picking a film from a box of films" loading="lazy" style="object-position:40% 50%">
+      </div>
       <div class="pl-row">
         <div>
           <h3 class="pl-serif">Invite your people</h3>
@@ -1205,7 +1301,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <!-- WHERE YOU WATCH, WHERE YOU PLAY (original size) -->
-  <section style="background:#191919;padding:0">
+  <section style="background:#23201C;padding:0">
     <div class="st-hero-copy">
       <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
       <div class="st-buttons">
@@ -1232,10 +1328,11 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
         <figure class="pl-card"><img src="./images/private-cinema.jpg" alt="A private cinema room with velvet chairs, cocktails and popcorn" loading="lazy" style="object-position:50% 40%"><figcaption>A private cinema room.</figcaption></figure>
         <figure class="pl-card"><img src="./images/living-room-tv.jpg" alt="Friends watching a film together in a living room" loading="lazy" style="object-position:50% 50%"><figcaption>A living room with friends.</figcaption></figure>
         <figure class="pl-card"><img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" loading="lazy" style="object-position:50% 35%"><figcaption>A room full of neighbours.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/film-night-table.jpg" alt="A film night table with popcorn, drinks, an instant camera and a printed WatchLane programme" loading="lazy" style="object-position:50% 45%"><figcaption>A table set for film night.</figcaption></figure>
         <figure class="pl-card"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy"><figcaption>A restaurant after closing.</figcaption></figure>
         <figure class="pl-card"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" loading="lazy" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
       </div>
-      <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+      <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
   </section>
   </main>
