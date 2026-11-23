@@ -1036,6 +1036,15 @@ em{font-style:normal}
   .pl-discover h2,.pl-row h3{font-size:28px;line-height:1.05}
   .pl-discover p,.pl-row p{font-size:14px;line-height:1.55;margin-top:10px}
 }
+
+/* Phones: Discover films photo matches Invite / Create photos */
+@media(max-width:800px){
+  .pl-disc-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(16px,4vw,56px)}
+  .pl-disc-grid img{aspect-ratio:2.1 / 1.15}
+}
+@media(max-width:420px){
+  .pl-disc-grid{grid-template-columns:1fr 1fr;gap:14px}
+}
 </style>
 </head>
 <body>
