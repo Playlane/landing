@@ -1051,7 +1051,7 @@ em{font-style:normal}
 body,.st-page,footer.st-footer{background:#F7EEE1}
 .pl-intro,.pl-why,.pl-cinema{background:#F7EEE1}
 .pl-orbit-sec{background:#23201C}
-.pl-discover{background:#FCEAA6}
+.pl-discover{background:#FFF69A}
 .pl-rows{background:#E2DAD5;padding-top:clamp(80px,10vw,160px)}
 .pl-chat .st-bubble{background:#23201C}
 .pl-body,.pl-discover p,.pl-row p,.pl-card figcaption{color:#4A453E}
@@ -1090,6 +1090,92 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
 @media(max-width:800px){.pl-lane-photos{gap:8px;margin-top:28px}.pl-lane-photos img{border-radius:8px}}
 .pl-intro{padding-bottom:clamp(80px,10vw,160px)}
 @media(max-width:800px){.pl-intro{padding-bottom:56px}}
+
+/* ── Not every cinema: stacked card carousel on soft yellow ── */
+.pl-cinema{background:#FCEAA6}
+.pl-cinema h2{margin:0}
+.pl-cin-sub{margin:22px 0 0;max-width:520px;font-size:18px;color:#3A352E}
+.pl-stack{position:relative;margin-top:clamp(40px,5vw,64px);padding-top:calc(58% * .625);touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.pl-scard{position:absolute;top:0;left:0;margin:0;width:58%;aspect-ratio:16 / 10;transform-origin:left center;border-radius:18px;overflow:hidden;cursor:pointer;
+  box-shadow:0 18px 40px rgba(35,32,28,.22);transition:left .7s cubic-bezier(.22,.8,.24,1),transform .7s cubic-bezier(.22,.8,.24,1),opacity .5s,filter .5s;filter:brightness(.88)}
+.pl-scard.front{cursor:default;filter:none}
+.pl-scard img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.pl-scard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0) 45%);opacity:0;transition:opacity .5s}
+.pl-scard.front::after{opacity:1}
+.pl-scard figcaption{position:absolute;z-index:1;left:clamp(16px,2.4vw,32px);bottom:clamp(14px,2.2vw,28px);margin:0;max-width:60%;
+  font-family:'Silkscreen',monospace;font-size:clamp(12px,1.5vw,18px);letter-spacing:.14em;line-height:1.45;text-transform:uppercase;color:#fff;text-align:left;opacity:0;transition:opacity .4s}
+.pl-scard.front figcaption{opacity:1}
+.pl-stack-foot{display:flex;justify-content:space-between;align-items:center;margin-top:clamp(28px,3vw,40px)}
+.pl-dash{display:flex;gap:10px}
+.pl-dash span{width:28px;height:4px;border-radius:2px;background:rgba(35,32,28,.18);transition:background .3s,width .3s}
+.pl-dash span.on{background:#23201C;width:44px}
+.pl-stack-foot .pl-car-nav{display:flex !important;gap:12px}
+.pl-stack-foot .pl-car-nav button{width:52px;height:52px;border:1.5px solid #23201C;color:#23201C;background:transparent;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+@media(max-width:800px){
+  .pl-cin-sub{font-size:15px;margin-top:14px}
+  .pl-stack{padding-top:calc(70% * .625)}
+  .pl-scard{width:70%;border-radius:14px}
+  .pl-scard figcaption{font-size:11px;letter-spacing:.12em;max-width:80%}
+  .pl-dash{gap:6px}.pl-dash span{width:16px}.pl-dash span.on{width:28px}
+  .pl-stack-foot .pl-car-nav button{width:46px;height:46px}
+}
+@media (prefers-reduced-motion: reduce){.pl-scard,.pl-scard::after,.pl-scard figcaption{transition:none}}
+
+/* concept match: tilted front card, fanned cards behind, cream edge, two-line pixel caption */
+.pl-stack{padding-top:calc(60% * .66);overflow:visible}
+.pl-scard{width:60%;aspect-ratio:16 / 10.6;border-radius:22px;border:2px solid #F7EEE1;box-shadow:0 22px 44px rgba(35,32,28,.28);filter:none}
+.pl-scard:not(.front){box-shadow:0 14px 30px rgba(35,32,28,.25)}
+.pl-scard figcaption{max-width:46%;font-size:clamp(14px,1.9vw,24px);letter-spacing:.16em;line-height:1.4;left:clamp(18px,3vw,40px);bottom:clamp(18px,3vw,40px)}
+.pl-dash{gap:10px}
+.pl-dash span,.pl-dash span.on{width:46px;height:5px;border-radius:3px}
+.pl-dash span{background:rgba(35,32,28,.14)}
+.pl-dash span.on{background:#23201C}
+.pl-stack-foot .pl-car-nav button{border-width:2px}
+@media(max-width:800px){
+  .pl-stack{padding-top:calc(64% * .66)}
+  .pl-scard{width:64%;border-radius:16px}
+  .pl-scard figcaption{font-size:12px;max-width:70%;left:14px;bottom:14px}
+  .pl-dash span,.pl-dash span.on{width:24px;height:4px}
+}
+
+/* light sections: plain white (no cream or grey shades) */
+body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
+.pl-scard{border-color:#FFFFFF}
+
+/* slanted stack, as in the concept: taller cards, tilted, shrinking to the right */
+.pl-scard{aspect-ratio:1.13 / 1;top:50%;margin-top:0;translate:0 -50%;border-radius:clamp(16px,2.4vw,28px)}
+.pl-stack{padding-top:calc(50% / 1.13 + 40px)}
+@media(max-width:800px){.pl-stack{padding-top:calc(64% / 1.13 + 30px)}}
+.pl-scard figcaption{max-width:9.5em}
+
+/* PlayLane yellow */
+.pl-cinema{background:#FFF69A}
+
+/* Discover / Invite / Create: cards with the photo under the text; side by side on desktop, swipe on phones */
+.pl-rows>.pl-wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;column-gap:clamp(20px,2.6vw,40px);row-gap:0}
+.pl-rows .pl-row{display:flex;flex-direction:column;gap:0;margin:0}
+.pl-rows .pl-row>div{flex:1}
+.pl-rows .pl-row .pl-row-title,.pl-rows .pl-row h3{font-size:clamp(30px,2.8vw,42px);line-height:1.05}
+.pl-rows .pl-row p{max-width:none;margin-top:14px}
+.pl-rows .pl-row img{margin-top:24px;aspect-ratio:4 / 3;width:100%;border-radius:14px}
+.pl-rows-dots{display:none}
+@media(max-width:800px){
+  .pl-rows>.pl-wrap{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:16px;
+    margin:0 calc(-1 * clamp(22px,5vw,88px));padding:0 clamp(22px,5vw,88px)}
+  .pl-rows>.pl-wrap::-webkit-scrollbar{display:none}
+  .pl-rows .pl-row{flex:0 0 84%;scroll-snap-align:start;scroll-margin-left:clamp(22px,5vw,88px)}
+  .pl-rows .pl-row .pl-row-title,.pl-rows .pl-row h3{font-size:32px}
+  .pl-rows .pl-row p{font-size:16px;line-height:1.6;margin-top:12px}
+  .pl-rows .pl-row img{margin-top:20px;aspect-ratio:4 / 3.2}
+  .pl-rows-dots{display:flex;justify-content:center;gap:8px;margin-top:22px}
+  .pl-rows-dots span{width:8px;height:8px;border-radius:50%;background:rgba(35,32,28,.2)}
+  .pl-rows-dots span.on{background:#23201C}
+}
+
+.pl-intro p.pl-muted{color:#23201C}
+.pl-intro p.pl-intro-strong{margin-top:14px;color:#23201C;font-weight:600}
+/* square photo corners everywhere */
+.pl-rows .pl-row img,.pl-row img,.pl-scard,.pl-card img,.pl-why img,.pl-lane-photos img,.pl-disc-grid img{border-radius:0 !important}
 </style>
 </head>
 <body>
@@ -1246,12 +1332,8 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
     <div class="pl-wrap pl-intro-grid">
       <div>
         <h2 class="pl-serif">Film by film,<br>you build your lane.</h2>
-        <p class="pl-body pl-muted">Bring friends and film lovers together for a movie night at home, or create a ticketed cinema experience in your neighbourhood.</p>
-      </div>
-      <div class="pl-lane-photos">
-        <img src="./images/lane-living-room.jpg" alt="Friends on a sofa reacting to a film with popcorn and crisps" loading="lazy" style="object-position:55% 40%">
-        <img src="./images/lane-sofa-night.jpg" alt="Friends watching a film together on a sofa at night" loading="lazy" style="object-position:50% 40%">
-        <img src="./images/lane-cinema-bw.jpg" alt="Friends in cinema seats with popcorn and a drink, in black and white" loading="lazy" style="object-position:60% 35%">
+        <p class="pl-body pl-muted">Bring friends, family and film lovers in your neighbourhood together for a WatchLane.</p>
+        <p class="pl-body pl-intro-strong">Host for the love of it, or create ticketed cinema experiences worth sharing.</p>
       </div>
     </div>
   </section>
@@ -1298,41 +1380,29 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
         <img src="./images/create-snack-bar.jpg" alt="A warmly lit bar set with snacks and drinks for a film night" loading="lazy" style="object-position:50% 52%">
       </div>
     </div>
-  </section>
-
-  <!-- WHERE YOU WATCH, WHERE YOU PLAY (original size) -->
-  <section style="background:#23201C;padding:0">
-    <div class="st-hero-copy">
-      <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
-      <div class="st-buttons">
-        <a class="st-btn" href="./discover.html">DISCOVER PLAYLANE <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
-        <button type="button" class="st-btn st-outline open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
-      </div>
-    </div>
+    <div class="pl-rows-dots" id="plRowsDots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
   </section>
 
   <!-- NOT EVERY CINEMA LOOKS LIKE A CINEMA -->
   <section class="pl-cinema pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap">
-      <div class="pl-car-head">
-        <div>
-          <h2 class="pl-serif">Not every cinema<br>looks like a cinema.</h2>
-          <p class="pl-body" style="margin:12px 0 0;max-width:520px">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
-        </div>
+      <h2 class="pl-serif">Not every cinema<br>looks like a cinema.</h2>
+      <p class="pl-body pl-cin-sub">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
+      <div class="pl-stack" id="plStack" role="region" aria-roledescription="carousel" aria-label="Places a WatchLane can happen">
+        <figure class="pl-scard" data-i="0"><img src="./images/private-cinema.jpg" alt="A private cinema room with velvet chairs, cocktails and popcorn" style="object-position:50% 40%"><figcaption>A private cinema room.</figcaption></figure>
+        <figure class="pl-scard" data-i="1"><img src="./images/living-room-tv.jpg" alt="Friends watching a film together in a living room" style="object-position:50% 50%"><figcaption>A living room with friends.</figcaption></figure>
+        <figure class="pl-scard" data-i="2"><img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" style="object-position:50% 35%"><figcaption>A room full of neighbours.</figcaption></figure>
+        <figure class="pl-scard" data-i="3"><img src="./images/film-night-table.jpg" alt="A film night table with popcorn, drinks, an instant camera and a printed WatchLane programme" style="object-position:50% 45%"><figcaption>A table set for film night.</figcaption></figure>
+        <figure class="pl-scard" data-i="4"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights"><figcaption>A restaurant after closing.</figcaption></figure>
+        <figure class="pl-scard" data-i="5"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
+      </div>
+      <div class="pl-stack-foot">
+        <div class="pl-dash" id="plDash" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
         <div class="pl-car-nav">
-          <button type="button" id="plPrev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
-          <button type="button" id="plNext" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+          <button type="button" id="plPrev" aria-label="Previous photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+          <button type="button" id="plNext" aria-label="Next photo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
         </div>
       </div>
-      <div class="pl-car" id="plCar" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
-        <figure class="pl-card"><img src="./images/private-cinema.jpg" alt="A private cinema room with velvet chairs, cocktails and popcorn" loading="lazy" style="object-position:50% 40%"><figcaption>A private cinema room.</figcaption></figure>
-        <figure class="pl-card"><img src="./images/living-room-tv.jpg" alt="Friends watching a film together in a living room" loading="lazy" style="object-position:50% 50%"><figcaption>A living room with friends.</figcaption></figure>
-        <figure class="pl-card"><img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" loading="lazy" style="object-position:50% 35%"><figcaption>A room full of neighbours.</figcaption></figure>
-        <figure class="pl-card"><img src="./images/film-night-table.jpg" alt="A film night table with popcorn, drinks, an instant camera and a printed WatchLane programme" loading="lazy" style="object-position:50% 45%"><figcaption>A table set for film night.</figcaption></figure>
-        <figure class="pl-card"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy"><figcaption>A restaurant after closing.</figcaption></figure>
-        <figure class="pl-card"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" loading="lazy" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
-      </div>
-      <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
   </section>
   </main>
@@ -1959,41 +2029,77 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
     document.addEventListener('click', function (e) { if (!menu.contains(e.target)) setOpen(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
   }
-  var car = document.getElementById('plCar'), dots = document.querySelectorAll('#plDots span');
-  var prev = document.getElementById('plPrev'), next = document.getElementById('plNext');
-  if (car) {
-    var cards = car.querySelectorAll('.pl-card');
-    function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : car.clientWidth; }
-    function update() {
-      var atEnd = car.scrollLeft + car.clientWidth >= car.scrollWidth - 4;
-      var i = atEnd ? cards.length - 1 : Math.round(car.scrollLeft / step());
-      dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+  var rowsWrap = document.querySelector('.pl-rows > .pl-wrap'), rowDots = document.querySelectorAll('#plRowsDots span');
+  if (rowsWrap && rowDots.length) {
+    var rowCards = rowsWrap.querySelectorAll('.pl-row');
+    rowsWrap.addEventListener('scroll', function () {
+      window.requestAnimationFrame(function () {
+        var st = rowCards.length > 1 ? rowCards[1].offsetLeft - rowCards[0].offsetLeft : 1;
+        var end = rowsWrap.scrollLeft + rowsWrap.clientWidth >= rowsWrap.scrollWidth - 4;
+        var i = end ? rowCards.length - 1 : Math.round(rowsWrap.scrollLeft / st);
+        rowDots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+      });
+    }, { passive: true });
+  }
+  var stack = document.getElementById('plStack');
+  if (stack) {
+    var cards = [].slice.call(stack.querySelectorAll('.pl-scard'));
+    var dashes = document.querySelectorAll('#plDash span');
+    var n = cards.length, active = 0;
+    var prev = document.getElementById('plPrev'), next = document.getElementById('plNext');
+    function layout() {
+      var phone = window.matchMedia('(max-width:800px)').matches;
+      var fw = phone ? 64 : 50, step = phone ? 11.5 : 11, behind = 3;
+      var per = Math.round(stack.clientWidth * fw / 100 * 3.2) + 'px';
+      var sizes = [1, 0.83, 0.69, 0.56];
+      cards.forEach(function (c, i) {
+        var k = (i - active + n) % n;
+        var shown = k <= behind;
+        var kk = shown ? k : behind;
+        c.style.width = fw + '%';
+        if (kk === 0) {
+          c.style.transformOrigin = 'left center';
+          c.style.left = '0%';
+          c.style.transform = 'perspective(' + per + ') rotateY(-16deg) rotateZ(2.5deg)';
+        } else {
+          c.style.transformOrigin = 'right center';
+          c.style.left = (fw + kk * step - fw) + '%';
+          c.style.transform = 'perspective(' + per + ') rotateY(-6deg) rotateZ(2.5deg) scale(' + (shown ? sizes[kk] : 0.45) + ')';
+        }
+        c.style.zIndex = String(n - k);
+        c.style.opacity = shown ? '1' : '0';
+        c.classList.toggle('front', k === 0);
+        c.setAttribute('aria-hidden', k === 0 ? 'false' : 'true');
+      });
+      dashes.forEach(function (d, i) { d.classList.toggle('on', i === active); });
     }
-    car.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
-    function atEnd() { return car.scrollLeft + car.clientWidth >= car.scrollWidth - 4; }
-    function go(dir) {
-      if (dir > 0 && atEnd()) car.scrollTo({ left: 0, behavior: 'smooth' });
-      else if (dir < 0 && car.scrollLeft <= 4) car.scrollTo({ left: car.scrollWidth, behavior: 'smooth' });
-      else car.scrollBy({ left: dir * step(), behavior: 'smooth' });
-    }
+    function go(d) { active = (active + d + n) % n; layout(); }
     if (prev) prev.addEventListener('click', function () { go(-1); pause(); });
     if (next) next.addEventListener('click', function () { go(1); pause(); });
-    /* automatic scroll, looping back to the first photo */
-    var timer = null, resumeAt = 0, visible = false;
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function pause() { resumeAt = Date.now() + 6000; }
-    if (!still) {
-      timer = setInterval(function () {
-        if (!visible || document.hidden || Date.now() < resumeAt || car.matches(':hover')) return;
-        go(1);
-      }, 3200);
-      ['touchstart', 'pointerdown', 'wheel', 'focusin'].forEach(function (ev) { car.addEventListener(ev, pause, { passive: true }); });
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.3 }).observe(car);
-      } else { visible = true; }
+    cards.forEach(function (c, i) {
+      c.addEventListener('click', function () { if (i !== active) { active = i; layout(); pause(); } });
+    });
+    /* swipe */
+    var sx = null;
+    stack.addEventListener('pointerdown', function (e) { sx = e.clientX; pause(); });
+    stack.addEventListener('pointerup', function (e) {
+      if (sx === null) return;
+      var dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    });
+    stack.addEventListener('pointercancel', function () { sx = null; });
+    /* automatic loop: next photo every 2.5 seconds, back to the first after the last */
+    var resumeAt = 0, visible = !('IntersectionObserver' in window);
+    function pause() { resumeAt = Date.now() + 4000; }
+    setInterval(function () {
+      if (!visible || document.hidden || Date.now() < resumeAt) return;
+      go(1);
+    }, 2500);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.1 }).observe(stack);
     }
-    window.addEventListener('resize', update);
-    update();
+    window.addEventListener('resize', layout);
+    layout();
   }
 })();
 </script>
