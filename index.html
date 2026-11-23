@@ -1141,6 +1141,12 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
 /* light sections: plain white (no cream or grey shades) */
 body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
 .pl-scard{border-color:#FFFFFF}
+
+/* slanted stack, as in the concept: taller cards, tilted, shrinking to the right */
+.pl-scard{aspect-ratio:1.13 / 1;top:50%;margin-top:0;translate:0 -50%;border-radius:clamp(16px,2.4vw,28px)}
+.pl-stack{padding-top:calc(50% / 1.13 + 40px)}
+@media(max-width:800px){.pl-stack{padding-top:calc(64% / 1.13 + 30px)}}
+.pl-scard figcaption{max-width:9.5em}
 </style>
 </head>
 <body>
@@ -2000,21 +2006,22 @@ body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
     var prev = document.getElementById('plPrev'), next = document.getElementById('plNext');
     function layout() {
       var phone = window.matchMedia('(max-width:800px)').matches;
-      var fw = phone ? 64 : 60, step = phone ? 10.5 : 10, behind = 3;
-      var per = Math.round(stack.clientWidth * fw / 100 * 5) + 'px';
+      var fw = phone ? 64 : 50, step = phone ? 11.5 : 11, behind = 3;
+      var per = Math.round(stack.clientWidth * fw / 100 * 3.2) + 'px';
+      var sizes = [1, 0.83, 0.69, 0.56];
       cards.forEach(function (c, i) {
         var k = (i - active + n) % n;
         var shown = k <= behind;
         var kk = shown ? k : behind;
+        c.style.width = fw + '%';
         if (kk === 0) {
           c.style.transformOrigin = 'left center';
           c.style.left = '0%';
-          c.style.transform = 'perspective(' + per + ') rotateY(-8deg)';
+          c.style.transform = 'perspective(' + per + ') rotateY(-16deg) rotateZ(2.5deg)';
         } else {
-          var s = 0.95 - 0.06 * (kk - 1);
           c.style.transformOrigin = 'right center';
           c.style.left = (fw + kk * step - fw) + '%';
-          c.style.transform = 'perspective(' + per + ') rotateY(26deg) scale(' + s + ')';
+          c.style.transform = 'perspective(' + per + ') rotateY(-6deg) rotateZ(2.5deg) scale(' + (shown ? sizes[kk] : 0.45) + ')';
         }
         c.style.zIndex = String(n - k);
         c.style.opacity = shown ? '1' : '0';
