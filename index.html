@@ -874,7 +874,25 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 .pl-discover .pl-btn{margin-top:22px;min-width:min(312px,100%)}
 .pl-disc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,56px);align-items:center}
 .pl-disc-grid img{display:block;width:100%;aspect-ratio:2 / 1;object-fit:cover;border-radius:10px}
-@media(max-width:800px){.pl-disc-grid{grid-template-columns:1fr;gap:24px}.pl-disc-grid img{aspect-ratio:16 / 10}}
+@media(max-width:800px){
+  /* Phones: Discover films text and photo side by side */
+  .pl-disc-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px}
+  .pl-disc-grid img{aspect-ratio:4 / 5}
+  .pl-discover h2{font-size:30px}
+  .pl-discover p{font-size:14px;line-height:1.5}
+  .pl-discover .pl-btn{min-width:0;width:100%;min-height:44px;margin-top:16px;padding:0 10px;gap:6px;font-size:9px;letter-spacing:.05em;white-space:nowrap}
+  /* Phones: Film by film text and the chat side by side */
+  .pl-intro-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;gap:12px;align-items:center}
+  .pl-intro h2{font-size:28px}
+  .pl-intro .pl-body{font-size:14px;line-height:1.5}
+  .st-live-comments.pl-chat{height:300px}
+  .pl-intro .pl-chat .st-bubble{padding:8px 9px;gap:7px;border-radius:12px}
+  .pl-intro .pl-chat .st-avatar{width:22px;height:22px;font-size:9px}
+  .pl-intro .pl-chat .st-ctext{font-size:11.5px;line-height:1.35}
+  .pl-intro .pl-chat .st-likes{font-size:10px}
+  .pl-chat .st-live-track,.pl-chat .st-dup{gap:8px}
+  .pl-spark{right:-6px;top:-24px;width:26px;height:26px}
+}
 /* Invite / create rows */
 .pl-rows{background:#FAF0E2;padding-top:clamp(28px,4vw,56px);padding-bottom:clamp(28px,4vw,56px)}
 .pl-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,56px);align-items:center}
