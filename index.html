@@ -848,7 +848,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 /* Lane intro */
 .pl-intro{background:#FAF0E2;padding-top:clamp(20px,4vw,48px);padding-bottom:clamp(24px,4vw,56px)}
 .pl-intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:center}
-.pl-intro h1{margin:0;font-size:clamp(40px,5.4vw,76px);line-height:1.02}
+.pl-intro h2{margin:0;font-size:clamp(40px,5.4vw,76px);line-height:1.02}
 .pl-intro p{margin:18px 0 0;max-width:470px}
 .pl-intro img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:10px}
 /* Orbit */
@@ -1066,11 +1066,28 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </header>
 
   <main>
+  <!-- HERO -->
+  <section class="st-hero">
+    <div class="st-hero-shot">
+      <div class="st-live">
+        <img class="st-live-bg" src="./images/hero-tv.jpg" alt="" aria-hidden="true">
+        <div class="st-live-shade" aria-hidden="true"></div>
+        <div class="st-live-copy">
+          <h1 class="st-live-title">Cinema for<br>the Curious<br>Neighbour</h1>
+          <div class="st-live-ctas">
+            <button type="button" class="sx-btn sx-yellow open-early"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M11 18.5h2"></path></svg> Get the app <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+            <button type="button" class="sx-btn sx-ghost open-waitlist"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFF69A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"></rect><path d="M3 9l1.6-5 16 3-1.1 2"></path><path d="M8.2 4.8L6.6 9M13.2 5.8L11.6 9"></path></svg> Become a founding host <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FILM BY FILM, YOU BUILD YOUR LANE -->
   <section class="pl-intro pl-pad" id="story" style="padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px)">
     <div class="pl-wrap pl-intro-grid">
       <div>
-        <h1 class="pl-serif">Film by film,<br>you build your lane.</h1>
+        <h2 class="pl-serif">Film by film,<br>you build your lane.</h2>
         <p class="pl-body">Bring friends and family together for a film night at home, or create a ticketed cinema experience for your neighbourhood. Every WatchLane is yours to shape.</p>
       </div>
       <img src="./images/film-posters.jpg" alt="Film posters lit up in a cinema display case" style="object-position:50% 45%">
