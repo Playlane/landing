@@ -765,7 +765,7 @@ footer.st-footer{background:#f7f5ef;color:#11110f;border-top:0}
    STORY v2 (approved Nov 2026)
 ═══════════════════════════════════════ */
 em, i, .st-page *, .modal-card * { font-style: normal !important; }
-.st-live-copy{position:absolute;z-index:3;left:40px;top:clamp(150px,22%,190px);right:460px}
+.st-live-copy{position:absolute;z-index:3;left:40px;top:clamp(150px,22%,190px);right:40px}
 .st-live-copy .st-live-title{position:static}
 .st-live-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:48px}
 .sx-dsd{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
@@ -816,7 +816,7 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   /* Phones: chats in a compact column top-right, headline and buttons flow straight after it */
   .st-nav{padding:10px 20px}
   .st-live{height:auto}
-  .st-live-copy{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:262px 20px 40px}
+  .st-live-copy{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:300px 20px 40px}
   .st-live-ctas{margin-top:26px;gap:10px}
   .st-live-comments .st-live-track,.st-live-comments .st-dup{gap:8px}
   .st-live-comments{top:12px;bottom:auto;height:236px;left:auto;right:8px;width:50vw;max-width:210px}
@@ -827,6 +827,157 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   .st-live-comments .st-handle{display:none}
   .st-live-track,.st-dup{gap:8px}
   .st-live-ctas .sx-btn{min-height:52px;padding:0 20px;font-size:13px}
+}
+
+/* ═══════════════════════════════════════
+   LANDING v3 (Nov 2026 mockup)
+═══════════════════════════════════════ */
+.pl-wrap{max-width:1320px;margin:0 auto}
+.pl-pad{padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)}
+.pl-serif{font-family:'DM Serif Display',Georgia,serif;font-weight:400;color:#11110F}
+.pl-pixel{font-family:'Silkscreen',monospace;font-weight:400;letter-spacing:.12em}
+.pl-body{font-size:17px;line-height:1.55;color:#2A2622}
+/* Header */
+.pl-nav{position:relative;z-index:20;display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px;background:#FAF0E2}
+.pl-logo{font-family:'Silkscreen',monospace;font-weight:700;font-size:24px;letter-spacing:.32em;color:#11110F;text-decoration:none}
+.pl-logo span{color:#D8B23A}
+.pl-links{display:flex;align-items:center;gap:28px}
+.pl-links a,.pl-links button{font-family:'Silkscreen',monospace;font-size:12px;letter-spacing:.08em;color:#11110F;background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:5px;min-height:44px;display:inline-flex;align-items:center}
+.pl-burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;border:0;background:none;cursor:pointer;color:#11110F}
+.pl-menu{display:none}
+/* Lane intro */
+.pl-intro{background:#FAF0E2;padding-top:clamp(20px,4vw,48px);padding-bottom:clamp(24px,4vw,56px)}
+.pl-intro-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.pl-intro h2{margin:0;font-size:clamp(40px,5.4vw,76px);line-height:1.02}
+.pl-intro p{margin:18px 0 0;max-width:470px}
+.pl-intro img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:10px}
+/* Orbit */
+.pl-orbit-sec{background:#11110F;padding:clamp(40px,6vw,80px) 20px}
+.pl-orbit{position:relative;width:min(440px,56vw);aspect-ratio:1;margin:0 auto}
+.pl-ring{position:absolute;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}
+.pl-ring.outer{width:100%;height:100%;border:1px solid rgba(255,255,255,.12)}
+.pl-ring.mid{width:74%;height:74%;border:1px solid rgba(255,255,255,.3)}
+.pl-ring.core{width:46%;height:46%;border:2px solid #FFF69A;display:flex;align-items:center;justify-content:center;text-align:center}
+.pl-ring.core span{font-family:'Silkscreen',monospace;color:#F7F5EF;font-size:clamp(10px,2.6vw,19px);letter-spacing:.12em;line-height:1.45}
+.pl-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:#F7F5EF;transform:translate(-50%,-50%)}
+.pl-lbl{position:absolute;font-family:'Silkscreen',monospace;color:#F7F5EF;font-size:clamp(11px,2.2vw,17px);letter-spacing:.16em;white-space:nowrap}
+.pl-lbl.t{left:50%;top:6.5%;transform:translate(-50%,-50%)}
+.pl-lbl.b{left:50%;top:93.5%;transform:translate(-50%,-50%)}
+.pl-lbl.l{left:13%;top:50%;transform:translate(calc(-100% - 16px),-50%)}
+.pl-lbl.r{left:87%;top:50%;transform:translate(16px,-50%)}
+/* Discover band */
+.pl-discover{background:#FAF0E2;padding-top:clamp(36px,5vw,64px);padding-bottom:clamp(36px,5vw,64px)}
+.pl-discover h2{margin:0;font-size:clamp(38px,4.6vw,60px);line-height:1.05}
+.pl-discover p{margin:12px 0 0;max-width:560px}
+.pl-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;min-height:52px;padding:0 24px;border-radius:8px;font-family:'Silkscreen',monospace;font-size:14px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0}
+.pl-btn-line{background:transparent;color:#11110F;box-shadow:inset 0 0 0 2px #11110F}
+.pl-discover .pl-btn{margin-top:22px;min-width:min(312px,100%)}
+.pl-disc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,56px);align-items:center}
+.pl-disc-grid img{display:block;width:100%;aspect-ratio:2 / 1;object-fit:cover;border-radius:10px}
+@media(max-width:800px){
+  /* Phones: Discover films text and photo side by side */
+  .pl-disc-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:14px}
+  .pl-disc-grid img{aspect-ratio:4 / 5}
+  .pl-discover h2{font-size:30px}
+  .pl-discover p{font-size:14px;line-height:1.5}
+  .pl-discover .pl-btn{min-width:0;width:100%;min-height:44px;margin-top:16px;padding:0 10px;gap:6px;font-size:9px;letter-spacing:.05em;white-space:nowrap}
+  /* Phones: Film by film text and the chat side by side */
+  .pl-intro-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;gap:12px;align-items:center}
+  .pl-intro h2{font-size:28px}
+  .pl-intro .pl-body{font-size:14px;line-height:1.5}
+  .st-live-comments.pl-chat{height:300px}
+  .pl-intro .pl-chat .st-bubble{padding:8px 9px;gap:7px;border-radius:12px}
+  .pl-intro .pl-chat .st-avatar{width:22px;height:22px;font-size:9px}
+  .pl-intro .pl-chat .st-ctext{font-size:11.5px;line-height:1.35}
+  .pl-intro .pl-chat .st-likes{font-size:10px}
+  .pl-chat .st-live-track,.pl-chat .st-dup{gap:8px}
+  .pl-spark{right:-6px;top:-24px;width:26px;height:26px}
+}
+/* Invite / create rows */
+.pl-rows{background:#FAF0E2;padding-top:clamp(28px,4vw,56px);padding-bottom:clamp(28px,4vw,56px)}
+.pl-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,56px);align-items:center}
+.pl-row+.pl-row{margin-top:clamp(22px,3vw,40px)}
+.pl-row h3{margin:0;font-size:clamp(28px,3.4vw,44px);line-height:1.08}
+.pl-row p{margin:10px 0 0}
+.pl-row img{display:block;width:100%;aspect-ratio:2 / 1;object-fit:cover;border-radius:10px}
+/* Dark CTA strip */
+.pl-strip{background:#11110F;padding-top:clamp(28px,4vw,48px);padding-bottom:clamp(28px,4vw,48px);text-align:center}
+.pl-strip p{margin:0;color:#FFF69A;font-size:14px}
+.pl-strip-btns{margin:20px auto 0;display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:760px}
+.pl-strip .pl-btn{flex:1 1 300px;max-width:472px;padding:0 28px}
+.pl-btn-yellow{background:#FFF69A;color:#11110F}
+.pl-btn-yline{background:transparent;color:#F7F5EF;box-shadow:inset 0 0 0 2px #FFF69A}
+.pl-btn span{flex:1;text-align:center}
+/* Not every cinema */
+.pl-cinema{background:#FAF0E2;padding-top:clamp(36px,5vw,72px);padding-bottom:clamp(36px,5vw,72px)}
+.pl-cinema h2{margin:0;font-size:clamp(38px,4.6vw,60px);line-height:1.05}
+.pl-cinema>.pl-wrap>p{margin:12px 0 0;max-width:520px}
+.pl-car{margin-top:26px;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+.pl-car::-webkit-scrollbar{display:none}
+.pl-card{margin:0;flex:0 0 calc((100% - 32px) / 3.2);scroll-snap-align:start}
+.pl-card img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:10px}
+.pl-card figcaption{margin-top:10px;text-align:center;font-size:14px;color:#2A2622}
+.pl-dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.pl-dots span{width:8px;height:8px;border-radius:50%;background:rgba(17,17,15,.2)}
+.pl-dots span.on{background:#11110F}
+.pl-car-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.pl-car-nav{display:flex;gap:10px}
+.pl-car-nav button{width:48px;height:48px;border-radius:50%;border:1.5px solid #11110F;background:transparent;color:#11110F;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pl-car-nav button:disabled{opacity:.3;cursor:default}
+@media(max-width:800px){
+  .pl-links{display:none}
+  .pl-burger{display:inline-flex}
+  .pl-menu.open{display:flex;flex-direction:column;position:absolute;left:12px;right:12px;top:100%;background:#FFFDF8;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.18);padding:8px 18px 14px}
+  .pl-menu a,.pl-menu button{display:flex;align-items:center;min-height:52px;font-family:'Silkscreen',monospace;font-size:13px;letter-spacing:.08em;color:#11110F;text-decoration:none;background:none;border:0;border-bottom:1px solid rgba(17,17,15,.1);text-align:left;cursor:pointer;width:100%}
+  .pl-menu > :last-child{border-bottom:0}
+  .pl-logo{font-size:20px}
+  .pl-intro-grid{grid-template-columns:1fr}
+  .pl-body{font-size:16px}
+  .pl-row{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
+  .pl-row img{aspect-ratio:2.1 / 1.15}
+  .pl-strip .pl-btn{flex-basis:100%}
+  .pl-car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:22px calc(-1 * clamp(22px,5vw,88px)) 0;padding:0 clamp(22px,5vw,88px)}
+  .pl-car::-webkit-scrollbar{display:none}
+  .pl-card{flex:0 0 calc(50% - 8px);scroll-snap-align:start;scroll-margin-left:clamp(22px,5vw,88px)}
+  .pl-card figcaption{font-size:12px}
+  .pl-car-nav{display:none}
+}
+@media(max-width:420px){
+  .pl-row{grid-template-columns:1fr 1fr;gap:14px}
+  .pl-row p{font-size:15px}
+}
+
+/* ── Landing v3.1: header over hero, chat beside Film by film, Why PlayLane ── */
+.st-page{position:relative}
+.pl-nav{position:absolute;top:0;left:0;right:0;background:transparent}
+.st-page a.pl-logo,.pl-logo{color:#fff}
+.pl-top-host{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0;border:0;background:none;cursor:pointer;color:#fff;font-family:'Silkscreen',monospace;font-size:13px;letter-spacing:.14em;text-decoration:underline;text-underline-offset:8px;text-decoration-thickness:1px}
+.st-live{height:min(860px,100svh);min-height:640px}
+.st-live-copy{top:auto;bottom:clamp(56px,9vh,96px)}
+.pl-muted{color:#5A544E}
+.pl-intro{padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(36px,5vw,64px)}
+.pl-intro-grid{grid-template-columns:minmax(0,640px) minmax(0,440px);justify-content:start;column-gap:clamp(40px,6vw,96px)}
+.pl-chat-wrap{position:relative}
+.pl-spark{position:absolute;right:-8px;top:-30px}
+.st-live-comments.pl-chat{position:relative;top:auto;bottom:auto;left:auto;right:auto;width:100%;max-width:440px;height:380px;margin-left:0}
+.pl-chat .st-bubble{width:100%;background:#5C4F45;border:0;box-shadow:0 8px 22px rgba(17,17,15,.18);backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:16px;padding:14px 16px}
+.pl-chat .st-ctext{color:#fff;font-size:15px;line-height:1.4}
+.pl-chat .st-likes{color:rgba(255,255,255,.85);font-size:12px}
+.pl-chat .st-handle{display:none}
+.pl-why{background:#FAF0E2;padding-top:0;padding-bottom:clamp(40px,6vw,80px)}
+.pl-why-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.pl-why img{display:block;width:100%;aspect-ratio:16 / 10;object-fit:cover;border-radius:18px}
+.pl-why-label{margin:0;font-size:14px;color:#11110F;display:inline-block;padding-bottom:6px;border-bottom:2px solid #11110F}
+.pl-why-label+p{margin:16px 0 0;max-width:420px}
+@media(max-width:800px){
+  .pl-top-host{font-size:10px;letter-spacing:.1em;gap:6px}
+  .pl-logo{font-size:18px;letter-spacing:.28em}
+  .st-live{height:auto;min-height:0}
+  .st-live-copy{bottom:auto;padding:300px 20px 40px}
+  .pl-intro-grid,.pl-why-grid{grid-template-columns:1fr}
+  .st-live-comments.pl-chat{max-width:none;height:300px;width:auto;left:auto;right:auto}
+  .pl-chat .st-bubble{padding:12px 14px}
+  .pl-spark{right:-4px;top:-28px;width:32px;height:32px}
 }
 </style>
 </head>
@@ -956,21 +1107,18 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
 <!-- ═══════════ PAGE ═══════════ -->
 <div class="st-page">
 
-  <nav class="st-nav" aria-label="Main">
-    <span class="st-logo st-pixel">PLAYLANE</span>
-    <div class="st-links">
-      <button type="button" class="st-navbtn open-waitlist">BECOME A FOUNDING HOST <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
-    </div>
-  </nav>
+  <header class="pl-nav pl-pad" aria-label="Main">
+    <a href="./" class="pl-logo" aria-label="PlayLane home">PLAYLANE</a>
+    <button type="button" class="pl-top-host open-waitlist">BECOME A FOUNDING HOST <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></button>
+  </header>
 
+  <main>
+  <!-- HERO -->
   <section class="st-hero">
     <div class="st-hero-shot">
       <div class="st-live">
-        <img class="st-live-bg" src="./images/hero-tv.jpg" alt="" aria-hidden="true">
+        <img class="st-live-bg" src="./images/hero-dinner.jpg" alt="" aria-hidden="true" style="object-position:55% 35%">
         <div class="st-live-shade" aria-hidden="true"></div>
-        <div class="st-live-comments" aria-label="What people are saying">
-          <div class="st-live-track"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div><div class="st-dup" aria-hidden="true"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div></div></div>
-        </div>
         <div class="st-live-copy">
           <h1 class="st-live-title">Cinema for<br>the Curious<br>Neighbour</h1>
           <div class="st-live-ctas">
@@ -979,38 +1127,85 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
           </div>
         </div>
       </div>
-      <section id="story" style="background:#FAF0E2;color:#11110F;padding:clamp(72px,8vw,112px) clamp(22px,5vw,76px)">
-        <div style="max-width:1280px;margin:0 auto">
-          <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 48px">
-            <h2 class="sx-dsd" style="margin:0;font-size:clamp(42px,4.6vw,64px);line-height:1.04;color:#11110F">Film by film,<br>you build your lane.</h2>
-            <p style="margin:0;max-width:420px;font-size:19px;line-height:1.5">Bring friends and family together for a film night at home, or create a ticketed cinema experience for your neighbourhood. Every WatchLane is yours to shape.</p>
-          </div>
-          <ol class="sx-steps">
-          <li>
-            <img src="./images/film-posters.jpg" alt="Film posters lit up in a cinema display case" style="object-position:50% 45%" loading="lazy">
-            <div class="sx-step-text">
-              <h3 class="sx-dsd">Discover films</h3>
-              <p>Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
-            </div>
-          </li>
-          <li>
-            <img src="./images/living-room.jpg" alt="Friends gathered on a living room floor" loading="lazy">
-            <div class="sx-step-text">
-              <h3 class="sx-dsd">Invite your people</h3>
-              <p>Invite friends, neighbours, or people who discover your WatchLane on the app.</p>
-            </div>
-          </li>
-          <li>
-            <img src="./images/story-details.jpg" alt="Drinks and a handmade menu set out for a screening" loading="lazy">
-            <div class="sx-step-text">
-              <h3 class="sx-dsd">Create experiences</h3>
-              <p>Choose the setting. Make it a moment worth remembering.</p>
-            </div>
-          </li>
-          </ol>
-        </div>
-      </section>
     </div>
+  </section>
+
+  <!-- FILM BY FILM, YOU BUILD YOUR LANE -->
+  <section class="pl-intro pl-pad" id="story" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
+    <div class="pl-wrap pl-intro-grid">
+      <div>
+        <h2 class="pl-serif">Film by film,<br>you build your lane.</h2>
+        <p class="pl-body pl-muted">Bring friends and film lovers together for a movie night at home, or create a ticketed cinema experience in your neighbourhood.</p>
+      </div>
+      <div class="pl-chat-wrap">
+        <div class="st-live-comments pl-chat" aria-label="What people are saying">
+          <div class="st-live-track"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div><div class="st-dup" aria-hidden="true"><div class="st-bubble"><div class="st-avatar" style="background: #E8C5A0">JM</div><div class="st-bubble-body"><span class="st-handle">@jess_m</span><span class="st-ctext">I am so tired of paying for multiple subscriptions and still having nothing to watch</span><span class="st-likes">&#9825; 1,420</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C5E8">TW</div><div class="st-bubble-body"><span class="st-handle">@tomwatts_</span><span class="st-ctext">Cinema is beginning to feel like content</span><span class="st-likes">&#9825; 892</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #C5A0E8">NR</div><div class="st-bubble-body"><span class="st-handle">@nadia.r</span><span class="st-ctext">Subscribed to 5 platforms and still confused on what to see</span><span class="st-likes">&#9825; 2,314</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0E8C5">FD</div><div class="st-bubble-body"><span class="st-handle">@film.daily</span><span class="st-ctext">I miss when picking a good film was a bet</span><span class="st-likes">&#9825; 574</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8A0B5">UC</div><div class="st-bubble-body"><span class="st-handle">@urbancinema</span><span class="st-ctext">I tried to organize a film night, Everyone claimed to be busy</span><span class="st-likes">&#9825; 3,180</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8D5A0">LV</div><div class="st-bubble-body"><span class="st-handle">@luca.v</span><span class="st-ctext">Movie nights hit different when you share the experience with others</span><span class="st-likes">&#9825; 748</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0D5E8">MK</div><div class="st-bubble-body"><span class="st-handle">@mira_k</span><span class="st-ctext">My friends live 10 minutes away, we have not watched a film together in 3 years</span><span class="st-likes">&#9825; 1,952</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8B5B0">RV</div><div class="st-bubble-body"><span class="st-handle">@reelvibes</span><span class="st-ctext">I miss when picking a film was an event, not just scrolling for 40 minutes</span><span class="st-likes">&#9825; 4,210</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #B5E8D0">CS</div><div class="st-bubble-body"><span class="st-handle">@cinema.soul</span><span class="st-ctext">I used to invite people to films, now I just send movie links</span><span class="st-likes">&#9825; 2,876</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #D0B5E8">DW</div><div class="st-bubble-body"><span class="st-handle">@dan.watches</span><span class="st-ctext">I would 100% go to a community movie night with people I have never met</span><span class="st-likes">&#9825; 1,103</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A0C8E8">PL</div><div class="st-bubble-body"><span class="st-handle">@priya.lens</span><span class="st-ctext">Imagine meeting your best friend at a stranger movie night. It could happen</span><span class="st-likes">&#9825; 982</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #E8C0A8">OT</div><div class="st-bubble-body"><span class="st-handle">@oscar.talks</span><span class="st-ctext">The theatre experience died when streaming took over. Bring it back differently</span><span class="st-likes">&#9825; 1,467</span></div></div><div class="st-bubble"><div class="st-avatar" style="background: #A8E8C0">MG</div><div class="st-bubble-body"><span class="st-handle">@moviegirl_uk</span><span class="st-ctext">Community viewing made movie time exciting</span><span class="st-likes">&#9825; 3,340</span></div></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY PLAYLANE -->
+  <section class="pl-why pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
+    <div class="pl-wrap pl-why-grid">
+      <img src="./images/story-lamp-lit-screening.jpg" alt="A screening room lit by small table lamps" loading="lazy">
+      <div>
+        <p class="pl-pixel pl-why-label">WHY PLAYLANE?</p>
+        <p class="pl-body pl-muted">Because cinema is better when it&rsquo;s shared. PlayLane helps you find and create unforgettable film experiences, with the people around you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUR WATCHLANE -->
+  <section class="pl-orbit-sec" aria-label="Your WatchLane brings together films, people, hosts and experiences">
+    <div class="pl-orbit" role="img" aria-label="Your WatchLane at the centre, surrounded by films, people, hosts and experiences">
+      <div class="pl-ring outer"></div>
+      <div class="pl-ring mid"></div>
+      <div class="pl-ring core"><span>YOUR<br>WATCHLANE</span></div>
+      <span class="pl-dot" style="left:50%;top:13%"></span>
+      <span class="pl-dot" style="left:50%;top:87%"></span>
+      <span class="pl-dot" style="left:13%;top:50%"></span>
+      <span class="pl-dot" style="left:87%;top:50%"></span>
+      <span class="pl-lbl t">FILMS</span>
+      <span class="pl-lbl b">EXPERIENCES</span>
+      <span class="pl-lbl l">PEOPLE</span>
+      <span class="pl-lbl r">HOSTS</span>
+    </div>
+  </section>
+
+  <!-- DISCOVER FILMS -->
+  <section class="pl-discover pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
+    <div class="pl-wrap pl-disc-grid">
+      <div>
+      <h2 class="pl-serif">Discover films</h2>
+      <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
+      </div>
+      <img src="./images/discover-films.jpg" alt="A hand picking a film from a box of films" loading="lazy" style="object-position:40% 50%">
+    </div>
+  </section>
+
+  <!-- INVITE / CREATE -->
+  <section class="pl-rows pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
+    <div class="pl-wrap">
+      <div class="pl-row">
+        <div>
+          <h3 class="pl-serif">Invite your people</h3>
+          <p class="pl-body">Invite friends, neighbours, or people who discover your WatchLane on the app.</p>
+        </div>
+        <img src="./images/invite-friends.jpg" alt="Three friends laughing together on a sofa with popcorn during a screening" loading="lazy" style="object-position:50% 40%">
+      </div>
+      <div class="pl-row">
+        <div>
+          <h3 class="pl-serif">Create experiences</h3>
+          <p class="pl-body">Choose the setting. Make it a moment worth remembering.</p>
+        </div>
+        <img src="./images/create-snack-bar.jpg" alt="A warmly lit bar set with snacks and drinks for a film night" loading="lazy" style="object-position:50% 52%">
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE YOU WATCH, WHERE YOU PLAY (original size) -->
+  <section style="background:#191919;padding:0">
     <div class="st-hero-copy">
       <span class="st-eyebrow st-pixel">WHERE YOU WATCH, WHERE YOU PLAY</span>
       <div class="st-buttons">
@@ -1021,29 +1216,29 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
   </section>
 
   <!-- NOT EVERY CINEMA LOOKS LIKE A CINEMA -->
-  <section style="background:#F6EEE2;color:#11110F;padding:clamp(80px,9vw,120px) clamp(22px,5vw,76px)">
-    <div class="sx-cinema">
-      <div>
-        <h2 class="sx-corm" style="margin:0;font-size:clamp(46px,5vw,78px);line-height:.98;letter-spacing:-.025em;color:#11110F">Not every cinema looks like a cinema.</h2>
-        <p style="margin:30px 0 0;max-width:360px;font-size:19px;line-height:1.5">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
+  <section class="pl-cinema pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
+    <div class="pl-wrap">
+      <div class="pl-car-head">
+        <div>
+          <h2 class="pl-serif">Not every cinema<br>looks like a cinema.</h2>
+          <p class="pl-body" style="margin:12px 0 0;max-width:520px">Your next favourite cinema might be a restaurant, a garden or a rooftop just around the corner.</p>
+        </div>
+        <div class="pl-car-nav">
+          <button type="button" id="plPrev" aria-label="Previous photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+          <button type="button" id="plNext" aria-label="Next photos"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+        </div>
       </div>
-      <div class="sx-pols" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
-        <figure class="sx-pol">
-          <img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy">
-          <figcaption>A restaurant after closing.</figcaption>
-        </figure>
-        <figure class="sx-pol">
-          <img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" style="object-position:60% 40%" loading="lazy">
-          <figcaption>A room full of neighbours.</figcaption>
-        </figure>
-        <figure class="sx-pol">
-          <img src="./images/rooftop.jpg" alt="A rooftop screening under string lights" loading="lazy">
-          <figcaption>A neighbourhood rooftop.</figcaption>
-        </figure>
+      <div class="pl-car" id="plCar" role="region" aria-label="Places a WatchLane can happen" tabindex="0">
+        <figure class="pl-card"><img src="./images/private-cinema.jpg" alt="A private cinema room with velvet chairs, cocktails and popcorn" loading="lazy" style="object-position:50% 40%"><figcaption>A private cinema room.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/living-room-tv.jpg" alt="Friends watching a film together in a living room" loading="lazy" style="object-position:50% 50%"><figcaption>A living room with friends.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/story-better-together.jpg" alt="Neighbours laughing together during a screening" loading="lazy" style="object-position:50% 35%"><figcaption>A room full of neighbours.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/story-restaurant-hall.jpg" alt="A restaurant hall with timber tables and fairy lights" loading="lazy"><figcaption>A restaurant after closing.</figcaption></figure>
+        <figure class="pl-card"><img src="./images/rooftop.jpg" alt="Friends at a rooftop screening under string lights" loading="lazy" style="object-position:50% 70%"><figcaption>A rooftop with friends.</figcaption></figure>
       </div>
-      <div class="sx-pols-dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+      <div class="pl-dots" id="plDots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
     </div>
   </section>
+  </main>
 
   <!-- FILM BY FILM, YOU BUILD YOUR TRIBE -->
   <section id="host" style="position:relative;min-height:680px;display:flex;align-items:center;justify-content:center;text-align:center;color:#F6EEE2;overflow:hidden;background:#1C130F;padding:0">
@@ -1653,6 +1848,56 @@ em, i, .st-page *, .modal-card * { font-style: normal !important; }
     dots.forEach(function (d, i) { d.classList.toggle('on', i === best); });
   }
   track.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+})();
+</script>
+
+<script>
+/* ── Landing v3: menu + carousel dots ── */
+(function () {
+  var burger = document.getElementById('plBurger'), menu = document.getElementById('plMenu');
+  if (burger && menu) {
+    function setOpen(o) { menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o ? 'true' : 'false'); burger.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); }
+    burger.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!menu.classList.contains('open')); });
+    menu.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('click', function (e) { if (!menu.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  }
+  var car = document.getElementById('plCar'), dots = document.querySelectorAll('#plDots span');
+  var prev = document.getElementById('plPrev'), next = document.getElementById('plNext');
+  if (car) {
+    var cards = car.querySelectorAll('.pl-card');
+    function step() { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : car.clientWidth; }
+    function update() {
+      var atEnd = car.scrollLeft + car.clientWidth >= car.scrollWidth - 4;
+      var i = atEnd ? cards.length - 1 : Math.round(car.scrollLeft / step());
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+    }
+    car.addEventListener('scroll', function () { window.requestAnimationFrame(update); }, { passive: true });
+    function atEnd() { return car.scrollLeft + car.clientWidth >= car.scrollWidth - 4; }
+    function go(dir) {
+      if (dir > 0 && atEnd()) car.scrollTo({ left: 0, behavior: 'smooth' });
+      else if (dir < 0 && car.scrollLeft <= 4) car.scrollTo({ left: car.scrollWidth, behavior: 'smooth' });
+      else car.scrollBy({ left: dir * step(), behavior: 'smooth' });
+    }
+    if (prev) prev.addEventListener('click', function () { go(-1); pause(); });
+    if (next) next.addEventListener('click', function () { go(1); pause(); });
+    /* automatic scroll, looping back to the first photo */
+    var timer = null, resumeAt = 0, visible = false;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function pause() { resumeAt = Date.now() + 6000; }
+    if (!still) {
+      timer = setInterval(function () {
+        if (!visible || document.hidden || Date.now() < resumeAt || car.matches(':hover')) return;
+        go(1);
+      }, 3200);
+      ['touchstart', 'pointerdown', 'wheel', 'focusin'].forEach(function (ev) { car.addEventListener(ev, pause, { passive: true }); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.3 }).observe(car);
+      } else { visible = true; }
+    }
+    window.addEventListener('resize', update);
+    update();
+  }
 })();
 </script>
 </body>
