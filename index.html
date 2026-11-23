@@ -1065,6 +1065,21 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
 .pl-intro-grid{grid-template-columns:minmax(0,760px) !important}
 @media(max-width:800px){.pl-intro h2{font-size:clamp(36px,10vw,44px)}.pl-intro .pl-body{font-size:15px;line-height:1.6}}
 @media(min-width:801px){.pl-intro .pl-body{font-size:18px;max-width:520px}.pl-why img{aspect-ratio:16 / 8}}
+
+/* Discover films joins Invite / Create: one section, equal spacing between all three */
+.pl-rows{background:#E2DAD5;padding-top:clamp(80px,10vw,160px);padding-bottom:clamp(80px,10vw,160px)}
+.pl-row .pl-row-title{margin:0;font-size:clamp(40px,4.6vw,64px);line-height:1.02;letter-spacing:-.02em}
+.pl-row img{aspect-ratio:2 / 1}
+@media(max-width:800px){
+  .pl-rows{padding-top:56px;padding-bottom:56px}
+  .pl-row .pl-row-title{font-size:28px;line-height:1.05}
+  .pl-row img{aspect-ratio:2.1 / 1.15}
+}
+
+/* equal row heights so the three photos are evenly spaced at every width */
+.pl-rows>.pl-wrap{display:grid;grid-auto-rows:1fr;row-gap:clamp(48px,6vw,96px)}
+.pl-rows .pl-row+.pl-row{margin-top:0}
+@media(max-width:800px){.pl-rows>.pl-wrap{row-gap:36px}}
 </style>
 </head>
 <body>
@@ -1250,20 +1265,16 @@ body,.st-page,footer.st-footer{background:#F7EEE1}
     </div>
   </section>
 
-  <!-- DISCOVER FILMS -->
-  <section class="pl-discover pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
-    <div class="pl-wrap pl-disc-grid">
-      <div>
-      <h2 class="pl-serif">Discover films</h2>
-      <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
-      </div>
-      <img src="./images/discover-films.jpg" alt="A hand picking a film from a box of films" loading="lazy" style="object-position:40% 50%">
-    </div>
-  </section>
-
   <!-- INVITE / CREATE -->
   <section class="pl-rows pl-pad" style="padding-left:clamp(22px,5vw,88px);padding-right:clamp(22px,5vw,88px)">
     <div class="pl-wrap">
+      <div class="pl-row">
+        <div>
+          <h2 class="pl-serif pl-row-title">Discover films</h2>
+          <p class="pl-body">Explore films worth gathering for. Find your next story, bring your people together, and make the viewing experience your own.</p>
+        </div>
+        <img src="./images/discover-films.jpg" alt="A hand picking a film from a box of films" loading="lazy" style="object-position:40% 50%">
+      </div>
       <div class="pl-row">
         <div>
           <h3 class="pl-serif">Invite your people</h3>
