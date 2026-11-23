@@ -1051,7 +1051,7 @@ em{font-style:normal}
 body,.st-page,footer.st-footer{background:#F7EEE1}
 .pl-intro,.pl-why,.pl-cinema{background:#F7EEE1}
 .pl-orbit-sec{background:#23201C}
-.pl-discover{background:#FCEAA6}
+.pl-discover{background:#FFF69A}
 .pl-rows{background:#E2DAD5;padding-top:clamp(80px,10vw,160px)}
 .pl-chat .st-bubble{background:#23201C}
 .pl-body,.pl-discover p,.pl-row p,.pl-card figcaption{color:#4A453E}
@@ -1147,6 +1147,9 @@ body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
 .pl-stack{padding-top:calc(50% / 1.13 + 40px)}
 @media(max-width:800px){.pl-stack{padding-top:calc(64% / 1.13 + 30px)}}
 .pl-scard figcaption{max-width:9.5em}
+
+/* PlayLane yellow */
+.pl-cinema{background:#FFF69A}
 </style>
 </head>
 <body>
@@ -2045,18 +2048,15 @@ body,.st-page,footer.st-footer,.pl-intro,.pl-why,.pl-rows{background:#FFFFFF}
       if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
     });
     stack.addEventListener('pointercancel', function () { sx = null; });
-    /* automatic loop */
-    var resumeAt = 0, visible = false;
-    function pause() { resumeAt = Date.now() + 6000; }
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!still) {
-      setInterval(function () {
-        if (!visible || document.hidden || Date.now() < resumeAt || stack.matches(':hover')) return;
-        go(1);
-      }, 3500);
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.3 }).observe(stack);
-      } else { visible = true; }
+    /* automatic loop: next photo every 2.5 seconds, back to the first after the last */
+    var resumeAt = 0, visible = !('IntersectionObserver' in window);
+    function pause() { resumeAt = Date.now() + 4000; }
+    setInterval(function () {
+      if (!visible || document.hidden || Date.now() < resumeAt) return;
+      go(1);
+    }, 2500);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.1 }).observe(stack);
     }
     window.addEventListener('resize', layout);
     layout();
