@@ -7,7 +7,7 @@
 <meta name="description" content="PlayLane is a media technology platform building an audience-led film network." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet" />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -89,6 +89,22 @@ img{display:block;max-width:100%}
 .dchats:hover .dtrack{animation-play-state:paused}
 @keyframes dscroll{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 6px))}}
 @media(max-width:800px){.dtrack,.ddup{gap:10px}.ddup{margin-top:10px}@keyframes dscroll{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 5px))}}}
+
+.dsec .dp{max-width:640px}
+.dnot{margin-top:clamp(40px,5vw,64px);font-size:clamp(34px,4.2vw,60px);line-height:1.15}
+.dmark{display:inline;background:#FFF69A;padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.dmark{font-style:italic}
+.dvideo video{pointer-events:none}
+.dvideo video::-webkit-media-controls{display:none !important}
+
+/* centre play / pause button (no other controls, no sound) */
+.dvideo-copy .dplay{pointer-events:auto}
+.dplay .i-play{display:none;margin-left:3px}
+.dplay.is-paused .i-play{display:block}
+.dplay.is-paused .i-pause{display:none}
+/* headings the same size as "Not just consumers. Participants. Insiders." */
+.dh1,.dh2{font-size:clamp(34px,4.2vw,60px);line-height:1.1;letter-spacing:-.01em}
 </style>
 </head>
 <body>
@@ -106,13 +122,13 @@ img{display:block;max-width:100%}
   <section class="pad dhero">
     <div class="wrap dhero-grid">
       <div class="dvideo" id="dVideo">
-        <video id="dVideoEl" playsinline muted autoplay loop preload="metadata" poster="./images/discover-video-poster.jpg" aria-label="PlayLane film: Stories travel through people">
+        <video id="dVideoEl" playsinline muted autoplay loop preload="metadata" poster="./images/discover-video-poster.jpg" aria-hidden="true" disablepictureinpicture disableremoteplayback>
           <source src="./videos/discover.mp4" type="video/mp4">
         </video>
         <div class="dvideo-shade" aria-hidden="true"></div>
         <div class="dvideo-copy">
           <p class="pixel dvideo-title">STORIES TRAVEL<br>THROUGH PEOPLE.</p>
-          <button type="button" class="dplay" id="dPlay" aria-label="Play the film with sound"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></button>
+          <button type="button" class="dplay" id="dPlay" aria-label="Pause the film"><svg class="i-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg><svg class="i-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></button>
         </div>
       </div>
       <div class="dhero-text">
@@ -127,7 +143,8 @@ img{display:block;max-width:100%}
     <div class="wrap">
       <p class="pixel dlabel">MORE CONTENT. MORE INDIVIDUAL CONSUMPTION.</p>
       <h2 class="serif dh2">Our biggest competitor is modern-day isolation.</h2>
-      <p class="dp">We&rsquo;ve never had more access to films and entertainment. Yet so much of that experience has become individual. We believe technology can do more than deliver content.</p>
+      <p class="dp">We&rsquo;ve never had more access to films and entertainment. Yet so much of that experience has become individual.</p>
+      <p class="dp">We believe technology can do more than deliver content. It can bring people together around it.</p>
     </div>
   </section>
 
@@ -139,28 +156,21 @@ img{display:block;max-width:100%}
     </div>
   </section>
 
-  <!-- IT CAN BRING PEOPLE TOGETHER -->
+  <!-- REAL VALUE FOR THE AUDIENCE -->
   <section class="pad dsec">
     <div class="wrap">
-      <h2 class="serif dh2">It can bring people together around it.</h2>
+      <h2 class="serif dh2">Real value for the audience.</h2>
       <p class="dp">PlayLane is building for the moments that happen when watching becomes a shared experience.</p>
-    </div>
-  </section>
-
-  <!-- REAL VALUE FOR THE AUDIENCE -->
-  <section class="pad dsec" style="padding-top:0">
-    <div class="wrap">
-      <h2 class="serif dh2">Real value<br>for the audience.</h2>
-      <p class="dp">Not just consumers. Participants. Insiders. We&rsquo;re creating a new way for people to discover films, bring them to others and participate in the experiences and value they create.</p>
+      <p class="dp">Discover films through people who share your curiosity. Bring the stories you love to your neighbourhood. Create cinema experiences that reflect your taste, connect you with others and give you the opportunity to earn from the experiences you host.</p>
     </div>
   </section>
 
   <!-- PEOPLE ARE THE NETWORK -->
   <section class="pad dsec" style="padding-top:0">
     <div class="wrap">
-      <p class="pixel dlabel">PEOPLE ARE THE NETWORK.</p>
-      <h2 class="serif dh2">A new role for the audience.</h2>
-      <p class="dp">Traditionally, audiences have been the destination for films. We&rsquo;re building a network where people can also help films travel.</p>
+      <h2 class="serif dh2">People are the network.</h2>
+      <p class="dp">The films you champion. The experiences you create. The people you bring together. You don&rsquo;t just discover film culture. You help shape it.</p>
+      <p class="serif dnot">Not just consumers.<br><span class="dmark">Participants. Insiders.</span></p>
     </div>
   </section>
 
@@ -188,17 +198,19 @@ img{display:block;max-width:100%}
 </footer>
 
 
+
 <script>
 (function () {
-  var box = document.getElementById('dVideo'), v = document.getElementById('dVideoEl'), btn = document.getElementById('dPlay');
-  if (!box || !v) return;
-  var src = v.querySelector('source');
-  /* hide the play button if there is no film file yet */
-  fetch(src.getAttribute('src'), { method: 'HEAD' }).then(function (r) { if (!r.ok) box.classList.add('no-video'); }).catch(function () { box.classList.add('no-video'); });
-  function play() { v.loop = false; v.muted = false; v.currentTime = 0; v.controls = true; v.play().then(function () { box.classList.add('playing'); }).catch(function () {}); }
-  btn.addEventListener('click', play);
-  v.addEventListener('pause', function () { if (v.ended) { box.classList.remove('playing'); v.controls = false; } });
-  v.addEventListener('ended', function () { box.classList.remove('playing'); v.controls = false; v.muted = true; v.loop = true; v.play().catch(function () {}); });
+  var v = document.getElementById('dVideoEl'), b = document.getElementById('dPlay');
+  if (!v || !b) return;
+  function sync() {
+    var paused = v.paused;
+    b.classList.toggle('is-paused', paused);
+    b.setAttribute('aria-label', paused ? 'Play the film' : 'Pause the film');
+  }
+  b.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); else v.pause(); });
+  v.addEventListener('play', sync); v.addEventListener('pause', sync);
+  sync();
 })();
 </script>
 </body>
