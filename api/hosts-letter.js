@@ -25,9 +25,9 @@ const TERMS_URL = "";
 const PRIVACY_URL = "https://playlane.co/privacy.html";
 const CONTACT_URL = "mailto:helloneighbour@playlane.co";
 const SOCIALS = [
-  ["Instagram", "https://instagram.com/joinplaylane"],
-  ["TikTok", "https://tiktok.com/@joinplaylane"],
-  ["X", "https://x.com/joinplaylane"],
+  ["Instagram", "https://instagram.com/joinplaylane", "social-instagram.png"],
+  ["TikTok", "https://tiktok.com/@joinplaylane", "social-tiktok.png"],
+  ["X", "https://x.com/joinplaylane", "social-x.png"],
 ];
 
 function esc(t) {
@@ -280,9 +280,9 @@ ${PHOTOS.map(photo).join("")}
 
 <tr><td class="pad" align="center" style="padding:34px 44px 36px">
  <a href="https://playlane.co" target="_blank" style="text-decoration:none"><img src="${IMG}/wordmark.png" width="130" height="19" alt="PLAYLANE" style="display:block;border:0;width:130px;height:19px;margin:0 auto"></a>
- <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;line-height:1.6;letter-spacing:.3px;margin-top:16px">${SOCIALS.map(([n, u]) =>
-   `<a href="${u}" target="_blank" style="color:#1c1a17;text-decoration:none">${n}</a>`).join(` <span style="color:#b8b4aa;font-weight:normal">&nbsp;/&nbsp;</span> `)}</div>
- <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;color:#8a867d;margin-top:2px">@joinplaylane</div>
+ <table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:18px auto 0"><tr>${SOCIALS.map(([n, u, icon]) =>
+   `<td style="padding:0 7px"><a href="${u}" target="_blank" style="text-decoration:none;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;color:#1c1a17"><img src="${IMG}/${icon}" width="32" height="32" alt="${n}" style="display:block;border:0;width:32px;height:32px"></a></td>`).join("")}</tr></table>
+ <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;color:#8a867d;margin-top:8px">@joinplaylane</div>
  <div style="border-top:1px solid #dadad4;width:60px;margin:16px auto 0;font-size:0;line-height:0">&nbsp;</div>
  <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#5f5c55;margin-top:14px">${[
    TERMS_URL && `<a href="${TERMS_URL}" target="_blank" style="color:#5f5c55;text-decoration:underline">Terms of Use</a>`,
