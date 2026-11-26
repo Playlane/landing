@@ -202,7 +202,7 @@ function emailText(firstName) {
 }
 
 function emailHTML(firstName) {
-  const PAPER = "#f8f4ea", INK = "#1c1a17", SOFT = "#3d3a33", Y = "#fff69a", BAR = "#f2d64b";
+  const PAPER = "#f5f5f3", INK = "#1c1a17", SOFT = "#3d3a33", Y = "#fff69a", BAR = "#f2d64b";
   const serif = "Georgia,'Times New Roman',serif";
   const hand = "'Homemade Apple',Georgia,serif";
   const p = t => `<p style="font-family:${serif};font-size:17px;line-height:1.6;color:${SOFT};margin:0 0 16px">${t}</p>`;
@@ -223,9 +223,9 @@ function emailHTML(firstName) {
  .end{font-size:34px!important}
 }
 </style></head>
-<body style="margin:0;padding:0;background:#ebe5d6">
+<body style="margin:0;padding:0;background:#e7e7e3">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">A personal note from Korede, and one question I’d love you to answer.</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ebe5d6"><tr><td align="center" style="padding:24px 10px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#e7e7e3"><tr><td align="center" style="padding:24px 10px">
 <table role="presentation" class="shell" width="620" cellpadding="0" cellspacing="0" style="width:620px;max-width:100%;background:${PAPER}">
 
 <tr><td class="pad" style="padding:36px 44px 0">
@@ -252,7 +252,7 @@ function emailHTML(firstName) {
  <div style="font-family:${serif};font-size:16px;line-height:1.5;color:${INK}">Korede<br>Founder, PlayLane</div>
 </td></tr>
 
-<tr><td class="pad" style="padding:0 44px 34px"><div style="border-top:1px solid #d9d1bf;font-size:0;line-height:0">&nbsp;</div></td></tr>
+<tr><td class="pad" style="padding:0 44px 34px"><div style="border-top:1px solid #dadad4;font-size:0;line-height:0">&nbsp;</div></td></tr>
 
 ${PHOTOS.map(photo).join("")}
 
