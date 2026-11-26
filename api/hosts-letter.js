@@ -24,6 +24,11 @@ const IMG = "https://playlane.co/images/email";
 const TERMS_URL = "";
 const PRIVACY_URL = "https://playlane.co/privacy.html";
 const CONTACT_URL = "mailto:helloneighbour@playlane.co";
+const SOCIALS = [
+  ["Instagram", "https://instagram.com/joinplaylane"],
+  ["TikTok", "https://tiktok.com/@joinplaylane"],
+  ["X", "https://x.com/joinplaylane"],
+];
 
 function esc(t) {
   return String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -206,6 +211,7 @@ function emailText(firstName) {
     "—",
     "PLAYLANE · playlane.co",
     ...(TERMS_URL ? [`Terms of Use: ${TERMS_URL}`] : []),
+    ...SOCIALS.map(([n, u]) => `${n}: ${u}`),
     `Privacy Policy: ${PRIVACY_URL}`,
     "Contact us: helloneighbour@playlane.co",
     "You’re receiving this because you signed up to host with PlayLane.",
@@ -274,7 +280,11 @@ ${PHOTOS.map(photo).join("")}
 
 <tr><td class="pad" align="center" style="padding:34px 44px 36px">
  <a href="https://playlane.co" target="_blank" style="text-decoration:none"><img src="${IMG}/wordmark.png" width="130" height="19" alt="PLAYLANE" style="display:block;border:0;width:130px;height:19px;margin:0 auto"></a>
- <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#5f5c55;margin-top:16px">${[
+ <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;line-height:1.6;letter-spacing:.3px;margin-top:16px">${SOCIALS.map(([n, u]) =>
+   `<a href="${u}" target="_blank" style="color:#1c1a17;text-decoration:none">${n}</a>`).join(` <span style="color:#b8b4aa;font-weight:normal">&nbsp;/&nbsp;</span> `)}</div>
+ <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;color:#8a867d;margin-top:2px">@joinplaylane</div>
+ <div style="border-top:1px solid #dadad4;width:60px;margin:16px auto 0;font-size:0;line-height:0">&nbsp;</div>
+ <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#5f5c55;margin-top:14px">${[
    TERMS_URL && `<a href="${TERMS_URL}" target="_blank" style="color:#5f5c55;text-decoration:underline">Terms of Use</a>`,
    `<a href="${PRIVACY_URL}" target="_blank" style="color:#5f5c55;text-decoration:underline">Privacy Policy</a>`,
    `<a href="${CONTACT_URL}" style="color:#5f5c55;text-decoration:underline">Contact us</a>`,
