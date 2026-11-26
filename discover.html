@@ -97,6 +97,14 @@ img{display:block;max-width:100%}
 .dmark{font-style:italic}
 .dvideo video{pointer-events:none}
 .dvideo video::-webkit-media-controls{display:none !important}
+
+/* centre play / pause button (no other controls, no sound) */
+.dvideo-copy .dplay{pointer-events:auto}
+.dplay .i-play{display:none;margin-left:3px}
+.dplay.is-paused .i-play{display:block}
+.dplay.is-paused .i-pause{display:none}
+/* headings the same size as "Not just consumers. Participants. Insiders." */
+.dh1,.dh2{font-size:clamp(34px,4.2vw,60px);line-height:1.1;letter-spacing:-.01em}
 </style>
 </head>
 <body>
@@ -120,6 +128,7 @@ img{display:block;max-width:100%}
         <div class="dvideo-shade" aria-hidden="true"></div>
         <div class="dvideo-copy">
           <p class="pixel dvideo-title">STORIES TRAVEL<br>THROUGH PEOPLE.</p>
+          <button type="button" class="dplay" id="dPlay" aria-label="Pause the film"><svg class="i-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg><svg class="i-play" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></button>
         </div>
       </div>
       <div class="dhero-text">
@@ -189,5 +198,20 @@ img{display:block;max-width:100%}
 </footer>
 
 
+
+<script>
+(function () {
+  var v = document.getElementById('dVideoEl'), b = document.getElementById('dPlay');
+  if (!v || !b) return;
+  function sync() {
+    var paused = v.paused;
+    b.classList.toggle('is-paused', paused);
+    b.setAttribute('aria-label', paused ? 'Play the film' : 'Pause the film');
+  }
+  b.addEventListener('click', function () { if (v.paused) v.play().catch(function () {}); else v.pause(); });
+  v.addEventListener('play', sync); v.addEventListener('pause', sync);
+  sync();
+})();
+</script>
 </body>
 </html>
