@@ -20,6 +20,10 @@ const FROM = "Korede at PlayLane <helloneighbour@playlane.co>";
 const SUBJECT = "Stories travel through people";
 const SEND_ID = "hosts-letter-stories-2026-11"; // stops the same host getting this twice
 const IMG = "https://playlane.co/images/email";
+// Footer links. TERMS_URL is empty until there's a Terms of Use page; while empty, that link is hidden.
+const TERMS_URL = "";
+const PRIVACY_URL = "https://playlane.co/privacy.html";
+const CONTACT_URL = "mailto:helloneighbour@playlane.co";
 
 function esc(t) {
   return String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -198,6 +202,13 @@ function emailText(firstName) {
     "",
     ...PHOTOS.flatMap(p => [p.caption, ""]),
     "What will your WatchLane look like?",
+    "",
+    "—",
+    "PLAYLANE · playlane.co",
+    ...(TERMS_URL ? [`Terms of Use: ${TERMS_URL}`] : []),
+    `Privacy Policy: ${PRIVACY_URL}`,
+    "Contact us: helloneighbour@playlane.co",
+    "You’re receiving this because you signed up to host with PlayLane.",
   ].join("\n");
 }
 
@@ -259,6 +270,16 @@ ${PHOTOS.map(photo).join("")}
 <tr><td class="pad" style="background:${Y};padding:40px 44px 44px">
  <div class="end" style="font-family:${serif};font-style:italic;font-size:42px;line-height:1.1;letter-spacing:-.5px;color:${INK}">what will your<br>watchlane look like?</div>
  <div style="font-family:${serif};font-size:16px;line-height:1.5;color:${SOFT};margin-top:16px">Hit reply and tell me. I read every one.</div>
+</td></tr>
+
+<tr><td class="pad" align="center" style="padding:34px 44px 36px">
+ <a href="https://playlane.co" target="_blank" style="text-decoration:none"><img src="${IMG}/wordmark.png" width="130" height="19" alt="PLAYLANE" style="display:block;border:0;width:130px;height:19px;margin:0 auto"></a>
+ <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:#5f5c55;margin-top:16px">${[
+   TERMS_URL && `<a href="${TERMS_URL}" target="_blank" style="color:#5f5c55;text-decoration:underline">Terms of Use</a>`,
+   `<a href="${PRIVACY_URL}" target="_blank" style="color:#5f5c55;text-decoration:underline">Privacy Policy</a>`,
+   `<a href="${CONTACT_URL}" style="color:#5f5c55;text-decoration:underline">Contact us</a>`,
+ ].filter(Boolean).join(" &nbsp;·&nbsp; ")}</div>
+ <div style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.5;color:#8a867d;margin-top:10px">You’re receiving this because you signed up to host with PlayLane.</div>
 </td></tr>
 
 </table></td></tr></table></body></html>`;
